@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bottomnav">#242A32</color>
+    <color name="home">#0296E5</color>
+    <color name="no">#808283</color>
+    <color name="bntint">#2196F3</color>
+
 </resources>
