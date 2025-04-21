@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.appmovie.R
-import com.example.appmovie.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
 
