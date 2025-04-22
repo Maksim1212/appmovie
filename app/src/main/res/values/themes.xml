@@ -5,4 +5,11 @@
     </style>
 
     <style name="Theme.AppMovie" parent="Base.Theme.AppMovie" />
+
+    <style name="CustomBottomNavigation" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@color/bottomnav</item>
+        <item name="itemBackground">@color/bottomnav</item>
+        <item name="itemIconTint">@color/bottomnav</item>
+        <item name="itemTextColor">@color/bottomnav</item>
+    </style>
 </resources>
