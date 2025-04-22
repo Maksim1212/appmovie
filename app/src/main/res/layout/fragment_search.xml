@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bottomnav"
-    tools:context=".movie.presentation.search.SearchFragment">
+    android:background="@color/main_color_background_app"
+    tools:context="com.example.appmovie.movie.presentation.search.SearchFragment">
 
     <TextView
         android:id="@+id/textView"

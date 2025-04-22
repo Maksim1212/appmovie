@@ -7,9 +7,9 @@
     <style name="Theme.AppMovie" parent="Base.Theme.AppMovie" />
 
     <style name="CustomBottomNavigation" parent="Widget.Design.BottomNavigationView">
-        <item name="android:background">@color/bottomnav</item>
-        <item name="itemBackground">@color/bottomnav</item>
-        <item name="itemIconTint">@color/bottomnav</item>
-        <item name="itemTextColor">@color/bottomnav</item>
+        <item name="android:background">@color/main_color_background_app</item>
+        <item name="itemBackground">@color/main_color_background_app</item>
+        <item name="itemIconTint">@color/main_color_background_app</item>
+        <item name="itemTextColor">@color/main_color_background_app</item>
     </style>
 </resources>
