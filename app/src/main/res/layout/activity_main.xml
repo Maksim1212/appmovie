@@ -24,6 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/blue_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         tools:ignore="MissingConstraints" />
 
