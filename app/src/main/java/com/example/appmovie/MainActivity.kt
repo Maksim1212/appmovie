@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appmovie.databinding.ActivityMainBinding
+import com.example.appmovie.movie.presentation.favorite.FavoriteFragment
 
 class MainActivity : AppCompatActivity() {
 
