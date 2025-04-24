@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_color_background_app">
+    android:background="@color/main_color_background_app"
+    android:id="@+id/rv_main">
 
     <ImageView
         android:id="@+id/cover"
