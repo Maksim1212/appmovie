@@ -11,18 +11,19 @@
         android:layout_width="95dp"
         android:layout_height="120dp"
         android:background="@color/main_color_background_app"
-        android:src="@drawable/ic_example"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_example" />
 
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="200dp"
-        android:layout_height="24dp"
+        android:layout_height="@dimen/text_height_big"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintStart_toEndOf="@id/cover"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Spiderman" />
@@ -40,7 +41,7 @@
     <TextView
         android:id="@+id/tv_rating"
         android:layout_width="18dp"
-        android:layout_height="15dp"
+        android:layout_height="@dimen/text_size_medium"
         android:layout_marginStart="4dp"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/montserrat_semi_bold"
@@ -63,9 +64,9 @@
     <TextView
         android:id="@+id/tv_genre"
         android:layout_width="43dp"
-        android:layout_height="18dp"
+        android:layout_height="@dimen/text_size_medium"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_small"
@@ -86,7 +87,7 @@
     <TextView
         android:id="@+id/tv_data"
         android:layout_width="31dp"
-        android:layout_height="18dp"
+        android:layout_height="@dimen/text_size_medium"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_regular"
@@ -109,7 +110,7 @@
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="184dp"
-        android:layout_height="18dp"
+        android:layout_height="@dimen/text_size_medium"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_regular"
