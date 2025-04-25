@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_color_background_app"
+    android:id="@+id/rv_main">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="95dp"
+        android:layout_height="120dp"
+        android:background="@color/main_color_background_app"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_example" />
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_medium"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Spiderman" />
+
+    <ImageView
+        android:id="@+id/ic_star"
+        android:layout_width="@dimen/size_big"
+        android:layout_height="@dimen/size_big"
+        android:layout_marginStart="@dimen/size_medium"
+        android:src="@drawable/star"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rating"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintTop_toTopOf="@id/tv_rating" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_medium"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:textColor="@color/orange_color"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ic_star"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        tools:text="9.5" />
+
+    <ImageView
+        android:id="@+id/ic_genre"
+        android:layout_width="@dimen/size_big"
+        android:layout_height="@dimen/size_big"
+        android:layout_marginStart="@dimen/size_medium"
+        android:src="@drawable/ic_ticket"
+        app:layout_constraintBottom_toBottomOf="@id/tv_genre"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintTop_toTopOf="@id/tv_genre" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_small"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ic_genre"
+        app:layout_constraintTop_toBottomOf="@id/tv_rating"
+        tools:text="Action" />
+
+    <ImageView
+        android:id="@+id/ic_calendar"
+        android:layout_width="@dimen/size_big"
+        android:layout_height="@dimen/size_big"
+        android:layout_marginStart="@dimen/size_medium"
+        android:src="@drawable/ic_calendar_blank"
+        app:layout_constraintBottom_toBottomOf="@id/tv_data"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintTop_toTopOf="@id/tv_data" />
+
+    <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_small"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ic_calendar"
+        app:layout_constraintTop_toBottomOf="@id/tv_genre"
+        tools:text="2019" />
+
+    <ImageView
+        android:id="@+id/ic_time"
+        android:layout_width="@dimen/size_big"
+        android:layout_height="@dimen/size_big"
+        android:layout_marginStart="@dimen/size_medium"
+        android:src="@drawable/ic_clock"
+        app:layout_constraintBottom_toBottomOf="@id/tv_time"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintTop_toTopOf="@id/tv_time" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_small"
+        android:layout_marginTop="@dimen/size_small"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ic_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_data"
+        tools:text="139 minutes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

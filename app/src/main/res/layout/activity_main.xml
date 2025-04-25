@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/main_color_background_app"
-        android:backgroundTint="@color/blue_color"
         android:elevation="4dp"
         app:itemIconTint="@color/item_icon_selector"
         app:itemRippleColor="@android:color/transparent"
@@ -43,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_menu" />
-
+        app:menu="@menu/main_menu"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
