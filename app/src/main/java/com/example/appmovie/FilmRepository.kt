@@ -2,7 +2,7 @@ package com.example.appmovie
 
 object FilmRepository {
 
-    val film = arrayListOf(
+    val films = arrayListOf(
         Film(
             cover = "@color/main_color_background_app",
             id = 0,
