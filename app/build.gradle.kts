@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
 }
 
 android {
@@ -50,8 +49,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation (libs.androidx.recyclerview)
     testImplementation(libs.junit)
-    implementation (libs.glide)
-    annotationProcessor (libs.glide.compiler)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 

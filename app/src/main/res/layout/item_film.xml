@@ -9,15 +9,13 @@
 
     <ImageView
         android:id="@+id/cover"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="95dp"
+        android:layout_height="120dp"
         android:background="@color/main_color_background_app"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_example"
-        app:layout_constraintDimensionRatio="0.791"
-        android:scaleType="centerCrop"/>
+        tools:src="@drawable/ic_example" />
 
     <TextView
         android:id="@+id/tv_header"
