@@ -1,10 +1,11 @@
 package com.example.appmovie
 
-class Film(
+data class Film(
     val id: Int,
     val cover: String,
+    val rating: String,
     val header: String,
     val genre: String,
+    val data: Int,
     val time: String
-) {
-}
+)

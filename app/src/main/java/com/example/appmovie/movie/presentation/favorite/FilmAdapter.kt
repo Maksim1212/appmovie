@@ -1,12 +1,12 @@
 package com.example.appmovie.movie.presentation.favorite
 
-import android.service.credentials.Action
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.Film
 import com.example.appmovie.FilmHolder
+import com.example.appmovie.MyDiffCallback
 import com.example.appmovie.databinding.ItemFilmBinding
 
 class FilmAdapter(
@@ -14,7 +14,7 @@ class FilmAdapter(
     private val action: (Film) -> Unit,
     private val glide: RequestManager
 
-) : RecyclerView.Adapter<FilmHolder>() {
+) : ListAdapter<Film, FilmHolder>(MyDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,5 +38,4 @@ class FilmAdapter(
     }
 
     override fun getItemCount(): Int = list.size
-
 }
