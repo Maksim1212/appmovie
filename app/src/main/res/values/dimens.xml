@@ -6,6 +6,4 @@
     <dimen name="size_small">4dp</dimen>
     <dimen name="size_medium">12dp</dimen>
     <dimen name="size_big">16dp</dimen>
-
-    <dimen name="item_film">24dp</dimen>
 </resources>
