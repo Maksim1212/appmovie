@@ -17,4 +17,17 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:itemCount="3" />
+
+    <view
+        android:id="@+id/view"
+        class="com.example.appmovie.CustomTextView$CustomTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="56dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

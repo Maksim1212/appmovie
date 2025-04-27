@@ -2,22 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_color_background_app"
-    android:id="@+id/rv_main">
+    android:background="@color/main_color_background_app">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/cover"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/main_color_background_app"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="0.791"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_example"
-        app:layout_constraintDimensionRatio="0.791"
-        android:scaleType="centerCrop"/>
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner"
+        tools:src="@drawable/ic_example" />
 
     <TextView
         android:id="@+id/tv_header"

@@ -37,6 +37,7 @@ class FavoriteFragment : Fragment() {
 
         binding.rvFilmFavorite.adapter = adapter
         binding.rvFilmFavorite.layoutManager = LinearLayoutManager(context)
+        //binding..text = "Text set from fragment!"
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.item_film)
         binding.rvFilmFavorite.addItemDecoration(FilmsItemDecoration(spacingInPixels))
