@@ -7,27 +7,20 @@
     android:background="@color/main_color_background_app"
     tools:context="com.example.appmovie.movie.presentation.favorite.FavoriteFragment">
 
+    <include
+        android:id="@+id/header_in_main_menu"
+        layout="@layout/header_component" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_film_favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:itemCount="3" />
+        tools:itemCount="6" />
 
-    <view
-        android:id="@+id/view"
-        class="com.example.appmovie.CustomTextView$CustomTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="56dp"
-        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

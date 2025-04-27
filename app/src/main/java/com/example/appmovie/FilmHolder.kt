@@ -22,8 +22,8 @@ class FilmHolder(
 
             glide
                 .load(film.cover.toUri()).into(cover)
-                // .override(holder.binding.imageView.width, holder.binding.imageView.height) //Set target size to automatically calculated imageview size
-                // .diskCacheStrategy(DiskCacheStrategy.DATA)
+            // .override(holder.binding.imageView.width, holder.binding.imageView.height) //Set target size to automatically calculated imageview size
+            // .diskCacheStrategy(DiskCacheStrategy.DATA)
 
             root.setOnClickListener {
                 action(film)
