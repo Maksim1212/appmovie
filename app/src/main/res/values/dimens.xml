@@ -9,11 +9,6 @@
 
     <dimen name="item_film">24dp</dimen>
 
-
-    <declare-styleable name="CustomTextView">
-        <attr name="customText" format="string" />
-    </declare-styleable>
-
     <style name="ShapeAppearanceOverlay.MyApp.RoundedCorner" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>

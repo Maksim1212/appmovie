@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovie.FilmsItemDecoration
+import com.example.appmovie.HeaderComponent
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
+import com.example.appmovie.databinding.HeaderComponentBinding
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
 class FavoriteFragment : Fragment() {
@@ -17,6 +19,7 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private var adapter: FilmAdapter? = null
+    private lateinit var headerComponent: HeaderComponent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,9 @@ class FavoriteFragment : Fragment() {
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.item_film)
         binding.rvFilmFavorite.addItemDecoration(FilmsItemDecoration(spacingInPixels))
+
+        val headerBinding = HeaderComponentBinding.bind(binding.root.findViewById(R.id.header_in_main_menu))
+        headerComponent = HeaderComponent(headerBinding)
 
     }
 }
