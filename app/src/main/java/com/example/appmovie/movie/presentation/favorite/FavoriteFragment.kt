@@ -12,6 +12,7 @@ import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.databinding.HeaderComponentBinding
 import com.example.appmovie.movie.data.repository.FIlmStorage
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.presentation.detail.FilmAdapter
 import com.example.appmovie.movie.presentation.detail.FilmsItemDecoration
 
 class FavoriteFragment : Fragment() {

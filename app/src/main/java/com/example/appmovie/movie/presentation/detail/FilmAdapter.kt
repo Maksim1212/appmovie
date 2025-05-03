@@ -1,13 +1,11 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
-import com.example.appmovie.movie.common.Film
-import com.example.appmovie.movie.presentation.detail.FilmHolder
-import com.example.appmovie.movie.presentation.detail.MyDiffCallback
 import com.example.appmovie.databinding.ItemFilmBinding
+import com.example.appmovie.movie.common.Film
 
 class FilmAdapter(
     private val list: List<Film>,
