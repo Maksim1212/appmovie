@@ -1,9 +1,10 @@
-package com.example.appmovie
+package com.example.appmovie.movie.presentation.detail
 
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
-import androidx.core.net.toUri
+import com.example.appmovie.movie.common.Film
 
 class FilmHolder(
     private val binding: ItemFilmBinding,

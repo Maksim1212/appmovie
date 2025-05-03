@@ -1,4 +1,4 @@
-package com.example.appmovie
+package com.example.appmovie.movie.presentation.detail
 
 import android.graphics.Rect
 import android.view.View
@@ -13,13 +13,12 @@ class FilmsItemDecoration(private val film: Int) : RecyclerView.ItemDecoration()
     ) {
         outRect.left = film
         outRect.right = film
-        outRect.bottom = film
+        outRect.bottom = 10
 
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.top = film
         } else {
-            outRect.top = 24
+            outRect.top = 30
         }
     }
 }
-

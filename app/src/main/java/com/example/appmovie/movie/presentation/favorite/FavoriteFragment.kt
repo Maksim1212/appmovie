@@ -7,19 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.appmovie.FilmsItemDecoration
-import com.example.appmovie.HeaderComponent
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.databinding.HeaderComponentBinding
+import com.example.appmovie.movie.data.repository.FIlmStorage
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.presentation.detail.FilmsItemDecoration
 
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-    private var adapter: FilmAdapter? = null
-    private lateinit var headerComponent: HeaderComponent
+    private var filmRepository = FilmRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,20 +31,23 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = FilmAdapter(
-            FilmRepository.films,
-            glide = Glide.with(this@FavoriteFragment),
-            action = { _ -> }
-        )
+        var selectedFilms = filmRepository.getSelectedFilms()
 
-        binding.rvFilmFavorite.adapter = adapter
+        // adapter = FilmAdapter(
+        //     FIlmStorage.selected_films,
+        //     glide = Glide.with(this@FavoriteFragment),
+        //     action = { _ -> }
+        // )
+
+        binding.rvFilmFavorite.adapter = FilmAdapter(
+            selectedFilms,
+            action = { _ -> },
+            glide = Glide.with(this@FavoriteFragment)
+        )
         binding.rvFilmFavorite.layoutManager = LinearLayoutManager(context)
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.item_film)
         binding.rvFilmFavorite.addItemDecoration(FilmsItemDecoration(spacingInPixels))
-
-        val headerBinding = HeaderComponentBinding.bind(binding.root.findViewById(R.id.header_in_main_menu))
-        headerComponent = HeaderComponent(headerBinding)
 
     }
 }

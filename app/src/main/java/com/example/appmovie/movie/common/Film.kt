@@ -1,4 +1,4 @@
-package com.example.appmovie
+package com.example.appmovie.movie.common
 
 class Film(
     val id: Int,
