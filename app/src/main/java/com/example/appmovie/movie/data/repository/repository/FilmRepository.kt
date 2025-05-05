@@ -9,8 +9,8 @@ class FilmRepository {
 
     fun getTopTenFilms(): List<Film> = FilmStorage.topTenFilms
 
-    fun getPopularMovies(): List<Film> = FilmStorage.popularMovies
+    fun getPopularFilms(): List<Film> = FilmStorage.popularFilms
 
-    fun getRecommendedMovies(): List<Film> = FilmStorage.recommendedMovies
+    fun getRecommendedFilms(): List<Film> = FilmStorage.recommendedFilms
 
 }
