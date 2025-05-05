@@ -19,12 +19,10 @@ class FilmHolder(
             tvGenre.text = film.genre
             tvTime.text = film.time
             tvRating.text = film.rating
-            tvData.text = film.data.toInt().toString()
+            tvData.text = film.data.toString()
 
             glide
                 .load(film.cover.toUri()).into(cover)
-            // .override(holder.binding.imageView.width, holder.binding.imageView.height) //Set target size to automatically calculated imageview size
-            // .diskCacheStrategy(DiskCacheStrategy.DATA)
 
             root.setOnClickListener {
                 action(film)

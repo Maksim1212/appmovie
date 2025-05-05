@@ -2,8 +2,8 @@ package com.example.appmovie.movie.data.repository
 
 import com.example.appmovie.movie.common.Film
 
-object FIlmStorage {
-    var selected_films = arrayListOf(
+object FilmStorage {
+    val selectedFilms = arrayListOf(
         Film(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
@@ -41,7 +41,7 @@ object FIlmStorage {
             data = 2019
         ),
     )
-    var top_10_films = arrayListOf(
+    val topTenFilms = arrayListOf(
         Film(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
@@ -79,7 +79,7 @@ object FIlmStorage {
             data = 2019
         ),
     )
-    var popular_movies = arrayListOf(
+    val popularMovies = arrayListOf(
         Film(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
@@ -117,7 +117,7 @@ object FIlmStorage {
             data = 2019
         ),
     )
-    var recommended_movies = arrayListOf(
+    val recommendedMovies = arrayListOf(
         Film(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,

@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
-import com.example.appmovie.databinding.HeaderComponentBinding
-import com.example.appmovie.movie.data.repository.FIlmStorage
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.presentation.detail.FilmsItemDecoration
 
@@ -32,13 +30,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var selectedFilms = filmRepository.getSelectedFilms()
-
-        // adapter = FilmAdapter(
-        //     FIlmStorage.selected_films,
-        //     glide = Glide.with(this@FavoriteFragment),
-        //     action = { _ -> }
-        // )
-
+        
         binding.rvFilmFavorite.adapter = FilmAdapter(
             selectedFilms,
             action = { _ -> },

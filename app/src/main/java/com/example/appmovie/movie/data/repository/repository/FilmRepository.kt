@@ -1,20 +1,16 @@
 package com.example.appmovie.movie.data.repository.repository
 
 import com.example.appmovie.movie.common.Film
-import com.example.appmovie.movie.data.repository.FIlmStorage
+import com.example.appmovie.movie.data.repository.FilmStorage
 
 class FilmRepository {
-    fun getSelectedFilms(): List<Film> {
-           return FIlmStorage.selected_films
-         }
-    fun getTopTenFilms(): List<Film> {
-        return FIlmStorage.top_10_films
-    }
-    fun getPopularMmovies(): List<Film> {
-        return FIlmStorage.popular_movies
-    }
-    fun getRecommended_Movies(): List<Film> {
-        return FIlmStorage.recommended_movies
-    }
-}
 
+    fun getSelectedFilms(): List<Film> = FilmStorage.selectedFilms
+
+    fun getTopTenFilms(): List<Film> = FilmStorage.topTenFilms
+
+    fun getPopularMovies(): List<Film> = FilmStorage.popularMovies
+
+    fun getRecommendedMovies(): List<Film> = FilmStorage.recommendedMovies
+
+}

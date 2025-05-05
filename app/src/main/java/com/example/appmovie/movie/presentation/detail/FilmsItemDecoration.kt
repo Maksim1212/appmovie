@@ -13,12 +13,18 @@ class FilmsItemDecoration(private val film: Int) : RecyclerView.ItemDecoration()
     ) {
         outRect.left = film
         outRect.right = film
-        outRect.bottom = 10
+        outRect.bottom = OUT_REST_BOTTOM
 
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.top = film
         } else {
-            outRect.top = 30
+            outRect.top = OUT_REST_TOP
         }
     }
+
+    companion object {
+        private const val OUT_REST_TOP = 30
+        private const val OUT_REST_BOTTOM = 10
+    }
 }
+
