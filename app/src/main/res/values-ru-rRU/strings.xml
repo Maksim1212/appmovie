@@ -4,5 +4,5 @@
     <string name="home">Основная</string>
     <string name="search">Поиск</string>
     <string name="watch_list">Избранное</string>
-    <string name="ddd">header/dark/header-1-row</string>
+    <string name="what_do_you_want_to_watch">Что ты хочешь посмотреть?</string>
 </resources>

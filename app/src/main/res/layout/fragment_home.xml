@@ -7,6 +7,10 @@
     android:background="@color/main_color_background_app"
     tools:context="com.example.appmovie.movie.presentation.home.HomeFragment">
 
+    <include
+        android:id="@+id/header_in_main_menu"
+        layout="@layout/heander_fragment_home" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
