@@ -9,7 +9,19 @@
 
     <include
         android:id="@+id/header_in_main_menu"
-        layout="@layout/header_fragment_home" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/heander_fragment_home"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <include
+        android:id="@+id/searchBar"
+        layout="@layout/search_film"
+        app:layout_constraintTop_toBottomOf="@id/header_in_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/textView"
@@ -17,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="HomeFragment"
         android:textColor="#F8F6F6"
-        android:textSize="50sp"
+        android:textSize="@dimen/text_size_fifty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
