@@ -10,14 +10,13 @@
         android:id="@+id/header_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/size_twelve"
         android:background="@color/main_color_background_app"
         android:fontFamily="@font/montserrat_semi_bold"
         android:gravity="center"
         android:text="@string/watch_list"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_medium"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
