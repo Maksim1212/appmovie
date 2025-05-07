@@ -13,10 +13,11 @@
     <dimen name="size_ten">10dp</dimen>
     <dimen name="size_medium">12dp</dimen>
     <dimen name="size_twelve">12dp</dimen>
+    <dimen name="size_image_view_padding_end">14dp</dimen>
     <dimen name="size_big">16dp</dimen>
     <dimen name="size_text_heander_home">18dp</dimen>
     <dimen name="size_twenty">20dp</dimen>
-    <dimen name="size_text_forty_two">42dp</dimen>
+    <dimen name="size_search_panel">42dp</dimen>
     <dimen name="size_seventy">70dp</dimen>
     <dimen name="size_recycler_view_height">78dp</dimen>
     <dimen name="size_shapeable_imageView_height">120dp</dimen>

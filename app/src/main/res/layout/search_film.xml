@@ -7,29 +7,27 @@
     android:orientation="horizontal">
 
     <EditText
-        android:id="@+id/searchEditText"
+        android:id="@+id/search_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_text_forty_two"
+        android:layout_height="@dimen/size_search_panel"
         android:layout_marginStart="@dimen/size_twenty"
-        android:layout_marginEnd="@dimen/size_twenty"
         android:background="@drawable/rounded_edittext"
         android:fontFamily="@font/poppins_regular"
         android:imeOptions="actionSearch"
         android:paddingStart="@dimen/size_twenty"
         android:paddingTop="@dimen/size_baby"
-        android:text="@string/search"
+        android:hint="@string/search"
         android:textColor="@color/search_color"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/searchIcon"
+        android:id="@+id/search_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/size_twelve"
-        android:paddingEnd="@dimen/text_size_medium"
+        android:paddingEnd="@dimen/size_image_view_padding_end"
         android:src="@drawable/search_main"
-        app:layout_constraintEnd_toEndOf="@id/searchEditText" />
+        app:layout_constraintEnd_toEndOf="@id/search_edit_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
