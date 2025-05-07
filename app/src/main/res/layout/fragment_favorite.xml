@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/header_in_main_menu"
-        layout="@layout/header_component" />
+        layout="@layout/header_fragment_favorite" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_film_favorite"
