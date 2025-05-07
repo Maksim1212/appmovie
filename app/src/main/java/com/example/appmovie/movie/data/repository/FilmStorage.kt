@@ -41,7 +41,7 @@ object FilmStorage {
             data = 2019
         ),
     )
-    val topTenFilms = arrayListOf(
+    val topRankedFilms = arrayListOf(
         Film(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
