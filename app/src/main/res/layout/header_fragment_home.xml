@@ -5,7 +5,7 @@
     android:id="@+id/header_in_main_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="@dimen/size_big">
 
     <TextView
         android:id="@+id/header_text_view"
@@ -17,10 +17,9 @@
         android:fontFamily="@font/poppins_semi_bold"
         android:text="@string/what_do_you_want_to_watch"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/size_text_heander_home"
+        android:textSize="@dimen/text_size_heander_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpUsage" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <resources>
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_heander_home">18sp</dimen>
 
     <dimen name="size_baby">2dp</dimen>
     <dimen name="size_small">4dp</dimen>
