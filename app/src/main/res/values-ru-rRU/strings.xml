@@ -5,4 +5,6 @@
     <string name="search">Поиск</string>
     <string name="watch_list">Избранное</string>
     <string name="what_do_you_want_to_watch">Что ты хочешь посмотреть?</string>
+    <string name="enter_the_movie">Введите фильм</string>
+
 </resources>

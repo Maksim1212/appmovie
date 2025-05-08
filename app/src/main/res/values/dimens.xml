@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_heander_home">18sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_sixteen">16sp</dimen>
+    <dimen name="text_size_fifty">50sp</dimen>
 
     <dimen name="size_baby">2dp</dimen>
     <dimen name="size_small">4dp</dimen>
@@ -11,18 +13,15 @@
     <dimen name="size_ten">10dp</dimen>
     <dimen name="size_medium">12dp</dimen>
     <dimen name="size_twelve">12dp</dimen>
+    <dimen name="size_image_view_padding_end">14dp</dimen>
     <dimen name="size_big">16dp</dimen>
     <dimen name="size_text_heander_home">18dp</dimen>
+    <dimen name="size_twenty">20dp</dimen>
+    <dimen name="size_search_panel">42dp</dimen>
     <dimen name="size_seventy">70dp</dimen>
     <dimen name="size_recycler_view_height">78dp</dimen>
     <dimen name="size_shapeable_imageView_height">120dp</dimen>
     <dimen name="size_shapeable_imageView_width">95dp</dimen>
-
-
     <dimen name="item_film">24dp</dimen>
 
-    <style name="ShapeAppearanceOverlay.MyApp.RoundedCorner" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
 </resources>
