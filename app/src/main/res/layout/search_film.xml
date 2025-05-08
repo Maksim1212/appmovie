@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_search_panel"
         android:layout_marginStart="@dimen/size_twenty"
+        android:layout_marginEnd="@dimen/size_twenty"
+        android:lines="1"
         android:background="@drawable/rounded_edittext"
         android:fontFamily="@font/poppins_regular"
         android:hint="@string/search"
