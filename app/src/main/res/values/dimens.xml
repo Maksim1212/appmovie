@@ -24,8 +24,4 @@
     <dimen name="size_shapeable_imageView_width">95dp</dimen>
     <dimen name="item_film">24dp</dimen>
 
-    <style name="ShapeAppearanceOverlay.MyApp.RoundedCorner" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
 </resources>
