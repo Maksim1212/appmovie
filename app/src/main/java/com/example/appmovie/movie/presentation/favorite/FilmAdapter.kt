@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
-import com.example.appmovie.movie.common.Film
 import com.example.appmovie.movie.presentation.detail.FilmHolder
 import com.example.appmovie.movie.presentation.detail.MyDiffCallback
 import com.example.appmovie.databinding.ItemFilmBinding
+import com.example.appmovie.movie.data.FilmModel
 
 class FilmAdapter(
-    private val list: List<Film>,
-    private val action: (Film) -> Unit,
+    private val list: List<FilmModel>,
+    private val action: (FilmModel) -> Unit,
     private val glide: RequestManager
 
-) : ListAdapter<Film, FilmHolder>(MyDiffCallback()) {
+) : ListAdapter<FilmModel, FilmHolder>(MyDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
