@@ -2,14 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/main_color_background_app">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_popular_films"
+        android:layout_width="140dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/main_color_background_app"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner"
+        tools:src="@drawable/ic_example" />
+
+
+    <TextView
+        android:id="@+id/textView_popular_films"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_example"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:text="1"
+        android:textSize="96sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

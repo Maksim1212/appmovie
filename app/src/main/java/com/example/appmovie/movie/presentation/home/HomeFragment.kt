@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.appmovie.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
+import com.example.appmovie.R
+import com.example.appmovie.databinding.FragmentHomeBinding
+import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var filmRepository = FilmRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,5 +31,19 @@ class HomeFragment : Fragment() {
             if (!hasFocus) {
             }
         }
+
+        var popularFilmsMain = filmRepository.getPopularFilmsMain()
+
+        binding.rvPopularFilms.adapter = PopularFilmsAdapter(
+            popularFilmsMain,
+            glide = Glide.with(this@HomeFragment)
+        )
+
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
+        binding.rvPopularFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
+
+
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
