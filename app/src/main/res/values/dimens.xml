@@ -5,6 +5,7 @@
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_sixteen">16sp</dimen>
     <dimen name="text_size_fifty">50sp</dimen>
+    <dimen name="text_size_tv">96sp</dimen>
 
     <dimen name="size_baby">2dp</dimen>
     <dimen name="size_small">4dp</dimen>
@@ -23,5 +24,13 @@
     <dimen name="size_shapeable_imageView_height">120dp</dimen>
     <dimen name="size_shapeable_imageView_width">95dp</dimen>
     <dimen name="item_film">24dp</dimen>
+    <dimen name="size_margin_start_rv">22dp</dimen>
+    <dimen name="size_margin_top_rv">130dp</dimen>
+    <dimen name="size_margin_start_image">10dp</dimen>
+    <dimen name="size_margin_top_tv">116dp</dimen>
+    <dimen name="size_width_image">140dp</dimen>
+    <dimen name="size_height_image">200dp</dimen>
+
+
 
 </resources>
