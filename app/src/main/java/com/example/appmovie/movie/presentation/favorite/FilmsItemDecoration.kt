@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.presentation.detail
+package com.example.appmovie.movie.presentation.favorite
 
 import android.graphics.Rect
 import android.view.View
@@ -27,4 +27,3 @@ class FilmsItemDecoration(private val film: Int) : RecyclerView.ItemDecoration()
         private const val OUT_REST_BOTTOM = 10
     }
 }
-

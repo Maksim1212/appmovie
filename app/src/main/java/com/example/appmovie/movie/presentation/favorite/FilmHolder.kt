@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.presentation.detail
+package com.example.appmovie.movie.presentation.favorite
 
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView

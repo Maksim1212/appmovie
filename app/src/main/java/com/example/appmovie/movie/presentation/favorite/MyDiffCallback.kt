@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.presentation.detail
+package com.example.appmovie.movie.presentation.favorite
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

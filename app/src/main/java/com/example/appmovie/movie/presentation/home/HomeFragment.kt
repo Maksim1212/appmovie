@@ -9,6 +9,8 @@ import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
+import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -26,19 +28,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.searchBar.searchEditText.setOnFocusChangeListener { view, hasFocus ->
-            if (!hasFocus) {
-            }
+        var topRankedFilms = GetTopRankedFilms(filmRepository).invoke().map {
+            convertRankedFilmEntityToRankedFilmItemState(it)
         }
 
-        var popularFilmsMain = filmRepository.getTopRankedFilms()
 
         binding.rvPopularFilms.adapter = PopularFilmsAdapter(
-            popularFilmsMain,
+            topRankedFilms,
             glide = Glide.with(this@HomeFragment)
         )
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
         binding.rvPopularFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
     }
+
+    private fun convertRankedFilmEntityToRankedFilmItemState(
+        rankedFilmEntity: RankedFilmEntity
+    ): HomeUiState.RankedFilmItemState = HomeUiState.RankedFilmItemState(
+        image = rankedFilmEntity.cover,
+        rank = rankedFilmEntity.rank.toString()
+    )
 }

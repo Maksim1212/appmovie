@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.presentation.detail.FilmsItemDecoration
 
 class FavoriteFragment : Fragment() {
 

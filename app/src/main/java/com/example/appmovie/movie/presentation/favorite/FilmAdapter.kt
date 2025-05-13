@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
-import com.example.appmovie.movie.presentation.detail.FilmHolder
-import com.example.appmovie.movie.presentation.detail.MyDiffCallback
 import com.example.appmovie.databinding.ItemFilmBinding
 import com.example.appmovie.movie.data.FilmModel
 
