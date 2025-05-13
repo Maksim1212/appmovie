@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
+import com.example.appmovie.movie.data.RankedFilmModel
 import com.example.appmovie.movie.presentation.detail.PopularFilmsHolder
 
 class PopularFilmsAdapter(
-    private val list: List<PopularFilms>,
+    private val list: List<RankedFilmModel>,
     private val glide: RequestManager
 
 ) : RecyclerView.Adapter<PopularFilmsHolder>() {

@@ -5,7 +5,6 @@ import com.example.appmovie.movie.data.PopularFilmsModel
 import com.example.appmovie.movie.data.RankedFilmModel
 import com.example.appmovie.movie.data.RecommendedFilmsModel
 import com.example.appmovie.movie.data.repository.FilmStorage
-import com.example.appmovie.movie.presentation.home.PopularFilms
 
 class FilmRepository {
 
@@ -16,7 +15,5 @@ class FilmRepository {
     fun getPopularFilms(): ArrayList<PopularFilmsModel> = FilmStorage.popularFilms
 
     fun getRecommendedFilms(): List<RecommendedFilmsModel> = FilmStorage.recommendedFilms
-
-    fun getPopularFilmsMain(): List<PopularFilms> = FilmStorage.popularFilmsMain
 
 }

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
-import com.example.appmovie.databinding.FragmentHomeBinding
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
 class HomeFragment : Fragment() {
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        var popularFilmsMain = filmRepository.getPopularFilmsMain()
+        var popularFilmsMain = filmRepository.getTopRankedFilms()
 
         binding.rvPopularFilms.adapter = PopularFilmsAdapter(
             popularFilmsMain,
@@ -41,9 +40,5 @@ class HomeFragment : Fragment() {
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
         binding.rvPopularFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
-
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
     }
 }
