@@ -1,15 +1,17 @@
 package com.example.appmovie.movie.presentation.detail
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
-import com.example.appmovie.movie.common.Film
+import com.example.appmovie.movie.data.FilmModel
 
-class MyDiffCallback : DiffUtil.ItemCallback<Film>() {
+class MyDiffCallback : DiffUtil.ItemCallback<FilmModel>() {
 
-    override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
+    override fun areItemsTheSame(oldItem: FilmModel, newItem: FilmModel): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: FilmModel, newItem: FilmModel): Boolean {
         return oldItem == newItem
     }
 }

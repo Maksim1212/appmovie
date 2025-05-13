@@ -4,16 +4,16 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
-import com.example.appmovie.movie.common.Film
+import com.example.appmovie.movie.data.FilmModel
 
 class FilmHolder(
     private val binding: ItemFilmBinding,
-    private val action: (Film) -> Unit,
+    private val action: (FilmModel) -> Unit,
     private val glide: RequestManager
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(film: Film) {
+    fun onBind(film: FilmModel) {
         with(binding) {
             tvHeader.text = film.header
             tvGenre.text = film.genre

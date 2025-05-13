@@ -1,10 +1,13 @@
 package com.example.appmovie.movie.data.repository
 
-import com.example.appmovie.movie.common.Film
+import com.example.appmovie.movie.data.FilmModel
+import com.example.appmovie.movie.data.PopularFilmsModel
+import com.example.appmovie.movie.data.RankedFilmModel
+import com.example.appmovie.movie.data.RecommendedFilmsModel
 
 object FilmStorage {
     val selectedFilms = arrayListOf(
-        Film(
+        FilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
@@ -13,7 +16,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        FilmModel(
             cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 1,
             header = "Spiderman1",
@@ -22,7 +25,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        FilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
             id = 2,
             header = "Spiderman2",
@@ -31,7 +34,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        FilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
@@ -41,46 +44,50 @@ object FilmStorage {
             data = 2019
         ),
     )
-    val topTenFilms = arrayListOf(
-        Film(
+    val topRankedFilms = arrayListOf(
+        RankedFilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
             genre = "Action",
             time = "139 minutes",
             rating = "9.5",
-            data = 2019
+            data = 2019,
+            rank = 1
         ),
-        Film(
+        RankedFilmModel(
             cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 1,
             header = "Spiderman1",
             genre = "Action",
             time = "139 minutes",
             rating = "9.5",
-            data = 2019
+            data = 2019,
+            rank = 2
         ),
-        Film(
+        RankedFilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
             id = 2,
             header = "Spiderman2",
             genre = "Action",
             time = "139 minutes",
             rating = "9.5",
-            data = 2019
+            data = 2019,
+            rank = 3
         ),
-        Film(
+        RankedFilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
             genre = "Action",
             time = "139 minutes",
             rating = "9.5",
-            data = 2019
+            data = 2019,
+            rank = 4
         ),
     )
     val popularFilms = arrayListOf(
-        Film(
+        PopularFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
@@ -89,7 +96,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        PopularFilmsModel(
             cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 1,
             header = "Spiderman1",
@@ -98,7 +105,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        PopularFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
             id = 2,
             header = "Spiderman2",
@@ -107,7 +114,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        PopularFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
@@ -118,7 +125,7 @@ object FilmStorage {
         ),
     )
     val recommendedFilms = arrayListOf(
-        Film(
+        RecommendedFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
@@ -127,7 +134,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        RecommendedFilmsModel(
             cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 1,
             header = "Spiderman1",
@@ -136,7 +143,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        RecommendedFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
             id = 2,
             header = "Spiderman2",
@@ -145,7 +152,7 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
-        Film(
+        RecommendedFilmsModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
             id = 0,
             header = "Spiderman",
