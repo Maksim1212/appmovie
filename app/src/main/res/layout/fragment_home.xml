@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
-        android:id="@+id/searchBar"
+        android:id="@+id/search_bar"
         layout="@layout/search_film"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,8 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_margin_start_rv"
         android:layout_marginTop="@dimen/size_margin_top_rv"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -9,7 +9,6 @@ import com.example.appmovie.databinding.ItemTopMainBinding
 class PopularFilmsAdapter(
     private val list: List<HomeUiState.RankedFilmItemState>,
     private val glide: RequestManager
-
 ) : RecyclerView.Adapter<PopularFilmsHolder>() {
 
     override fun onCreateViewHolder(
