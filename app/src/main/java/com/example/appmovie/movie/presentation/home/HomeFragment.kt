@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         }
 
         val recyclerView: RecyclerView = binding.rvPopularFilms
-        binding.rvPopularFilms.adapter = PopularFilmsAdapter(
+        binding.rvPopularFilms.adapter = RankedFilmsAdapter(
             topRankedFilms,
             glide = Glide.with(this@HomeFragment)
         )

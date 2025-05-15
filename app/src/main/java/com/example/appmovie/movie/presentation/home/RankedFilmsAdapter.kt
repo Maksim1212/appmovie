@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
 
-class PopularFilmsAdapter(
+class RankedFilmsAdapter(
     private val list: List<HomeUiState.RankedFilmItemState>,
     private val glide: RequestManager
-) : RecyclerView.Adapter<PopularFilmsHolder>() {
+) : RecyclerView.Adapter<RankedFilmsHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PopularFilmsHolder = PopularFilmsHolder(
+    ): RankedFilmsHolder = RankedFilmsHolder(
         binding = ItemTopMainBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -24,7 +24,7 @@ class PopularFilmsAdapter(
     )
 
     override fun onBindViewHolder(
-        holder: PopularFilmsHolder,
+        holder: RankedFilmsHolder,
         position: Int
     ) {
         holder.onBind(list[position])

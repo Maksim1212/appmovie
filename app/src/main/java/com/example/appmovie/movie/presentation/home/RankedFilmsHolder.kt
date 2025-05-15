@@ -6,7 +6,7 @@ import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
 import com.example.appmovie.movie.presentation.home.HomeUiState.RankedFilmItemState
 
-class PopularFilmsHolder(
+class RankedFilmsHolder(
     val binding: ItemTopMainBinding,
     private val glide: RequestManager
 
