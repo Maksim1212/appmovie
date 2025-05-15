@@ -12,12 +12,12 @@ class RankedFilmsHolder(
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(popularFilms: RankedFilmItemState) {
+    fun onBind(rankedFilmItemState: RankedFilmItemState) {
         with(binding) {
-            textViewPopularFilms.text = popularFilms.rank.toString()
+            textViewPopularFilms.text = rankedFilmItemState.rank.toString()
 
             glide
-                .load(popularFilms.image.toUri())
+                .load(rankedFilmItemState.image.toUri())
                 .into(imagePopularFilms)
         }
     }

@@ -1,9 +1,8 @@
 package com.example.appmovie.movie.data.repository.repository
 
 import com.example.appmovie.movie.data.FilmModel
-import com.example.appmovie.movie.data.PopularFilmsModel
 import com.example.appmovie.movie.data.RankedFilmModel
-import com.example.appmovie.movie.data.RecommendedFilmsModel
+import com.example.appmovie.movie.data.CategoriesFilmsModel
 import com.example.appmovie.movie.data.repository.FilmStorage
 
 class FilmRepository {
@@ -12,8 +11,12 @@ class FilmRepository {
 
     fun getTopRankedFilms(): List<RankedFilmModel> = FilmStorage.topRankedFilms
 
-    fun getPopularFilms(): ArrayList<PopularFilmsModel> = FilmStorage.popularFilms
+    fun getPopularFilms(): ArrayList<CategoriesFilmsModel> = FilmStorage.popularFilms
 
-    fun getRecommendedFilms(): List<RecommendedFilmsModel> = FilmStorage.recommendedFilms
+    fun getRecommendedFilms(): List<CategoriesFilmsModel> = FilmStorage.recommendedFilms
+
+    fun getNewFilms(): List<CategoriesFilmsModel> = FilmStorage.newFilms
+
+    fun getTheBestFilms(): List<CategoriesFilmsModel> = FilmStorage.theBestFilms
 
 }
