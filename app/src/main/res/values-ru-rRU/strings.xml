@@ -6,5 +6,9 @@
     <string name="watch_list">Избранное</string>
     <string name="what_do_you_want_to_watch">Что ты хочешь посмотреть?</string>
     <string name="enter_the_movie">Введите фильм</string>
+    <string name="categories_tl_new">Новинки</string>
+    <string name="categories_tl_popular">Популярные</string>
+    <string name="categories_tl_recommended">Рекомендации</string>
+    <string name="categories_tl_the_best">Лучшие</string>
 
 </resources>
