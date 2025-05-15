@@ -34,18 +34,20 @@ class HomeFragment : Fragment() {
             convertRankedFilmEntityToRankedFilmItemState(it)
         }
 
-        val recyclerView: RecyclerView = binding.rvPopularFilms
-        binding.rvPopularFilms.adapter = RankedFilmsAdapter(
+        val recyclerView: RecyclerView = binding.rvRankedFilms
+        binding.rvRankedFilms.adapter = RankedFilmsAdapter(
             topRankedFilms,
             glide = Glide.with(this@HomeFragment)
         )
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvPopularFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
+        binding.rvRankedFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
 
+        val viewPagerAdapter = ViewPagerAdapter(this)
+        binding.viewPager.adapter = viewPagerAdapter
     }
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
