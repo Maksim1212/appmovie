@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/main_color_background_app"
+    tools:ignore="ExtraText">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_popular_films"
+        android:layout_width="@dimen/size_width_image"
+        android:layout_height="@dimen/size_height_image"
+        android:layout_marginStart="@dimen/size_margin_start_image"
+        android:background="@color/main_color_background_app"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner"
+        tools:src="@drawable/ic_example" />
+
+    <TextView
+        android:id="@+id/textView_popular_films"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_margin_top_tv"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:shadowColor="@color/blue_color"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="6"
+        android:textColor="@color/main_color_background_app"
+        android:textSize="@dimen/text_size_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

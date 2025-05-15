@@ -9,18 +9,27 @@
 
     <include
         android:id="@+id/header_in_main_menu"
+        layout="@layout/header_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/header_fragment_home"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/search_bar"
         layout="@layout/search_film"
-        app:layout_constraintTop_toBottomOf="@id/header_in_main_menu"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_in_main_menu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_popular_films"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_margin_start_rv"
+        android:layout_marginTop="@dimen/size_margin_top_rv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

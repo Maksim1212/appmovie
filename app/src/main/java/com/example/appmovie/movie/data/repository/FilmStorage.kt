@@ -56,7 +56,7 @@ object FilmStorage {
             rank = 1
         ),
         RankedFilmModel(
-            cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
             id = 1,
             header = "Spiderman1",
             genre = "Action",
@@ -106,7 +106,7 @@ object FilmStorage {
             data = 2019
         ),
         PopularFilmsModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
             id = 2,
             header = "Spiderman2",
             genre = "Action",

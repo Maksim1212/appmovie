@@ -1,35 +1,30 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import com.example.appmovie.databinding.ItemFilmBinding
-import com.example.appmovie.movie.data.FilmModel
+import com.example.appmovie.databinding.ItemTopMainBinding
 
-class FilmAdapter(
-    private val list: List<FilmModel>,
-    private val action: (FilmModel) -> Unit,
+class PopularFilmsAdapter(
+    private val list: List<HomeUiState.RankedFilmItemState>,
     private val glide: RequestManager
-
-) : ListAdapter<FilmModel, FilmHolder>(MyDiffCallback()) {
+) : RecyclerView.Adapter<PopularFilmsHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FilmHolder = FilmHolder(
-        binding = ItemFilmBinding.inflate(
+    ): PopularFilmsHolder = PopularFilmsHolder(
+        binding = ItemTopMainBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         ),
-        action,
         glide
-
     )
 
     override fun onBindViewHolder(
-        holder: FilmHolder,
+        holder: PopularFilmsHolder,
         position: Int
     ) {
         holder.onBind(list[position])
