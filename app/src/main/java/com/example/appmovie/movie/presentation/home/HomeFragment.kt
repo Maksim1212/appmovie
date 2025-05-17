@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
+import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
 
 class HomeFragment : Fragment() {
@@ -30,6 +33,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val tabLayout = binding.tabLayoutHomeFr
+
+
+        recyclerViewForTheMovieRankedFilms()
+
+        recyclerViewForTheMovieCategoriesFilms()
+
+    }
+
+    private fun recyclerViewForTheMovieRankedFilms() {
         val topRankedFilms = GetTopRankedFilms(filmRepository).invoke().map {
             convertRankedFilmEntityToRankedFilmItemState(it)
         }
@@ -45,9 +58,25 @@ class HomeFragment : Fragment() {
 
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
+    }
 
-        val viewPagerAdapter = ViewPagerAdapter(this)
-        binding.viewPager.adapter = viewPagerAdapter
+    private fun recyclerViewForTheMovieCategoriesFilms() {
+        val popularFilms = GetPopularFilms(filmRepository).invoke().map {
+            convertCategoriesFilmEntityToFilmItemState(it)
+        }
+
+        val recyclerView = binding.rvCategories
+
+        val spanCount = 3
+
+        val layoutManager = GridLayoutManager(requireContext(), spanCount)
+        recyclerView.layoutManager = layoutManager
+
+        binding.rvCategories.adapter = CategoriesFilmsAdapter(
+            popularFilms,
+            glide = Glide.with(this@HomeFragment)
+        )
+
     }
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
@@ -55,5 +84,12 @@ class HomeFragment : Fragment() {
     ): HomeUiState.RankedFilmItemState = HomeUiState.RankedFilmItemState(
         image = rankedFilmEntity.cover,
         rank = rankedFilmEntity.rank.toString()
+    )
+
+    private fun convertCategoriesFilmEntityToFilmItemState(
+        categoriesFilmEntity: CategoriesFilmEntity
+    ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
+        image = categoriesFilmEntity.cover,
+
     )
 }

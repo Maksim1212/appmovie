@@ -1,6 +1,6 @@
 package com.example.appmovie.movie.domaim.home.entity
 
-data class TheBestFilmsEntity(
+data class CategoriesFilmEntity (
     val id: Int,
     val cover: String
 )

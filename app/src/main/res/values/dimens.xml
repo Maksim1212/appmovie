@@ -31,11 +31,9 @@
     <dimen name="size_width_image">140dp</dimen>
     <dimen name="size_height_image">200dp</dimen>
 
-<!--    Home fragment-->
-    <string name="categories_tl_new">New</string>
-    <string name="categories_tl_popular">Popular</string>
-    <string name="categories_tl_recommended">Recommended</string>
-    <string name="categories_tl_the_best">The best</string>
+    <!--    item_categories_cover-->
+    <dimen name="size_width_cover">100dp</dimen>
+    <dimen name="size_height_cover">145dp</dimen>
 
 
 </resources>

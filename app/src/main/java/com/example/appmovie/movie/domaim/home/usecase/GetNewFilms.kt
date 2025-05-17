@@ -2,12 +2,11 @@ package com.example.appmovie.movie.domaim.home.usecase
 
 import com.example.appmovie.movie.data.CategoriesFilmsModel
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.entity.NewFilmsEntity
-import com.example.appmovie.movie.domaim.home.entity.PopularFilmsEntity
+import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 
 class GetNewFilms(private val filmRepository: FilmRepository) {
 
-    operator fun invoke(): List<NewFilmsEntity> {
+    operator fun invoke(): List<CategoriesFilmEntity> {
         val models = filmRepository.getPopularFilms()
         return models.map {
             convertCategoriesFilmsModelToEntity(it)
@@ -17,7 +16,7 @@ class GetNewFilms(private val filmRepository: FilmRepository) {
 
     private fun convertCategoriesFilmsModelToEntity(
         categoriesFilmsModel: CategoriesFilmsModel
-    ): NewFilmsEntity = NewFilmsEntity(
+    ): CategoriesFilmEntity = CategoriesFilmEntity(
         id = categoriesFilmsModel.id,
         cover = categoriesFilmsModel.cover
     )
