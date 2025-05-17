@@ -7,11 +7,10 @@ import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 class GetTheBestFilms(private val filmRepository: FilmRepository) {
 
     operator fun invoke(): List<CategoriesFilmEntity> {
-        val models = filmRepository.getPopularFilms()
+        val models = filmRepository.getTheBestFilms()
         return models.map {
             convertCategoriesFilmsModelToEntity(it)
         }
-
     }
 
     private fun convertCategoriesFilmsModelToEntity(

@@ -4,7 +4,6 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemCategoriesCoverBinding
-import com.example.appmovie.movie.presentation.home.HomeUiState.FilmItemState
 
 class CategoriesFilmsHolder(
     val binding: ItemCategoriesCoverBinding,
@@ -12,7 +11,7 @@ class CategoriesFilmsHolder(
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(filmItemState: FilmItemState) {
+    fun onBind(filmItemState: HomeUiState.FilmItemState) {
         with(binding) {
             glide
                 .load(filmItemState.image.toUri())

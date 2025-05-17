@@ -125,7 +125,7 @@ object FilmStorage {
     )
     val recommendedFilms = arrayListOf(
         CategoriesFilmsModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 0,
             header = "Spiderman",
             genre = "Action",
@@ -152,7 +152,7 @@ object FilmStorage {
             data = 2019
         ),
         CategoriesFilmsModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
             id = 0,
             header = "Spiderman",
             genre = "Action",

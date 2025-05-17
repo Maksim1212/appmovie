@@ -11,7 +11,6 @@ class GetPopularFilms(private val filmRepository: FilmRepository) {
         return models.map {
             convertCategoriesFilmsModelToEntity(it)
         }
-
     }
 
     private fun convertCategoriesFilmsModelToEntity(

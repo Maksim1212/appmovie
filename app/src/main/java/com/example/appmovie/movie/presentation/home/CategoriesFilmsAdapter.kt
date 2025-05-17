@@ -2,14 +2,14 @@ package com.example.appmovie.movie.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemCategoriesCoverBinding
 
 class CategoriesFilmsAdapter(
     private val list: List<HomeUiState.FilmItemState>,
     private val glide: RequestManager
-) : RecyclerView.Adapter<CategoriesFilmsHolder>() {
+) : ListAdapter<HomeUiState.FilmItemState, CategoriesFilmsHolder>(CategoriesDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
