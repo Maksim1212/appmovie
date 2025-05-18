@@ -7,8 +7,7 @@ import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemCategoriesCoverBinding
 
 class CategoriesFilmsAdapter(
-    private val list: List<HomeUiState.FilmItemState>,
-    private val glide: RequestManager
+    private val glide: RequestManager,
 ) : ListAdapter<HomeUiState.FilmItemState, CategoriesFilmsHolder>(CategoriesDiffCallback()) {
 
     override fun onCreateViewHolder(
@@ -27,8 +26,6 @@ class CategoriesFilmsAdapter(
         holder: CategoriesFilmsHolder,
         position: Int
     ) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position))
     }
-
-    override fun getItemCount(): Int = list.size
 }

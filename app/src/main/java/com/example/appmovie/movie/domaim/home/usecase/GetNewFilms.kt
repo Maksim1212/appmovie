@@ -1,7 +1,7 @@
 package com.example.appmovie.movie.domaim.home.usecase
 
-import com.example.appmovie.movie.data.CategoriesFilmsModel
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.domaim.home.CategoriesFilmModelConverter
 import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 
 class GetNewFilms(private val filmRepository: FilmRepository) {
@@ -9,15 +9,7 @@ class GetNewFilms(private val filmRepository: FilmRepository) {
     operator fun invoke(): List<CategoriesFilmEntity> {
         val models = filmRepository.getNewFilms()
         return models.map {
-            convertCategoriesFilmsModelToEntity(it)
+            CategoriesFilmModelConverter.convertCategoriesFilmsModelToEntity(it)
         }
     }
-
-    private fun convertCategoriesFilmsModelToEntity(
-        categoriesFilmsModel: CategoriesFilmsModel
-    ): CategoriesFilmEntity = CategoriesFilmEntity(
-        id = categoriesFilmsModel.id,
-        cover = categoriesFilmsModel.cover
-    )
-
 }

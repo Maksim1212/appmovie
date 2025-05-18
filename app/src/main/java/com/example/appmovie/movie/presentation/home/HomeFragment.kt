@@ -39,44 +39,7 @@ class HomeFragment : Fragment() {
 
         recyclerViewForTheMovieRankedFilms()
 
-        val tabLayout = binding.tabLayoutHomeFr
-        val recyclerView = binding.rvCategories
-
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_new))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_popular))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_recommended))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_the_best))
-
-        val popularFilms = GetPopularFilms(filmRepository).invoke().map {
-            convertCategoriesFilmEntityToFilmItemState(it)
-        }
-
-        val adapter = CategoriesFilmsAdapter(
-            popularFilms,
-            glide = Glide.with(this@HomeFragment)
-        )
-
-        val spanCount = 3
-        val layoutManager = GridLayoutManager(requireContext(), spanCount)
-        recyclerView.layoutManager = layoutManager
-
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                val data = when (tab.position) {
-                    0 -> GetPopularFilms(filmRepository).invoke()
-                    1 -> GetNewFilms(filmRepository).invoke()
-                    2 -> GetTheBestFilms(filmRepository).invoke()
-                    3 -> GetRecommendedFilms(filmRepository).invoke()
-                    else -> GetPopularFilms(filmRepository).invoke()
-                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
-                adapter.submitList(data)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
-
-        binding.rvCategories.adapter = adapter
+        recyclerViewForCategoriesFilms()
 
     }
 
@@ -96,8 +59,6 @@ class HomeFragment : Fragment() {
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
-
-
     }
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
@@ -112,4 +73,51 @@ class HomeFragment : Fragment() {
     ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
         image = categoriesFilmEntity.cover,
     )
+
+    private fun recyclerViewForCategoriesFilms() {
+        val tabLayout = binding.tabLayoutHomeFr
+        val recyclerView = binding.rvCategories
+
+        val adapter = CategoriesFilmsAdapter(
+            glide = Glide.with(this@HomeFragment)
+        )
+
+        addDecorators()
+
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_popular))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_new))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_the_best))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_recommended))
+
+        val spanCount = 3
+        val layoutManager = GridLayoutManager(requireContext(), spanCount)
+        recyclerView.layoutManager = layoutManager
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val data = when (tab.position) {
+                    0 -> GetPopularFilms(filmRepository).invoke()
+                    1 -> GetNewFilms(filmRepository).invoke()
+                    2 -> GetTheBestFilms(filmRepository).invoke()
+                    3 -> GetRecommendedFilms(filmRepository).invoke()
+                    else -> emptyList()
+                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
+                adapter.submitList(data)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+        binding.rvCategories.adapter = adapter
+
+    }
+
+    private fun addDecorators() {
+        val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)
+        val rightOffset = resources.getDimensionPixelSize(R.dimen.right_offset)
+        val bottomOffset = resources.getDimensionPixelSize(R.dimen.bottom_offset)
+
+        val itemDecorator = CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
+        binding.rvCategories.addItemDecoration(itemDecorator)
+    }
 }
