@@ -29,7 +29,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var selectedFilms = filmRepository.getSelectedFilms()
-        
+
         binding.rvFilmFavorite.adapter = FilmAdapter(
             selectedFilms,
             action = { _ -> },

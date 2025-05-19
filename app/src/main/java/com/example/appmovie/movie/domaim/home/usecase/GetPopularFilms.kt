@@ -1,24 +1,15 @@
 package com.example.appmovie.movie.domaim.home.usecase
 
-import com.example.appmovie.movie.data.PopularFilmsModel
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.entity.PopularFilmsEntity
+import com.example.appmovie.movie.domaim.home.CategoriesFilmModelConverter
+import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 
 class GetPopularFilms(private val filmRepository: FilmRepository) {
 
-    operator fun invoke(): List<PopularFilmsEntity> {
+    operator fun invoke(): List<CategoriesFilmEntity> {
         val models = filmRepository.getPopularFilms()
         return models.map {
-            convertPopularFilmModelToEntity(it)
+            CategoriesFilmModelConverter.convertCategoriesFilmsModelToEntity(it)
         }
-
     }
-
-    private fun convertPopularFilmModelToEntity(
-        popularFilmsModel: PopularFilmsModel
-    ): PopularFilmsEntity = PopularFilmsEntity(
-        id = popularFilmsModel.id,
-        cover = popularFilmsModel.cover
-    )
-
 }

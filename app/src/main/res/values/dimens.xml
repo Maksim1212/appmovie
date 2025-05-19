@@ -31,11 +31,27 @@
     <dimen name="size_width_image">140dp</dimen>
     <dimen name="size_height_image">200dp</dimen>
 
-<!--    Home fragment-->
-    <string name="categories_tl_new">New</string>
-    <string name="categories_tl_popular">Popular</string>
-    <string name="categories_tl_recommended">Recommended</string>
-    <string name="categories_tl_the_best">The best</string>
+    <!--    fragment_search-->
+    <dimen name="size_tv">50sp</dimen>
+
+    <!--    fragment_home-->
+    <dimen name="top_offset">20dp</dimen>
+    <dimen name="right_offset">2dp</dimen>
+    <dimen name="bottom_offset">8dp</dimen>
+    <dimen name="m_start_tl">14dp</dimen>
+    <dimen name="m_top">34dp</dimen>
+    <dimen name="m_start_rv">24dp</dimen>
+
+    <!--    item_categories_cover-->
+    <dimen name="size_width_cover">100dp</dimen>
+    <dimen name="size_height_cover">145dp</dimen>
+
+    <!--    item_categories_cover-->
+    <dimen name="size_width_shapeable_image_view">94dp</dimen>
+    <dimen name="size_height_shapeable_image_view">140dp</dimen>
+
+    <!--    item_top_main-->
+    <dimen name="size_height_text_view">104dp</dimen>
 
 
 </resources>
