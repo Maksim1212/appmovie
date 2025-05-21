@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         getTopRankedFilmsUseCase = GetTopRankedFilms(filmRepository)
     )
     private var rankedFilmsAdapter: RankedFilmsAdapter? = null
+    private var categoriesFilmsAdapter: CategoriesFilmsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,31 +75,15 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun observeUiState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.uiState.collect { homeState ->
-                    rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                }
-            }
-        }
-    }
-
-    private fun convertCategoriesFilmEntityToFilmItemState(
-        categoriesFilmEntity: CategoriesFilmEntity
-    ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
-        image = categoriesFilmEntity.cover,
-    )
-
     private fun recyclerViewForCategoriesFilms() {
         val tabLayout = binding.tabLayoutHomeFr
         val recyclerView = binding.rvCategories
 
-        val adapter = CategoriesFilmsAdapter(
+        categoriesFilmsAdapter = CategoriesFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
         )
 
-        addDecorators()
+        recyclerView.adapter = categoriesFilmsAdapter
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_popular))
         tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_new))
@@ -118,15 +103,33 @@ class HomeFragment : Fragment() {
                     3 -> GetRecommendedFilms(filmRepository).invoke()
                     else -> GetPopularFilms(filmRepository).invoke()
                 }.map { convertCategoriesFilmEntityToFilmItemState(it) }
-                adapter.submitList(data)
+                categoriesFilmsAdapter?.submitList(data)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
-        binding.rvCategories.adapter = adapter
+
+        addDecorators()
 
     }
+
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.uiState.collect { homeState ->
+                    rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                    categoriesFilmsAdapter?.submitList(homeState.films)
+                }
+            }
+        }
+    }
+
+    private fun convertCategoriesFilmEntityToFilmItemState(
+        categoriesFilmEntity: CategoriesFilmEntity
+    ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
+        image = categoriesFilmEntity.cover,
+    )
 
     private fun addDecorators() {
         val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)

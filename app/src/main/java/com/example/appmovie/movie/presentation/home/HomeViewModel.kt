@@ -2,6 +2,7 @@ package com.example.appmovie.movie.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetNewFilms
 import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
@@ -30,6 +31,11 @@ class HomeViewModel(
     }
 
     private fun loadInitialData() {
+        loadTopRankedFilms()
+        loadFilmsCategory(0)
+    }
+
+    private fun loadTopRankedFilms() {
         viewModelScope.launch {
             val topRankedFilms = getTopRankedFilmsUseCase.invoke().map {
                 convertRankedFilmEntityToRankedFilmItemState(it)
@@ -39,6 +45,32 @@ class HomeViewModel(
             }
         }
     }
+
+    fun loadFilmsCategory(tabPosition: Int) {
+        viewModelScope.launch {
+            val Categoriesfilms = try {
+                when (tabPosition) {
+                    0 -> getPopularFilmsUseCase.invoke()
+                    1 -> getNewFilmsUseCase.invoke()
+                    2 -> getTheBestFilmsUseCase.invoke()
+                    3 -> getRecommendedFilmsUseCase.invoke()
+                    else -> getPopularFilmsUseCase.invoke()
+                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
+            } catch (e: Exception) {
+                emptyList()
+            }
+
+            _uiState.update { stateCat ->
+                stateCat.copy(films = Categoriesfilms)
+            }
+        }
+    }
+
+    private fun convertCategoriesFilmEntityToFilmItemState(
+        categoriesFilmEntity: CategoriesFilmEntity
+    ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
+        image = categoriesFilmEntity.cover,
+    )
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
         rankedFilmEntity: RankedFilmEntity
