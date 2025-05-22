@@ -15,7 +15,6 @@ import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetNewFilms
 import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
 import com.example.appmovie.movie.domaim.home.usecase.GetRecommendedFilms
@@ -28,7 +27,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var filmRepository = FilmRepository()
-    private var homeViewModel = HomeViewModel(
+    private val homeViewModel = HomeViewModel(
         getPopularFilmsUseCase = GetPopularFilms(filmRepository),
         getNewFilmsUseCase = GetNewFilms(filmRepository),
         getTheBestFilmsUseCase = GetTheBestFilms(filmRepository),
@@ -96,14 +95,7 @@ class HomeFragment : Fragment() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                val data = when (tab.position) {
-                    0 -> GetPopularFilms(filmRepository).invoke()
-                    1 -> GetNewFilms(filmRepository).invoke()
-                    2 -> GetTheBestFilms(filmRepository).invoke()
-                    3 -> GetRecommendedFilms(filmRepository).invoke()
-                    else -> GetPopularFilms(filmRepository).invoke()
-                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
-                categoriesFilmsAdapter?.submitList(data)
+                homeViewModel.loadFilmsCategory(tab.position)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -124,12 +116,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    private fun convertCategoriesFilmEntityToFilmItemState(
-        categoriesFilmEntity: CategoriesFilmEntity
-    ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
-        image = categoriesFilmEntity.cover,
-    )
 
     private fun addDecorators() {
         val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)

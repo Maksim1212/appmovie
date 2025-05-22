@@ -48,7 +48,7 @@ class HomeViewModel(
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            val Categoriesfilms = try {
+            val categoriesfilms = try {
                 when (tabPosition) {
                     0 -> getPopularFilmsUseCase.invoke()
                     1 -> getNewFilmsUseCase.invoke()
@@ -61,7 +61,7 @@ class HomeViewModel(
             }
 
             _uiState.update { stateCat ->
-                stateCat.copy(films = Categoriesfilms)
+                stateCat.copy(films = categoriesfilms)
             }
         }
     }

@@ -10,7 +10,7 @@ class TopRankedFilmsDiffCallback : DiffUtil.ItemCallback<RankedFilmItemState>() 
         oldItem: RankedFilmItemState,
         newItem: RankedFilmItemState
     ): Boolean {
-        return oldItem == newItem
+        return oldItem.rank == newItem.rank
     }
 
     override fun areContentsTheSame(
