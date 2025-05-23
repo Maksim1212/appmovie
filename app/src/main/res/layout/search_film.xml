@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -16,11 +15,12 @@
         android:background="@drawable/rounded_edittext"
         android:fontFamily="@font/poppins_regular"
         android:hint="@string/search"
+        android:textColorHint="@color/search_color"
         android:imeOptions="actionSearch"
         android:paddingStart="@dimen/size_twenty"
         android:paddingTop="@dimen/size_baby"
         android:paddingEnd="@dimen/size_twenty"
-        android:textColor="@color/search_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
