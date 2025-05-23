@@ -15,6 +15,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_regular"
         android:hint="@string/search"
+        android:textColorHint="@color/search_color"
         android:imeOptions="actionSearch"
         android:lines="1"
         android:maxWidth="200dp"
@@ -22,7 +23,7 @@
         android:paddingTop="@dimen/size_baby"
         android:paddingEnd="@dimen/size_twenty"
         android:singleLine="true"
-        android:textColor="@color/search_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

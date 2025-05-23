@@ -4,7 +4,6 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
-import com.example.appmovie.movie.data.RankedFilmModel
 
 class RankedFilmsHolder(
     val binding: ItemTopMainBinding,
@@ -14,7 +13,7 @@ class RankedFilmsHolder(
 
     fun onBind(rankedFilmItemState: HomeUiState.RankedFilmItemState) {
         with(binding) {
-            textViewPopularFilms.text = rankedFilmItemState.rank.toString()
+            textViewPopularFilms.text = rankedFilmItemState.rank
 
             glide
                 .load(rankedFilmItemState.image.toUri())
