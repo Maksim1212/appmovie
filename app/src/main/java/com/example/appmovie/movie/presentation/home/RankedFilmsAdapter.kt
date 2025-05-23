@@ -2,14 +2,13 @@ package com.example.appmovie.movie.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
 
 class RankedFilmsAdapter(
-    private val list: List<HomeUiState.RankedFilmItemState>,
     private val glide: RequestManager
-) : RecyclerView.Adapter<RankedFilmsHolder>() {
+) : ListAdapter<HomeUiState.RankedFilmItemState, RankedFilmsHolder >(TopRankedFilmsDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,8 +26,6 @@ class RankedFilmsAdapter(
         holder: RankedFilmsHolder,
         position: Int
     ) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position))
     }
-
-    override fun getItemCount(): Int = list.size
 }
