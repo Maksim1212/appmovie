@@ -12,6 +12,7 @@ import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -37,31 +38,73 @@ class HomeViewModel(
 
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
-            val topRankedFilms = getTopRankedFilmsUseCase.invoke().map {
-                convertRankedFilmEntityToRankedFilmItemState(it)
-            }
-            _uiState.update { state ->
-                state.copy(rankedFilms = topRankedFilms)
-            }
+            getTopRankedFilmsUseCase.invoke()
+                .collectLatest { rankedFilmEntity ->
+                    val rankedFilms = convertRankedFilmEntityToRankedFilmItemState(rankedFilmEntity)
+                    _uiState.update { state ->
+                        state.copy(rankedFilms = listOf(rankedFilms))
+                    }
+                }
         }
     }
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            val categoriesfilms = try {
-                when (tabPosition) {
-                    0 -> getPopularFilmsUseCase.invoke()
-                    1 -> getNewFilmsUseCase.invoke()
-                    2 -> getTheBestFilmsUseCase.invoke()
-                    3 -> getRecommendedFilmsUseCase.invoke()
-                    else -> getPopularFilmsUseCase.invoke()
-                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
-            } catch (e: Exception) {
-                emptyList()
-            }
+            when (tabPosition) {
+                0 -> getPopularFilmsUseCase.invoke()
+                    .collectLatest { categoriesFilmEntity ->
+                        _uiState.update {
+                            it.copy(films = categoriesFilmEntity.map {
+                                convertCategoriesFilmEntityToFilmItemState(
+                                    categoriesFilmEntity
+                                )
+                            })
+                        }
+                    }
 
-            _uiState.update { stateCat ->
-                stateCat.copy(films = categoriesfilms)
+                1 -> getNewFilmsUseCase.invoke()
+                    .collectLatest { categoriesFilmEntity ->
+                        _uiState.update {
+                            it.copy(films = categoriesFilmEntity.map {
+                                convertCategoriesFilmEntityToFilmItemState(
+                                    categoriesFilmEntity
+                                )
+                            })
+                        }
+                    }
+
+                2 -> getTheBestFilmsUseCase.invoke()
+                    .collectLatest { categoriesFilmEntity ->
+                        _uiState.update {
+                            it.copy(films = categoriesFilmEntity.map {
+                                convertCategoriesFilmEntityToFilmItemState(
+                                    categoriesFilmEntity
+                                )
+                            })
+                        }
+                    }
+
+                3 -> getRecommendedFilmsUseCase.invoke()
+                    .collectLatest { categoriesFilmEntity ->
+                        _uiState.update {
+                            it.copy(films = categoriesFilmEntity.map {
+                                convertCategoriesFilmEntityToFilmItemState(
+                                    categoriesFilmEntity
+                                )
+                            })
+                        }
+                    }
+
+                else -> getPopularFilmsUseCase.invoke()
+                    .collectLatest { categoriesFilmEntity ->
+                        _uiState.update {
+                            it.copy(films = categoriesFilmEntity.map {
+                                convertCategoriesFilmEntityToFilmItemState(
+                                    categoriesFilmEntity
+                                )
+                            })
+                        }
+                    }
             }
         }
     }

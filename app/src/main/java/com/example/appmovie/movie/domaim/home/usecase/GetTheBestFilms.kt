@@ -3,13 +3,14 @@ package com.example.appmovie.movie.domaim.home.usecase
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.domaim.home.CategoriesFilmModelConverter
 import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class GetTheBestFilms(private val filmRepository: FilmRepository) {
 
-    operator fun invoke(): List<CategoriesFilmEntity> {
-        val models = filmRepository.getTheBestFilms()
-        return models.map {
-            CategoriesFilmModelConverter.convertCategoriesFilmsModelToEntity(it)
+    operator fun invoke(): Flow<CategoriesFilmEntity> = flow {
+        filmRepository.getTheBestFilms().forEach { model ->
+            emit(CategoriesFilmModelConverter.convertCategoriesFilmsModelToEntity(model))
         }
     }
 }
