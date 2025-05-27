@@ -18,5 +18,4 @@ class FilmRepository {
     fun getNewFilms(): List<CategoriesFilmsModel> = FilmStorage.newFilms
 
     fun getTheBestFilms(): List<CategoriesFilmsModel> = FilmStorage.theBestFilms
-
 }

@@ -11,7 +11,6 @@ class FilmAdapter(
     private val list: List<FilmModel>,
     private val action: (FilmModel) -> Unit,
     private val glide: RequestManager
-
 ) : ListAdapter<FilmModel, FilmHolder>(MyDiffCallback()) {
 
     override fun onCreateViewHolder(
