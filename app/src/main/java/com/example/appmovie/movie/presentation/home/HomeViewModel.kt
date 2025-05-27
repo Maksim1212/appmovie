@@ -39,10 +39,12 @@ class HomeViewModel(
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
             getTopRankedFilmsUseCase.invoke()
-                .collectLatest { rankedFilmEntity ->
-                    val rankedFilms = convertRankedFilmEntityToRankedFilmItemState(rankedFilmEntity)
+                .collectLatest { list ->
+                    val topRanked = list.map {
+                        convertRankedFilmEntityToRankedFilmItemState(it)
+                    }
                     _uiState.update { state ->
-                        state.copy(rankedFilms = listOf(rankedFilms))
+                        state.copy(rankedFilms = topRanked)
                     }
                 }
         }
@@ -52,59 +54,18 @@ class HomeViewModel(
         viewModelScope.launch {
             when (tabPosition) {
                 0 -> getPopularFilmsUseCase.invoke()
-                    .collectLatest { categoriesFilmEntity ->
-                        _uiState.update {
-                            it.copy(films = categoriesFilmEntity.map {
-                                convertCategoriesFilmEntityToFilmItemState(
-                                    categoriesFilmEntity
-                                )
-                            })
-                        }
-                    }
-
                 1 -> getNewFilmsUseCase.invoke()
-                    .collectLatest { categoriesFilmEntity ->
-                        _uiState.update {
-                            it.copy(films = categoriesFilmEntity.map {
-                                convertCategoriesFilmEntityToFilmItemState(
-                                    categoriesFilmEntity
-                                )
-                            })
-                        }
-                    }
-
                 2 -> getTheBestFilmsUseCase.invoke()
-                    .collectLatest { categoriesFilmEntity ->
-                        _uiState.update {
-                            it.copy(films = categoriesFilmEntity.map {
-                                convertCategoriesFilmEntityToFilmItemState(
-                                    categoriesFilmEntity
-                                )
-                            })
-                        }
-                    }
-
                 3 -> getRecommendedFilmsUseCase.invoke()
-                    .collectLatest { categoriesFilmEntity ->
-                        _uiState.update {
-                            it.copy(films = categoriesFilmEntity.map {
-                                convertCategoriesFilmEntityToFilmItemState(
-                                    categoriesFilmEntity
-                                )
-                            })
-                        }
-                    }
-
                 else -> getPopularFilmsUseCase.invoke()
-                    .collectLatest { categoriesFilmEntity ->
-                        _uiState.update {
-                            it.copy(films = categoriesFilmEntity.map {
-                                convertCategoriesFilmEntityToFilmItemState(
-                                    categoriesFilmEntity
-                                )
-                            })
-                        }
-                    }
+            }.collectLatest { categoriesFilmEntity ->
+                _uiState.update {
+                    it.copy(films = categoriesFilmEntity.map {
+                        convertCategoriesFilmEntityToFilmItemState(
+                            it
+                        )
+                    })
+                }
             }
         }
     }
