@@ -39,22 +39,29 @@ android {
 }
 
 dependencies {
-
+    //Basic android
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+
+    // UI и Layout
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation (libs.androidx.recyclerview)
+    implementation(libs.androidx.viewpager2)
+
+    // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+
+    // Glide
     implementation(libs.glide)
     implementation(libs.glide.compiler)
-    implementation (libs.androidx.recyclerview)
+
+    // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.viewpager2)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
 }
