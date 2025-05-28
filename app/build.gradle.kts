@@ -45,7 +45,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
 
-    // UI и Layout
+    // UI and Layout
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
