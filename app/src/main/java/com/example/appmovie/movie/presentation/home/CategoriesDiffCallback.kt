@@ -13,4 +13,3 @@ class CategoriesDiffCallback : DiffUtil.ItemCallback<FilmItemState>() {
         return oldItem == newItem
     }
 }
-

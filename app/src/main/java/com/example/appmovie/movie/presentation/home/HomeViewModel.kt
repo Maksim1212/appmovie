@@ -12,6 +12,7 @@ import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -37,31 +38,34 @@ class HomeViewModel(
 
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
-            val topRankedFilms = getTopRankedFilmsUseCase.invoke().map {
-                convertRankedFilmEntityToRankedFilmItemState(it)
-            }
-            _uiState.update { state ->
-                state.copy(rankedFilms = topRankedFilms)
-            }
+            getTopRankedFilmsUseCase.invoke()
+                .collectLatest { list ->
+                    val topRanked = list.map {
+                        convertRankedFilmEntityToRankedFilmItemState(it)
+                    }
+                    _uiState.update { state ->
+                        state.copy(rankedFilms = topRanked)
+                    }
+                }
         }
     }
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            val categoriesfilms = try {
-                when (tabPosition) {
-                    0 -> getPopularFilmsUseCase.invoke()
-                    1 -> getNewFilmsUseCase.invoke()
-                    2 -> getTheBestFilmsUseCase.invoke()
-                    3 -> getRecommendedFilmsUseCase.invoke()
-                    else -> getPopularFilmsUseCase.invoke()
-                }.map { convertCategoriesFilmEntityToFilmItemState(it) }
-            } catch (e: Exception) {
-                emptyList()
-            }
-
-            _uiState.update { stateCat ->
-                stateCat.copy(films = categoriesfilms)
+            when (tabPosition) {
+                0 -> getPopularFilmsUseCase.invoke()
+                1 -> getNewFilmsUseCase.invoke()
+                2 -> getTheBestFilmsUseCase.invoke()
+                3 -> getRecommendedFilmsUseCase.invoke()
+                else -> getPopularFilmsUseCase.invoke()
+            }.collectLatest { categoriesFilmEntity ->
+                _uiState.update {
+                    it.copy(films = categoriesFilmEntity.map {
+                        convertCategoriesFilmEntityToFilmItemState(
+                            it
+                        )
+                    })
+                }
             }
         }
     }
