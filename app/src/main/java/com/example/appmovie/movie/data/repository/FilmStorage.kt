@@ -42,6 +42,78 @@ object FilmStorage {
             rating = "9.5",
             data = 2019
         ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://upload.wikimedia.org/wikipedia/ru/6/6e/Spider-Man_—_No_Way_Home_poster.jpg",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
+        FilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019
+        ),
     )
     val topRankedFilms = arrayListOf(
         RankedFilmModel(
@@ -76,133 +148,123 @@ object FilmStorage {
         ),
         RankedFilmModel(
             cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
-            id = 0,
-            header = "Spiderman",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 1
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
-            id = 1,
-            header = "Spiderman1",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 2
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
-            id = 2,
-            header = "Spiderman2",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 3
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
-            id = 0,
-            header = "Spiderman",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 1
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
-            id = 1,
-            header = "Spiderman1",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 2
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
-            id = 2,
-            header = "Spiderman2",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 3
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
-            id = 0,
-            header = "Spiderman",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 1
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
-            id = 1,
-            header = "Spiderman1",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 2
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
-            id = 2,
-            header = "Spiderman2",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 3
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
-            id = 0,
-            header = "Spiderman",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 1
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
-            id = 1,
-            header = "Spiderman1",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 2
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
-            id = 2,
-            header = "Spiderman2",
-            genre = "Action",
-            time = "139 minutes",
-            rating = "9.5",
-            data = 2019,
-            rank = 3
-        ),
-        RankedFilmModel(
-            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
-            id = 0,
+            id = 3,
             header = "Spiderman",
             genre = "Action",
             time = "139 minutes",
             rating = "9.5",
             data = 2019,
             rank = 4
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 5
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 6
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 7
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 8
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 9
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 10
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 11
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 12
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/6ac42bf1-53e1-46c0-856f-31ab8373b974/1920x",
+            id = 0,
+            header = "Spiderman",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 13
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/4e48d64d-4c27-4adf-b6c7-5061fc2ce965/1920x",
+            id = 1,
+            header = "Spiderman1",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 14
+        ),
+        RankedFilmModel(
+            cover = "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/458a7588-35f6-4928-bffa-e38704e75e26/1920x",
+            id = 2,
+            header = "Spiderman2",
+            genre = "Action",
+            time = "139 minutes",
+            rating = "9.5",
+            data = 2019,
+            rank = 15
         ),
     )
     val popularFilms = arrayListOf(

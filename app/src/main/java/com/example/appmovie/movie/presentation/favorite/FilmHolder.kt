@@ -10,7 +10,6 @@ class FilmHolder(
     private val binding: ItemFilmBinding,
     private val action: (FilmModel) -> Unit,
     private val glide: RequestManager
-
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(film: FilmModel) {
