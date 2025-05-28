@@ -20,4 +20,3 @@ class TopRankedFilmsDiffCallback : DiffUtil.ItemCallback<RankedFilmItemState>() 
         return oldItem == newItem
     }
 }
-

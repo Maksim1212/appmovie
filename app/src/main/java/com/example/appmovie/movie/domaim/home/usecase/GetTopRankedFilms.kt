@@ -20,5 +20,4 @@ class GetTopRankedFilms(private val filmRepository: FilmRepository) {
         cover = rankedFilmModel.cover,
         rank = rankedFilmModel.rank
     )
-
 }

@@ -13,5 +13,3 @@ class GetTheBestFilms(private val filmRepository: FilmRepository) {
         }
     }
 }
-
-
