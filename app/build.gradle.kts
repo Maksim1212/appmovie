@@ -3,6 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+val keysFile = rootProject.file("keys.properties")
+val keys = org.jetbrains.kotlin.konan.properties.Properties()
+if (keysFile.exists()) {
+    keysFile.inputStream().use { keys.load(it) }
+}
+
 android {
     namespace = "com.example.appmovie"
     compileSdk = 35
@@ -24,6 +30,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
+        }
+        debug {
+            buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
         }
     }
     compileOptions {
@@ -35,21 +45,23 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
+
 }
 
 dependencies {
-    //Basic android
+    // Basic android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     // UI and Layout
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-    implementation (libs.androidx.recyclerview)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.viewpager2)
 
     // Navigation
@@ -64,4 +76,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Working with the network
+    implementation(libs.squareup.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.retrofit.coroutines)
+    implementation(libs.retrofit2.kotlin.coroutines.adapter)
 }

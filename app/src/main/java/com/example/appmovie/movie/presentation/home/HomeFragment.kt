@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
+import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.domaim.home.usecase.GetNewFilms
 import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
@@ -26,7 +27,10 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var filmRepository = FilmRepository()
+    private val retrofitContainer = RetrofitContainer
+    private var filmRepository = FilmRepository(
+        kinopoiskApi = retrofitContainer.kinopoiskApi
+    )
     private val homeViewModel = HomeViewModel(
         getPopularFilmsUseCase = GetPopularFilms(filmRepository),
         getNewFilmsUseCase = GetNewFilms(filmRepository),
