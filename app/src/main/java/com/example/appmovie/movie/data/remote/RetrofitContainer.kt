@@ -4,6 +4,7 @@ import com.example.appmovie.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -14,6 +15,7 @@ object RetrofitContainer {
     private val httpClient by lazy {
         OkHttpClient.Builder()
             .addInterceptor(authInterceptor)
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 
@@ -31,6 +33,10 @@ object RetrofitContainer {
             .header("X-API-KEY", BuildConfig.API_KEY)
             .build()
         chain.proceed(newRequest)
+    }
+
+    private val loggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 
     val kinopoiskApi = retrofit.create(KinopoiskApi::class.java)

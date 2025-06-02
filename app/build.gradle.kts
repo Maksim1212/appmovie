@@ -82,6 +82,5 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation(libs.retrofit.coroutines)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
 }

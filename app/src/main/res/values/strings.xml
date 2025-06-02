@@ -8,8 +8,8 @@
     <string name="enter_the_movie">Enter the movie</string>
 
     <!--    Home fragment-->
-    <string name="categories_tl_new">New</string>
-    <string name="categories_tl_popular">Popular</string>
-    <string name="categories_tl_recommended">Recommended</string>
-    <string name="categories_tl_the_best">The best</string>
+    <string name="categories_tl_fantastic">Fantastic</string>
+    <string name="categories_tl_dramma">Dramma</string>
+    <string name="categories_tl_horror">Horror</string>
+    <string name="categories_tl_the_comedy">Comedy</string>
 </resources>
