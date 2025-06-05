@@ -47,7 +47,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_ranked_films"
-            app:tabGravity="fill"
             app:tabIndicatorColor="@color/search"
             app:tabMode="scrollable"
             app:tabTextColor="@color/white" />
