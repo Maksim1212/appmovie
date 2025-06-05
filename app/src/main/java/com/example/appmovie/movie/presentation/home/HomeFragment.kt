@@ -52,7 +52,12 @@ class HomeFragment : Fragment() {
 
         observeUiState()
 
+        binding.erorToTryButton.setOnClickListener {
+
+        }
+
     }
+
 
     private fun recyclerViewForTheMovieRankedFilms() {
 
@@ -108,8 +113,29 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                    categoriesFilmsAdapter?.submitList(homeState.films)
+                    if (!homeState.hasError) {
+                        rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                        categoriesFilmsAdapter?.submitList(homeState.films)
+                        binding.rvRankedFilms.visibility = View.VISIBLE
+                        binding.rvCategories.visibility = View.VISIBLE
+                        binding.tabLayoutHomeFr.visibility = View.VISIBLE
+                        binding.erorImageView.visibility = View.GONE
+                        binding.erorTextView1.visibility = View.GONE
+                        binding.erorTextView2.visibility = View.GONE
+                        binding.erorToTryButton.visibility = View.GONE
+                    } else {
+                        binding.erorImageView.visibility = View.VISIBLE
+                        binding.erorToTryButton.visibility = View.VISIBLE
+                        binding.erorTextView1.visibility = View.VISIBLE
+                        binding.erorTextView2.visibility = View.VISIBLE
+                        binding.rvRankedFilms.visibility = View.GONE
+                        binding.rvCategories.visibility = View.GONE
+                        binding.tabLayoutHomeFr.visibility = View.GONE
+
+                        binding.erorToTryButton.setOnClickListener {
+                            homeViewModel.loadInitialData()
+                        }
+                    }
                 }
             }
         }

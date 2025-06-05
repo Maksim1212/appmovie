@@ -10,5 +10,8 @@
     <string name="categories_tl_horror">Ужасы</string>
     <string name="categories_tl_the_comedy">Комедии</string>
     <string name="categories_tl_fantastic">Фантастика</string>
+    <string name="an_error_has_occurred">Произошла ошибка!</string>
+    <string name="try_again_or_come_back_later.">Попробуйте еще раз или зайдите позже</string>
+    <string name="to_try">Попробовать</string>
 
 </resources>

@@ -26,7 +26,7 @@ class HomeViewModel(
         loadInitialData()
     }
 
-    private fun loadInitialData() {
+    fun loadInitialData() {
         loadTopRankedFilms()
         loadFilmsCategory(0)
     }
@@ -40,18 +40,17 @@ class HomeViewModel(
                             convertRankedFilmEntityToRankedFilmItemState(it)
                         }
                         _uiState.update { state ->
-                            state.copy(rankedFilms = topRanked)
+                            state.copy(rankedFilms = topRanked, hasError = false)
                         }
                     }
             } catch (e: Exception) {
-                Log.e("MyViewModel", "Ошибка при загрузке фильмов: ${e.message}", e)
-
                 _uiState.update { state ->
-                    state.copy("Ошибка при загрузке фильмов: ${e.message}")
+                    state.copy(hasError = true)
                 }
             }
         }
     }
+
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
