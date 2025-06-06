@@ -1,12 +1,12 @@
 package com.example.appmovie.movie.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,18 +34,19 @@ class HomeViewModel(
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
             try {
+                delay(3000)
                 getTopRankedFilmsUseCase.invoke()
                     .collectLatest { list ->
                         val topRanked = list.map {
                             convertRankedFilmEntityToRankedFilmItemState(it)
                         }
                         _uiState.update { state ->
-                            state.copy(rankedFilms = topRanked, hasError = false)
+                            state.copy(rankedFilms = topRanked, hasError = false, isLoading = true)
                         }
                     }
             } catch (e: Exception) {
                 _uiState.update { state ->
-                    state.copy(hasError = true)
+                    state.copy(hasError = true, isLoading = false)
                 }
             }
         }
@@ -55,6 +56,7 @@ class HomeViewModel(
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
             try {
+                delay(3000)
                 val genre = when (tabPosition) {
                     0 -> Genres.DRAMA
                     1 -> Genres.FANTASTICA
@@ -68,15 +70,13 @@ class HomeViewModel(
                             convertFilmByGenreToFilmItemState(
                                 it
                             )
-                        })
+                        }, isLoading = false, hasError = false)
                     }
                 }
             } catch (e: Exception) {
-                Log.e(
-                    "MyViewModel",
-                    "Ошибка при загрузке фильмов по категории (tabPosition: $tabPosition): ${e.message}",
-                    e
-                )
+                _uiState.update { state ->
+                    state.copy(hasError = true, isLoading = false)
+                }
             }
         }
     }
