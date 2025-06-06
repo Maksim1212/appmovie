@@ -4,4 +4,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
+
+    <style name="Color_button" parent="">
+        <item name="android:backgroundTint">@color/blue_color</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">23dp</item>
+    </style>
 </resources>

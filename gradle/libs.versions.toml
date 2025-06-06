@@ -1,6 +1,6 @@
 [versions]
 # Android Gradle Plugin
-agp = "8.9.3"
+agp = "8.10.1"
 
 # Kotlin
 converterGson = "2.9.0"
