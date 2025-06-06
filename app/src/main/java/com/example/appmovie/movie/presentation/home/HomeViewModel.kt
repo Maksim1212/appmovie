@@ -2,13 +2,10 @@ package com.example.appmovie.movie.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmEntity
+import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
-import com.example.appmovie.movie.domaim.home.usecase.GetNewFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetRecommendedFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetTheBestFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
+import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
+import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,11 +14,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val getPopularFilmsUseCase: GetPopularFilms,
-    private val getNewFilmsUseCase: GetNewFilms,
-    private val getTheBestFilmsUseCase: GetTheBestFilms,
-    private val getRecommendedFilmsUseCase: GetRecommendedFilms,
-    private val getTopRankedFilmsUseCase: GetTopRankedFilms
+    private val getFilmByGenreUseCase: GetFilmByGenreUseCase,
+    private val getTopRankedFilmsUseCase: GetTopRankedFilmsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -52,16 +46,17 @@ class HomeViewModel(
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            when (tabPosition) {
-                0 -> getPopularFilmsUseCase.invoke()
-                1 -> getNewFilmsUseCase.invoke()
-                2 -> getTheBestFilmsUseCase.invoke()
-                3 -> getRecommendedFilmsUseCase.invoke()
-                else -> getPopularFilmsUseCase.invoke()
-            }.collectLatest { categoriesFilmEntity ->
+            val genre = when (tabPosition) {
+                0 -> Genres.DRAMA
+                1 -> Genres.FANTASTICA
+                2 -> Genres.COMEDY
+                3 -> Genres.HORROR
+                else -> Genres.DRAMA
+            }
+            getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
                 _uiState.update {
-                    it.copy(films = categoriesFilmEntity.map {
-                        convertCategoriesFilmEntityToFilmItemState(
+                    it.copy(films = genresFilmEntity.map {
+                        convertFilmByGenreToFilmItemState(
                             it
                         )
                     })
@@ -70,10 +65,10 @@ class HomeViewModel(
         }
     }
 
-    private fun convertCategoriesFilmEntityToFilmItemState(
-        categoriesFilmEntity: CategoriesFilmEntity
+    private fun convertFilmByGenreToFilmItemState(
+        categoriesFilmGenresEntity: CategoriesFilmGenresEntity
     ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
-        image = categoriesFilmEntity.cover,
+        image = categoriesFilmGenresEntity.cover,
     )
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
@@ -82,4 +77,11 @@ class HomeViewModel(
         image = rankedFilmEntity.cover,
         rank = rankedFilmEntity.rank.toString()
     )
+
+    enum class Genres(val id: Int) {
+        DRAMA(2),
+        FANTASTICA(6),
+        COMEDY(13),
+        HORROR(17)
+    }
 }

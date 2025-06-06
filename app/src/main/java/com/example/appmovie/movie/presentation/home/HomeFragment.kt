@@ -14,25 +14,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
+import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.usecase.GetNewFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetPopularFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetRecommendedFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetTheBestFilms
-import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilms
+import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
+import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var filmRepository = FilmRepository()
+    private val retrofitContainer = RetrofitContainer
+    private var filmRepository = FilmRepository(
+        kinopoiskApi = retrofitContainer.kinopoiskApi
+    )
     private val homeViewModel = HomeViewModel(
-        getPopularFilmsUseCase = GetPopularFilms(filmRepository),
-        getNewFilmsUseCase = GetNewFilms(filmRepository),
-        getTheBestFilmsUseCase = GetTheBestFilms(filmRepository),
-        getRecommendedFilmsUseCase = GetRecommendedFilms(filmRepository),
-        getTopRankedFilmsUseCase = GetTopRankedFilms(filmRepository)
+        getFilmByGenreUseCase = GetFilmByGenreUseCase(filmRepository),
+        getTopRankedFilmsUseCase = GetTopRankedFilmsUseCase(filmRepository)
     )
     private var rankedFilmsAdapter: RankedFilmsAdapter? = null
     private var categoriesFilmsAdapter: CategoriesFilmsAdapter? = null
@@ -84,10 +82,10 @@ class HomeFragment : Fragment() {
 
         recyclerView.adapter = categoriesFilmsAdapter
 
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_popular))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_new))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_the_best))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_recommended))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_dramma))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_fantastic))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_the_comedy))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.categories_tl_horror))
 
         val spanCount = 3
         val layoutManager = GridLayoutManager(requireContext(), spanCount)
