@@ -55,6 +55,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_categories"
             android:layout_width="0dp"
+            android:nestedScrollingEnabled="false"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_start_rv"
             app:layout_constraintBottom_toBottomOf="parent"
