@@ -58,7 +58,6 @@ class HomeFragment : Fragment() {
 
     }
 
-
     private fun recyclerViewForTheMovieRankedFilms() {
 
         val recyclerView: RecyclerView = binding.rvRankedFilms
