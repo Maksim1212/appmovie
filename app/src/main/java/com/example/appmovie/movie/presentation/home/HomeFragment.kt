@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    if (!homeState.hasError) {
+                    if (homeState.hasError) {
                         rankedFilmsAdapter?.submitList(homeState.rankedFilms)
                         categoriesFilmsAdapter?.submitList(homeState.films)
                         binding.rvRankedFilms.visibility = View.VISIBLE

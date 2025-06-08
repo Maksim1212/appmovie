@@ -1,6 +1,5 @@
 package com.example.appmovie.movie.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
@@ -68,15 +67,13 @@ class HomeViewModel(
                             convertFilmByGenreToFilmItemState(
                                 it
                             )
-                        })
+                        }, hasError = false)
                     }
                 }
             } catch (e: Exception) {
-                Log.e(
-                    "MyViewModel",
-                    "Ошибка при загрузке фильмов по категории (tabPosition: $tabPosition): ${e.message}",
-                    e
-                )
+                _uiState.update { state ->
+                    state.copy(hasError = true)
+                }
             }
         }
     }
