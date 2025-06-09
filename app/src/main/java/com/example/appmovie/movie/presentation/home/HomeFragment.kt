@@ -112,12 +112,35 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    if (homeState.hasError) {
-                        showError()
-                    } else {
-                        rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                        categoriesFilmsAdapter?.submitList(homeState.films)
-                        showContent()
+                    when {
+                        homeState.isLoading -> {
+                            showLoading()
+
+                            if (homeState.rankedFilms.isNotEmpty() || homeState.films.isNotEmpty()) {
+                                showContent()
+                                rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                                categoriesFilmsAdapter?.submitList(homeState.films)
+                            } else {
+                                hideContent()
+                            }
+                            hideError()
+                        }
+
+                        homeState.hasError -> {
+                            hideLoading()
+                            showError()
+                            if (homeState.rankedFilms.isEmpty() && homeState.films.isEmpty()) {
+                                hideContent()
+                            }
+                        }
+
+                        else -> {
+                            hideLoading()
+                            hideError()
+                            showContent()
+                            rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                            categoriesFilmsAdapter?.submitList(homeState.films)
+                        }
                     }
                 }
             }
@@ -129,7 +152,8 @@ class HomeFragment : Fragment() {
         val rightOffset = resources.getDimensionPixelSize(R.dimen.right_offset)
         val bottomOffset = resources.getDimensionPixelSize(R.dimen.bottom_offset)
 
-        val itemDecorator = CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
+        val itemDecorator =
+            CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
         binding.rvCategories.addItemDecoration(itemDecorator)
     }
 
@@ -164,15 +188,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun hideContent() {
-
+        binding.erorImageView.isVisible = true
+        binding.erorToTryButton.isVisible = true
+        binding.erorTextView1.isVisible = true
+        binding.erorTextView2.isVisible = true
+        binding.rvRankedFilms.isVisible = false
+        binding.rvCategories.isVisible = false
+        binding.tabLayoutHomeFr.isVisible = false
     }
 
     private fun showLoading() {
-
+        binding.progressBar.isVisible = true
+        binding.rvRankedFilms.isVisible = false
+        binding.rvCategories.isVisible = false
+        binding.tabLayoutHomeFr.isVisible = false
+        binding.erorImageView.isVisible = false
+        binding.erorTextView1.isVisible = false
+        binding.erorTextView2.isVisible = false
+        binding.erorToTryButton.isVisible = false
     }
 
     private fun hideLoading() {
-
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+        binding.erorImageView.isVisible = true
+        binding.erorTextView1.isVisible = true
+        binding.erorTextView2.isVisible = true
+        binding.erorToTryButton.isVisible = true
+        binding.progressBar.isVisible = false
     }
-
 }

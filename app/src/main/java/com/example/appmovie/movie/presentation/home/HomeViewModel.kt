@@ -6,10 +6,14 @@ import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -32,21 +36,31 @@ class HomeViewModel(
 
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
-            try {
-                getTopRankedFilmsUseCase.invoke()
-                    .collectLatest { list ->
-                        val topRanked = list.map {
-                            convertRankedFilmEntityToRankedFilmItemState(it)
-                        }
-                        _uiState.update { state ->
-                            state.copy(rankedFilms = topRanked, hasError = false)
-                        }
+            getTopRankedFilmsUseCase.invoke()
+                .onStart {
+                    _uiState.update { state ->
+                        state.copy(isLoading = true, hasError = false)
                     }
-            } catch (e: Exception) {
-                _uiState.update { state ->
-                    state.copy(hasError = true)
+                    delay(3000)
                 }
-            }
+                .catch { e ->
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, hasError = true)
+                    }
+                }
+                .onCompletion {
+                    _uiState.update { state ->
+                        state.copy(isLoading = false)
+                    }
+                }
+                .collectLatest { list ->
+                    val topRanked = list.map {
+                        convertRankedFilmEntityToRankedFilmItemState(it)
+                    }
+                    _uiState.update { state ->
+                        state.copy(rankedFilms = topRanked)
+                    }
+                }
         }
     }
 
@@ -54,6 +68,7 @@ class HomeViewModel(
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
             try {
+                delay(3000)
                 val genre = when (tabPosition) {
                     0 -> Genres.DRAMA
                     1 -> Genres.FANTASTICA
@@ -63,7 +78,7 @@ class HomeViewModel(
                 }
                 getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
                     _uiState.update {
-                        it.copy(films = genresFilmEntity.map {
+                        it.copy(isLoading = true,films = genresFilmEntity.map {
                             convertFilmByGenreToFilmItemState(
                                 it
                             )
@@ -71,8 +86,9 @@ class HomeViewModel(
                     }
                 }
             } catch (e: Exception) {
+                delay(3000)
                 _uiState.update { state ->
-                    state.copy(hasError = true)
+                    state.copy(isLoading = false,hasError = true)
                 }
             }
         }
