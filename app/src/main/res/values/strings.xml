@@ -14,6 +14,6 @@
     <string name="categories_tl_the_comedy">Comedy</string>
 
     <string name="an_error_has_occurred">An error has occurred!</string>
-    <string name="try_again_or_come_back_later.">Try again or come back later.</string>
+    <string name="try_again_or_come_back_later">Try again or come back later</string>
     <string name="to_try">To try</string>
 </resources>

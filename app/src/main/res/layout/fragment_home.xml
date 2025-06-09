@@ -13,39 +13,35 @@
         tools:context="com.example.appmovie.movie.presentation.home.HomeFragment">
 
         <TextView
-            android:id="@+id/eror_textView1"
+            android:id="@+id/eror_text_view1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_width_cover"
             android:text="@string/an_error_has_occurred"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/eror_imageView"
-            app:layout_constraintStart_toStartOf="@+id/eror_imageView"
-            app:layout_constraintTop_toTopOf="@+id/eror_imageView"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="@+id/eror_image_view"
+            app:layout_constraintStart_toStartOf="@+id/eror_image_view"
+            app:layout_constraintTop_toTopOf="@+id/eror_image_view" />
 
         <TextView
-            android:id="@+id/eror_textView2"
+            android:id="@+id/eror_text_view2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/try_again_or_come_back_later."
+            android:text="@string/try_again_or_come_back_later"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/eror_textView1"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@id/eror_textView1"
-            app:layout_constraintTop_toBottomOf="@id/eror_textView1" />
+            app:layout_constraintEnd_toEndOf="@id/eror_text_view1"
+            app:layout_constraintStart_toStartOf="@id/eror_text_view1"
+            app:layout_constraintTop_toBottomOf="@id/eror_text_view1" />
 
         <ImageView
-            android:id="@+id/eror_imageView"
+            android:id="@+id/eror_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="@dimen/eror_margin_top"
             android:src="@drawable/box_eror"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent">
 
         </ImageView>
 
@@ -64,7 +60,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_in_main_menu" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ranked_films"
@@ -97,19 +92,20 @@
             android:layout_marginStart="@dimen/m_start_rv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_layout_home_fr" />
 
         <Button
             android:id="@+id/eror_to_try_button"
-            style="@style/Color_button"
+            style="@style/ColorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/top_offset"
             android:text="@string/to_try"
-            app:layout_constraintEnd_toEndOf="@+id/eror_textView2"
-            app:layout_constraintStart_toStartOf="@+id/eror_textView2"
-            app:layout_constraintTop_toBottomOf="@+id/eror_textView2" />
+            app:layout_constraintEnd_toEndOf="@+id/eror_text_view2"
+            app:layout_constraintStart_toStartOf="@+id/eror_text_view2"
+            app:layout_constraintTop_toBottomOf="@+id/eror_text_view2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

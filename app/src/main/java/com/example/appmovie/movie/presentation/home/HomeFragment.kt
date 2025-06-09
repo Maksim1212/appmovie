@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -53,9 +54,8 @@ class HomeFragment : Fragment() {
         observeUiState()
 
         binding.erorToTryButton.setOnClickListener {
-
+            homeViewModel.loadInitialData()
         }
-
     }
 
     private fun recyclerViewForTheMovieRankedFilms() {
@@ -113,27 +113,11 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
                     if (homeState.hasError) {
+                        showError()
+                    } else {
                         rankedFilmsAdapter?.submitList(homeState.rankedFilms)
                         categoriesFilmsAdapter?.submitList(homeState.films)
-                        binding.rvRankedFilms.visibility = View.VISIBLE
-                        binding.rvCategories.visibility = View.VISIBLE
-                        binding.tabLayoutHomeFr.visibility = View.VISIBLE
-                        binding.erorImageView.visibility = View.GONE
-                        binding.erorTextView1.visibility = View.GONE
-                        binding.erorTextView2.visibility = View.GONE
-                        binding.erorToTryButton.visibility = View.GONE
-                    } else {
-                        binding.erorImageView.visibility = View.VISIBLE
-                        binding.erorToTryButton.visibility = View.VISIBLE
-                        binding.erorTextView1.visibility = View.VISIBLE
-                        binding.erorTextView2.visibility = View.VISIBLE
-                        binding.rvRankedFilms.visibility = View.GONE
-                        binding.rvCategories.visibility = View.GONE
-                        binding.tabLayoutHomeFr.visibility = View.GONE
-
-                        binding.erorToTryButton.setOnClickListener {
-                            homeViewModel.loadInitialData()
-                        }
+                        showContent()
                     }
                 }
             }
@@ -148,4 +132,47 @@ class HomeFragment : Fragment() {
         val itemDecorator = CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
         binding.rvCategories.addItemDecoration(itemDecorator)
     }
+
+    private fun showError() {
+        binding.erorImageView.isVisible = true
+        binding.erorToTryButton.isVisible = true
+        binding.erorTextView1.isVisible = true
+        binding.erorTextView2.isVisible = true
+        binding.rvRankedFilms.isVisible = false
+        binding.rvCategories.isVisible = false
+        binding.tabLayoutHomeFr.isVisible = false
+    }
+
+    private fun hideError() {
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+        binding.erorImageView.isVisible = false
+        binding.erorTextView1.isVisible = false
+        binding.erorTextView2.isVisible = false
+        binding.erorToTryButton.isVisible = false
+    }
+
+    private fun showContent() {
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+        binding.erorImageView.isVisible = false
+        binding.erorTextView1.isVisible = false
+        binding.erorTextView2.isVisible = false
+        binding.erorToTryButton.isVisible = false
+    }
+
+    private fun hideContent() {
+
+    }
+
+    private fun showLoading() {
+
+    }
+
+    private fun hideLoading() {
+
+    }
+
 }
