@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
 
         observeUiState()
 
-        binding.erorToTryButton.setOnClickListener {
+        binding.errorToTryButton.setOnClickListener {
             homeViewModel.loadInitialData()
         }
     }
@@ -134,10 +134,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun showError() {
-        binding.erorImageView.isVisible = true
-        binding.erorToTryButton.isVisible = true
-        binding.erorTextView1.isVisible = true
-        binding.erorTextView2.isVisible = true
+        binding.errorImageView.isVisible = true
+        binding.errorToTryButton.isVisible = true
+        binding.errorTitle.isVisible = true
+        binding.errorSubtitle.isVisible = true
         binding.rvRankedFilms.isVisible = false
         binding.rvCategories.isVisible = false
         binding.tabLayoutHomeFr.isVisible = false
@@ -147,20 +147,20 @@ class HomeFragment : Fragment() {
         binding.rvRankedFilms.isVisible = true
         binding.rvCategories.isVisible = true
         binding.tabLayoutHomeFr.isVisible = true
-        binding.erorImageView.isVisible = false
-        binding.erorTextView1.isVisible = false
-        binding.erorTextView2.isVisible = false
-        binding.erorToTryButton.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTitle.isVisible = false
+        binding.errorSubtitle.isVisible = false
+        binding.errorToTryButton.isVisible = false
     }
 
     private fun showContent() {
         binding.rvRankedFilms.isVisible = true
         binding.rvCategories.isVisible = true
         binding.tabLayoutHomeFr.isVisible = true
-        binding.erorImageView.isVisible = false
-        binding.erorTextView1.isVisible = false
-        binding.erorTextView2.isVisible = false
-        binding.erorToTryButton.isVisible = false
+        binding.errorImageView.isVisible = false
+        binding.errorTitle.isVisible = false
+        binding.errorSubtitle.isVisible = false
+        binding.errorToTryButton.isVisible = false
     }
 
     private fun hideContent() {

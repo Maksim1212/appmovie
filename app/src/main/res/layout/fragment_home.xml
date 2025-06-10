@@ -13,28 +13,28 @@
         tools:context="com.example.appmovie.movie.presentation.home.HomeFragment">
 
         <TextView
-            android:id="@+id/eror_text_view1"
+            android:id="@+id/error_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_width_cover"
             android:text="@string/an_error_has_occurred"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/eror_image_view"
-            app:layout_constraintStart_toStartOf="@+id/eror_image_view"
-            app:layout_constraintTop_toTopOf="@+id/eror_image_view" />
+            app:layout_constraintEnd_toEndOf="@+id/error_image_view"
+            app:layout_constraintStart_toStartOf="@+id/error_image_view"
+            app:layout_constraintTop_toTopOf="@+id/error_image_view" />
 
         <TextView
-            android:id="@+id/eror_text_view2"
+            android:id="@+id/error_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/try_again_or_come_back_later"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/eror_text_view1"
-            app:layout_constraintStart_toStartOf="@id/eror_text_view1"
-            app:layout_constraintTop_toBottomOf="@id/eror_text_view1" />
+            app:layout_constraintEnd_toEndOf="@id/error_title"
+            app:layout_constraintStart_toStartOf="@id/error_title"
+            app:layout_constraintTop_toBottomOf="@id/error_title" />
 
         <ImageView
-            android:id="@+id/eror_image_view"
+            android:id="@+id/error_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/eror_margin_top"
@@ -90,22 +90,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_start_rv"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:nestedScrollingEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_layout_home_fr" />
 
         <Button
-            android:id="@+id/eror_to_try_button"
+            android:id="@+id/error_to_try_button"
             style="@style/ColorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/top_offset"
             android:text="@string/to_try"
-            app:layout_constraintEnd_toEndOf="@+id/eror_text_view2"
-            app:layout_constraintStart_toStartOf="@+id/eror_text_view2"
-            app:layout_constraintTop_toBottomOf="@+id/eror_text_view2" />
+            app:layout_constraintEnd_toEndOf="@+id/error_subtitle"
+            app:layout_constraintStart_toStartOf="@+id/error_subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/error_subtitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

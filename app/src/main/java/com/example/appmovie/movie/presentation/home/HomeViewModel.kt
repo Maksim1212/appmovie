@@ -63,11 +63,11 @@ class HomeViewModel(
                 }
                 getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
                     _uiState.update {
-                        it.copy(films = genresFilmEntity.map {
-                            convertFilmByGenreToFilmItemState(
-                                it
-                            )
-                        }, hasError = false)
+                        it.copy(
+                            films = genresFilmEntity.map {
+                                convertFilmByGenreToFilmItemState(it)
+                            },
+                            hasError = false)
                     }
                 }
             } catch (e: Exception) {
