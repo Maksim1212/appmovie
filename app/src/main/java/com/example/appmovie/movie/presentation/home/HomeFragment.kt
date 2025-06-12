@@ -112,40 +112,35 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    when {
-                        homeState.isLoading -> {
-                            showLoading()
-
-                            if (homeState.rankedFilms.isNotEmpty() || homeState.films.isNotEmpty()) {
-                                showContent()
-                                rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                                categoriesFilmsAdapter?.submitList(homeState.films)
-                            } else {
-                                hideContent()
-                            }
-                            hideError()
-                        }
-
-                        homeState.hasError -> {
-                            hideLoading()
-                            showError()
-                            if (homeState.rankedFilms.isEmpty() && homeState.films.isEmpty()) {
-                                hideContent()
-                            }
-                        }
-
-                        else -> {
-                            hideLoading()
-                            hideError()
-                            showContent()
-                            rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                            categoriesFilmsAdapter?.submitList(homeState.films)
-                        }
+                    if (homeState.isLoading) {
+                        showLoading()
+                        hideError()
+                        hideContent()
                     }
+                    if (homeState.isError) {
+                        showError()
+                        hideLoading()
+                        hideContent()
+                    }
+                    if (!homeState.isLoading
+                        && homeState.rankedFilms.isNotEmpty()
+                        && homeState.films.isNotEmpty()
+                        && !homeState.isError
+                    ) {
+                        rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                        categoriesFilmsAdapter?.submitList(homeState.films)
+
+                        showContent()
+                        hideLoading()
+                        hideError()
+                    }
+
+
                 }
             }
         }
     }
+
 
     private fun addDecorators() {
         val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)
@@ -162,15 +157,9 @@ class HomeFragment : Fragment() {
         binding.erorToTryButton.isVisible = true
         binding.erorTextView1.isVisible = true
         binding.erorTextView2.isVisible = true
-        binding.rvRankedFilms.isVisible = false
-        binding.rvCategories.isVisible = false
-        binding.tabLayoutHomeFr.isVisible = false
     }
 
     private fun hideError() {
-        binding.rvRankedFilms.isVisible = true
-        binding.rvCategories.isVisible = true
-        binding.tabLayoutHomeFr.isVisible = true
         binding.erorImageView.isVisible = false
         binding.erorTextView1.isVisible = false
         binding.erorTextView2.isVisible = false
@@ -181,17 +170,9 @@ class HomeFragment : Fragment() {
         binding.rvRankedFilms.isVisible = true
         binding.rvCategories.isVisible = true
         binding.tabLayoutHomeFr.isVisible = true
-        binding.erorImageView.isVisible = false
-        binding.erorTextView1.isVisible = false
-        binding.erorTextView2.isVisible = false
-        binding.erorToTryButton.isVisible = false
     }
 
     private fun hideContent() {
-        binding.erorImageView.isVisible = true
-        binding.erorToTryButton.isVisible = true
-        binding.erorTextView1.isVisible = true
-        binding.erorTextView2.isVisible = true
         binding.rvRankedFilms.isVisible = false
         binding.rvCategories.isVisible = false
         binding.tabLayoutHomeFr.isVisible = false
@@ -199,23 +180,9 @@ class HomeFragment : Fragment() {
 
     private fun showLoading() {
         binding.progressBar.isVisible = true
-        binding.rvRankedFilms.isVisible = false
-        binding.rvCategories.isVisible = false
-        binding.tabLayoutHomeFr.isVisible = false
-        binding.erorImageView.isVisible = false
-        binding.erorTextView1.isVisible = false
-        binding.erorTextView2.isVisible = false
-        binding.erorToTryButton.isVisible = false
     }
 
     private fun hideLoading() {
-        binding.rvRankedFilms.isVisible = true
-        binding.rvCategories.isVisible = true
-        binding.tabLayoutHomeFr.isVisible = true
-        binding.erorImageView.isVisible = true
-        binding.erorTextView1.isVisible = true
-        binding.erorTextView2.isVisible = true
-        binding.erorToTryButton.isVisible = true
         binding.progressBar.isVisible = false
     }
 }

@@ -39,13 +39,13 @@ class HomeViewModel(
             getTopRankedFilmsUseCase.invoke()
                 .onStart {
                     _uiState.update { state ->
-                        state.copy(isLoading = true, hasError = false)
+                        state.copy(isLoading = true, isError = false)
                     }
                     delay(3000)
                 }
                 .catch { e ->
                     _uiState.update { state ->
-                        state.copy(isLoading = false, hasError = true)
+                        state.copy(isLoading = false, isError = true)
                     }
                 }
                 .onCompletion {
@@ -82,13 +82,13 @@ class HomeViewModel(
                             convertFilmByGenreToFilmItemState(
                                 it
                             )
-                        }, hasError = false)
+                        }, isError = false)
                     }
                 }
             } catch (e: Exception) {
                 delay(3000)
                 _uiState.update { state ->
-                    state.copy(isLoading = false,hasError = true)
+                    state.copy(isLoading = false,isError = true)
                 }
             }
         }
