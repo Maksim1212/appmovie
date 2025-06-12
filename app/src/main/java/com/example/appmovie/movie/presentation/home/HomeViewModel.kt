@@ -41,7 +41,6 @@ class HomeViewModel(
                     _uiState.update { state ->
                         state.copy(isLoading = true, isError = false)
                     }
-                    delay(3000)
                 }
                 .catch { e ->
                     _uiState.update { state ->
@@ -50,7 +49,7 @@ class HomeViewModel(
                 }
                 .onCompletion {
                     _uiState.update { state ->
-                        state.copy(isLoading = false)
+                        state.copy(isLoading = false, isError = false)
                     }
                 }
                 .collectLatest { list ->
@@ -67,32 +66,42 @@ class HomeViewModel(
 
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            try {
-                delay(3000)
-                val genre = when (tabPosition) {
-                    0 -> Genres.DRAMA
-                    1 -> Genres.FANTASTICA
-                    2 -> Genres.COMEDY
-                    3 -> Genres.HORROR
-                    else -> Genres.DRAMA
+            val genre = when (tabPosition) {
+                0 -> Genres.DRAMA
+                1 -> Genres.FANTASTICA
+                2 -> Genres.COMEDY
+                3 -> Genres.HORROR
+                else -> Genres.DRAMA
+            }
+            getFilmByGenreUseCase.invoke(id = genre.id)
+                .onStart {
+                    _uiState.update { state ->
+                        state.copy(isLoading = true, isError = false)
+                    }
                 }
-                getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
+                .catch { e ->
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = true)
+                    }
+                }
+                .onCompletion {
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = false)
+                    }
+                }
+                .collectLatest { genresFilmEntity ->
                     _uiState.update {
-                        it.copy(isLoading = true,films = genresFilmEntity.map {
+                        it.copy(films = genresFilmEntity.map {
                             convertFilmByGenreToFilmItemState(
                                 it
                             )
-                        }, isError = false)
+                        })
                     }
                 }
-            } catch (e: Exception) {
-                delay(3000)
-                _uiState.update { state ->
-                    state.copy(isLoading = false,isError = true)
-                }
-            }
+
         }
     }
+
 
     private fun convertFilmByGenreToFilmItemState(
         categoriesFilmGenresEntity: CategoriesFilmGenresEntity
