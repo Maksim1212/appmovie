@@ -71,6 +71,7 @@ dependencies {
     // Glide
     implementation(libs.glide)
     implementation(libs.glide.compiler)
+    implementation(libs.androidx.benchmark.common)
 
     // Tests
     testImplementation(libs.junit)

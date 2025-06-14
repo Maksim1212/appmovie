@@ -6,7 +6,6 @@ import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,18 +37,18 @@ class HomeViewModel(
         viewModelScope.launch {
             getTopRankedFilmsUseCase.invoke()
                 .onStart {
-                    _uiState.update { state ->
-                        state.copy(isLoading = true, isError = false)
+                    _uiState.update {
+                        it.start()
                     }
                 }
                 .catch { e ->
-                    _uiState.update { state ->
-                        state.copy(isLoading = false, isError = true)
+                    _uiState.update {
+                        it.catch()
                     }
                 }
                 .onCompletion {
-                    _uiState.update { state ->
-                        state.copy(isLoading = false, isError = false)
+                    _uiState.update {
+                        it.onCompletion()
                     }
                 }
                 .collectLatest { list ->
@@ -75,18 +74,18 @@ class HomeViewModel(
             }
             getFilmByGenreUseCase.invoke(id = genre.id)
                 .onStart {
-                    _uiState.update { state ->
-                        state.copy(isLoading = true, isError = false)
+                    _uiState.update {
+                        it.start()
                     }
                 }
                 .catch { e ->
-                    _uiState.update { state ->
-                        state.copy(isLoading = false, isError = true)
+                    _uiState.update {
+                        it.catch()
                     }
                 }
                 .onCompletion {
-                    _uiState.update { state ->
-                        state.copy(isLoading = false, isError = false)
+                    _uiState.update {
+                        it.onCompletion()
                     }
                 }
                 .collectLatest { genresFilmEntity ->
@@ -101,7 +100,6 @@ class HomeViewModel(
 
         }
     }
-
 
     private fun convertFilmByGenreToFilmItemState(
         categoriesFilmGenresEntity: CategoriesFilmGenresEntity
@@ -121,5 +119,17 @@ class HomeViewModel(
         FANTASTICA(6),
         COMEDY(13),
         HORROR(17)
+    }
+
+    fun HomeUiState.start(): HomeUiState {
+        return this.copy(isLoading = true, isError = false)
+    }
+
+    fun HomeUiState.catch(): HomeUiState {
+        return this.copy(isLoading = false, isError = true)
+    }
+
+    fun HomeUiState.onCompletion(): HomeUiState {
+        return this.copy(isLoading = false, isError = false)
     }
 }

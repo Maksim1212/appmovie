@@ -134,13 +134,10 @@ class HomeFragment : Fragment() {
                         hideLoading()
                         hideError()
                     }
-
-
                 }
             }
         }
     }
-
 
     private fun addDecorators() {
         val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)
@@ -153,36 +150,58 @@ class HomeFragment : Fragment() {
     }
 
     private fun showError() {
-        binding.erorImageView.isVisible = true
-        binding.erorToTryButton.isVisible = true
-        binding.erorTextView1.isVisible = true
-        binding.erorTextView2.isVisible = true
+        with(binding) {
+            erorImageView.show()
+            erorToTryButton.show()
+            erorTextView1.show()
+            erorTextView2.show()
+        }
     }
 
     private fun hideError() {
-        binding.erorImageView.isVisible = false
-        binding.erorTextView1.isVisible = false
-        binding.erorTextView2.isVisible = false
-        binding.erorToTryButton.isVisible = false
+        with(binding) {
+            erorImageView.hide()
+            erorTextView1.hide()
+            erorTextView2.hide()
+            erorToTryButton.hide()
+        }
     }
 
     private fun showContent() {
-        binding.rvRankedFilms.isVisible = true
-        binding.rvCategories.isVisible = true
-        binding.tabLayoutHomeFr.isVisible = true
+        with(binding) {
+            rvRankedFilms.show()
+            rvCategories.show()
+            tabLayoutHomeFr.show()
+        }
     }
 
     private fun hideContent() {
-        binding.rvRankedFilms.isVisible = false
-        binding.rvCategories.isVisible = false
-        binding.tabLayoutHomeFr.isVisible = false
+        with(binding) {
+            rvRankedFilms.hide()
+            rvCategories.hide()
+            tabLayoutHomeFr.hide()
+        }
     }
 
     private fun showLoading() {
-        binding.progressBar.isVisible = true
+        with(binding) {
+            progressBar.show()
+        }
     }
 
     private fun hideLoading() {
-        binding.progressBar.isVisible = false
+        with(binding) {
+            progressBar.hide()
+        }
+    }
+
+    fun View.show(): View {
+        isVisible = true
+        return this
+    }
+
+    fun View.hide(): View {
+        isVisible = false
+        return this
     }
 }
