@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -52,6 +53,9 @@ class HomeFragment : Fragment() {
 
         observeUiState()
 
+        binding.erorToTryButton.setOnClickListener {
+            homeViewModel.loadInitialData()
+        }
     }
 
     private fun recyclerViewForTheMovieRankedFilms() {
@@ -108,19 +112,77 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                    categoriesFilmsAdapter?.submitList(homeState.films)
+                    if (homeState.isLoading) {
+                        showLoading()
+                        hideError()
+                        hideContent()
+                    }
+                    if (homeState.isError) {
+                        showError()
+                        hideLoading()
+                        hideContent()
+                    }
+                    if (!homeState.isLoading
+                        && homeState.rankedFilms.isNotEmpty()
+                        && homeState.films.isNotEmpty()
+                        && !homeState.isError
+                    ) {
+                        rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                        categoriesFilmsAdapter?.submitList(homeState.films)
+
+                        showContent()
+                        hideLoading()
+                        hideError()
+                    }
+
+
                 }
             }
         }
     }
+
 
     private fun addDecorators() {
         val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)
         val rightOffset = resources.getDimensionPixelSize(R.dimen.right_offset)
         val bottomOffset = resources.getDimensionPixelSize(R.dimen.bottom_offset)
 
-        val itemDecorator = CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
+        val itemDecorator =
+            CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
         binding.rvCategories.addItemDecoration(itemDecorator)
+    }
+
+    private fun showError() {
+        binding.erorImageView.isVisible = true
+        binding.erorToTryButton.isVisible = true
+        binding.erorTextView1.isVisible = true
+        binding.erorTextView2.isVisible = true
+    }
+
+    private fun hideError() {
+        binding.erorImageView.isVisible = false
+        binding.erorTextView1.isVisible = false
+        binding.erorTextView2.isVisible = false
+        binding.erorToTryButton.isVisible = false
+    }
+
+    private fun showContent() {
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+    }
+
+    private fun hideContent() {
+        binding.rvRankedFilms.isVisible = false
+        binding.rvCategories.isVisible = false
+        binding.tabLayoutHomeFr.isVisible = false
+    }
+
+    private fun showLoading() {
+        binding.progressBar.isVisible = true
+    }
+
+    private fun hideLoading() {
+        binding.progressBar.isVisible = false
     }
 }

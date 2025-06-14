@@ -12,6 +12,39 @@
         android:background="@color/main_color_background_app"
         tools:context="com.example.appmovie.movie.presentation.home.HomeFragment">
 
+        <TextView
+            android:id="@+id/eror_text_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_width_cover"
+            android:text="@string/an_error_has_occurred"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/eror_image_view"
+            app:layout_constraintStart_toStartOf="@+id/eror_image_view"
+            app:layout_constraintTop_toTopOf="@+id/eror_image_view" />
+
+        <TextView
+            android:id="@+id/eror_text_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/try_again_or_come_back_later"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/eror_text_view1"
+            app:layout_constraintStart_toStartOf="@id/eror_text_view1"
+            app:layout_constraintTop_toBottomOf="@id/eror_text_view1" />
+
+        <ImageView
+            android:id="@+id/eror_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eror_margin_top"
+            android:src="@drawable/box_eror"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
         <include
             android:id="@+id/header_in_main_menu"
             layout="@layout/header_fragment_home"
@@ -37,6 +70,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout_home_fr"
             android:layout_width="0dp"
@@ -58,10 +103,22 @@
             android:nestedScrollingEnabled="false"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_start_rv"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tab_layout_home_fr" />
+
+        <Button
+            android:id="@+id/eror_to_try_button"
+            style="@style/ColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_offset"
+            android:text="@string/to_try"
+            app:layout_constraintEnd_toEndOf="@+id/eror_text_view2"
+            app:layout_constraintStart_toStartOf="@+id/eror_text_view2"
+            app:layout_constraintTop_toBottomOf="@+id/eror_text_view2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

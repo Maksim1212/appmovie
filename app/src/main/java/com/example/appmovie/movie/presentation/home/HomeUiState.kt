@@ -3,7 +3,10 @@ package com.example.appmovie.movie.presentation.home
 data class HomeUiState(
     val headerText: String = "",
     val rankedFilms: List<RankedFilmItemState> = emptyList(),
-    val films: List<FilmItemState> = emptyList()
+    val films: List<FilmItemState> = emptyList(),
+    val isError: Boolean = false,
+    val isLoading: Boolean = false
+
 ) {
 
     data class RankedFilmItemState(

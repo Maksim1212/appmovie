@@ -6,10 +6,14 @@ import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -25,7 +29,7 @@ class HomeViewModel(
         loadInitialData()
     }
 
-    private fun loadInitialData() {
+    fun loadInitialData() {
         loadTopRankedFilms()
         loadFilmsCategory(0)
     }
@@ -33,6 +37,21 @@ class HomeViewModel(
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
             getTopRankedFilmsUseCase.invoke()
+                .onStart {
+                    _uiState.update { state ->
+                        state.copy(isLoading = true, isError = false)
+                    }
+                }
+                .catch { e ->
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = true)
+                    }
+                }
+                .onCompletion {
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = false)
+                    }
+                }
                 .collectLatest { list ->
                     val topRanked = list.map {
                         convertRankedFilmEntityToRankedFilmItemState(it)
@@ -44,6 +63,7 @@ class HomeViewModel(
         }
     }
 
+
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
             val genre = when (tabPosition) {
@@ -53,17 +73,35 @@ class HomeViewModel(
                 3 -> Genres.HORROR
                 else -> Genres.DRAMA
             }
-            getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
-                _uiState.update {
-                    it.copy(films = genresFilmEntity.map {
-                        convertFilmByGenreToFilmItemState(
-                            it
-                        )
-                    })
+            getFilmByGenreUseCase.invoke(id = genre.id)
+                .onStart {
+                    _uiState.update { state ->
+                        state.copy(isLoading = true, isError = false)
+                    }
                 }
-            }
+                .catch { e ->
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = true)
+                    }
+                }
+                .onCompletion {
+                    _uiState.update { state ->
+                        state.copy(isLoading = false, isError = false)
+                    }
+                }
+                .collectLatest { genresFilmEntity ->
+                    _uiState.update {
+                        it.copy(films = genresFilmEntity.map {
+                            convertFilmByGenreToFilmItemState(
+                                it
+                            )
+                        })
+                    }
+                }
+
         }
     }
+
 
     private fun convertFilmByGenreToFilmItemState(
         categoriesFilmGenresEntity: CategoriesFilmGenresEntity
