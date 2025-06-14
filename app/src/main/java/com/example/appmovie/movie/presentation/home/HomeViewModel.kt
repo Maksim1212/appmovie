@@ -25,41 +25,54 @@ class HomeViewModel(
         loadInitialData()
     }
 
-    private fun loadInitialData() {
+    fun loadInitialData() {
         loadTopRankedFilms()
         loadFilmsCategory(0)
     }
 
     private fun loadTopRankedFilms() {
         viewModelScope.launch {
-            getTopRankedFilmsUseCase.invoke()
-                .collectLatest { list ->
-                    val topRanked = list.map {
-                        convertRankedFilmEntityToRankedFilmItemState(it)
+            try {
+                getTopRankedFilmsUseCase.invoke()
+                    .collectLatest { list ->
+                        val topRanked = list.map {
+                            convertRankedFilmEntityToRankedFilmItemState(it)
+                        }
+                        _uiState.update { state ->
+                            state.copy(rankedFilms = topRanked, hasError = false)
+                        }
                     }
-                    _uiState.update { state ->
-                        state.copy(rankedFilms = topRanked)
-                    }
+            } catch (e: Exception) {
+                _uiState.update { state ->
+                    state.copy(hasError = true)
                 }
+            }
         }
     }
 
+
     fun loadFilmsCategory(tabPosition: Int) {
         viewModelScope.launch {
-            val genre = when (tabPosition) {
-                0 -> Genres.DRAMA
-                1 -> Genres.FANTASTICA
-                2 -> Genres.COMEDY
-                3 -> Genres.HORROR
-                else -> Genres.DRAMA
-            }
-            getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
-                _uiState.update {
-                    it.copy(films = genresFilmEntity.map {
-                        convertFilmByGenreToFilmItemState(
-                            it
-                        )
-                    })
+            try {
+                val genre = when (tabPosition) {
+                    0 -> Genres.DRAMA
+                    1 -> Genres.FANTASTICA
+                    2 -> Genres.COMEDY
+                    3 -> Genres.HORROR
+                    else -> Genres.DRAMA
+                }
+                getFilmByGenreUseCase.invoke(id = genre.id).collectLatest { genresFilmEntity ->
+                    _uiState.update {
+                        it.copy(
+                            films = genresFilmEntity.map {
+                                convertFilmByGenreToFilmItemState(it)
+                            },
+                            hasError = false)
+                    }
+                }
+            } catch (e: Exception) {
+                _uiState.update { state ->
+                    state.copy(hasError = true)
                 }
             }
         }

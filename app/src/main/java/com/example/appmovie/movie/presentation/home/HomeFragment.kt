@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -52,6 +53,9 @@ class HomeFragment : Fragment() {
 
         observeUiState()
 
+        binding.errorToTryButton.setOnClickListener {
+            homeViewModel.loadInitialData()
+        }
     }
 
     private fun recyclerViewForTheMovieRankedFilms() {
@@ -108,8 +112,13 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collect { homeState ->
-                    rankedFilmsAdapter?.submitList(homeState.rankedFilms)
-                    categoriesFilmsAdapter?.submitList(homeState.films)
+                    if (homeState.hasError) {
+                        showError()
+                    } else {
+                        rankedFilmsAdapter?.submitList(homeState.rankedFilms)
+                        categoriesFilmsAdapter?.submitList(homeState.films)
+                        showContent()
+                    }
                 }
             }
         }
@@ -123,4 +132,47 @@ class HomeFragment : Fragment() {
         val itemDecorator = CategoriesFilmsItemDecoration(topOffset, rightOffset, bottomOffset)
         binding.rvCategories.addItemDecoration(itemDecorator)
     }
+
+    private fun showError() {
+        binding.errorImageView.isVisible = true
+        binding.errorToTryButton.isVisible = true
+        binding.errorTitle.isVisible = true
+        binding.errorSubtitle.isVisible = true
+        binding.rvRankedFilms.isVisible = false
+        binding.rvCategories.isVisible = false
+        binding.tabLayoutHomeFr.isVisible = false
+    }
+
+    private fun hideError() {
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+        binding.errorImageView.isVisible = false
+        binding.errorTitle.isVisible = false
+        binding.errorSubtitle.isVisible = false
+        binding.errorToTryButton.isVisible = false
+    }
+
+    private fun showContent() {
+        binding.rvRankedFilms.isVisible = true
+        binding.rvCategories.isVisible = true
+        binding.tabLayoutHomeFr.isVisible = true
+        binding.errorImageView.isVisible = false
+        binding.errorTitle.isVisible = false
+        binding.errorSubtitle.isVisible = false
+        binding.errorToTryButton.isVisible = false
+    }
+
+    private fun hideContent() {
+
+    }
+
+    private fun showLoading() {
+
+    }
+
+    private fun hideLoading() {
+
+    }
+
 }
