@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
 }
 
 val keysFile = rootProject.file("keys.properties")
@@ -84,4 +85,8 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
+
+    // Dagger 2
+    implementation (libs.dagger)
+    kapt (libs.dagger.compiler)
 }
