@@ -1,6 +1,9 @@
-package com.example.appmovie.movie.data.remote
+@file:Suppress("DEPRECATED_JAVA_ANNOTATION")
+
+package com.example.appmovie.movie.data.di
 
 import com.example.appmovie.BuildConfig
+import com.example.appmovie.movie.data.remote.KinopoiskApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -9,22 +12,32 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
 import javax.inject.Named
+import javax.inject.Qualifier
 
 @Module
 class NetworkModule {
-    private val BASE_URL = "https://kinopoiskapiunofficial.tech/api/v2.2/"
+
+    @Qualifier
+    @Retention(RetentionPolicy.RUNTIME)
+    annotation class InterceptorAuth()
+
+    @Qualifier
+    @Retention(RetentionPolicy.RUNTIME)
+    annotation class Interceptorlogging()
 
     @Provides
-    @Named("logger")
+    @Interceptorlogging
     fun provideLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
     @Provides
     fun provideHttpClient(
-        @Named("auth") authInterceptor: Interceptor,
-        @Named("logger") loggingInterceptor: Interceptor
+        @InterceptorAuth authInterceptor: Interceptor,
+        @Interceptorlogging loggingInterceptor: Interceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
@@ -48,10 +61,10 @@ class NetworkModule {
 
     @Provides
     fun provideCoroutineCallAdapterFactory(): CoroutineCallAdapterFactory =
-        CoroutineCallAdapterFactory()
+        CoroutineCallAdapterFactory.Companion()
 
     @Provides
-    @Named("auth")
+    @InterceptorAuth
     fun provideAuthInterceptor(
         @Named("api_key") apiKey: String
     ): Interceptor = Interceptor { chain ->
@@ -67,7 +80,7 @@ class NetworkModule {
 
     @Provides
     @Named("base_url")
-    fun provideBaseUrl(): String = BASE_URL
+    fun provideBaseUrl(): String = BuildConfig.BASE_URL
 
     @Provides
     fun provideKinopoiskApi(

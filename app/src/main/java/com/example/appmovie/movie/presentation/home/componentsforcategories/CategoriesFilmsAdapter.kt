@@ -1,10 +1,11 @@
-package com.example.appmovie.movie.presentation.home
+package com.example.appmovie.movie.presentation.home.componentsforcategories
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemCategoriesCoverBinding
+import com.example.appmovie.movie.presentation.home.HomeUiState
 
 class CategoriesFilmsAdapter(
     private val glide: RequestManager,

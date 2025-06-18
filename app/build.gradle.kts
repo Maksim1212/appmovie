@@ -32,9 +32,11 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
+            buildConfigField("String", "BASE_URL", keys.getProperty("BASE_URL", "\"\"") ?: "\"\"")
         }
         debug {
             buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
+            buildConfigField("String", "BASE_URL", keys.getProperty("BASE_URL", "\"\"") ?: "\"\"")
         }
     }
     compileOptions {
@@ -72,7 +74,6 @@ dependencies {
     // Glide
     implementation(libs.glide)
     implementation(libs.glide.compiler)
-    implementation(libs.androidx.benchmark.common)
 
     // Tests
     testImplementation(libs.junit)
@@ -87,6 +88,6 @@ dependencies {
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
 
     // Dagger 2
-    implementation (libs.dagger)
-    kapt (libs.dagger.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

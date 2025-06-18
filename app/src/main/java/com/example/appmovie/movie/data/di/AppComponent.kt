@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.data.remote
+package com.example.appmovie.movie.data.di
 
 import android.content.Context
 import com.example.appmovie.movie.presentation.home.HomeFragment
@@ -6,7 +6,11 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [AppModule::class, NetworkModule::class, KinopoiskModule::class])
+@Component(
+    modules = [
+        NetworkModule::class,
+    ]
+)
 @Singleton
 interface AppComponent {
 

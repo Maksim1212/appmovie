@@ -19,6 +19,10 @@ import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
 import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
+import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsAdapter
+import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsItemDecoration
+import com.example.appmovie.movie.presentation.home.rankedadapter.RankedHorizontalSpacingItemDecoration
+import com.example.appmovie.movie.presentation.home.rankedadapter.RankedFilmsAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 
@@ -68,7 +72,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = rankedFilmsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvRankedFilms.addItemDecoration(HorizontalSpacingItemDecoration(spacingInPixels))
+        binding.rvRankedFilms.addItemDecoration(RankedHorizontalSpacingItemDecoration(spacingInPixels))
 
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
