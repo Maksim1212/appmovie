@@ -5,8 +5,9 @@ import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GetTopRankedFilmsUseCase(private val filmRepository: FilmRepository) {
+class GetTopRankedFilmsUseCase @Inject constructor (private val filmRepository: FilmRepository) {
 
     operator fun invoke(): Flow<List<RankedFilmEntity>> =
         filmRepository.getTopRankedFilms().map {

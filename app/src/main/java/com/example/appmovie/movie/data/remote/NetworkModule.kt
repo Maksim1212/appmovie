@@ -35,7 +35,7 @@ class NetworkModule {
         httpClient: OkHttpClient,
         gsonFactory: GsonConverterFactory,
         callAdapterFactory: CoroutineCallAdapterFactory,
-        baseUrl: String
+        @Named("base_url") baseUrl: String
     ): Retrofit = Retrofit.Builder()
         .client(httpClient)
         .addConverterFactory(gsonFactory)
@@ -53,7 +53,7 @@ class NetworkModule {
     @Provides
     @Named("auth")
     fun provideAuthInterceptor(
-        apiKey: String
+        @Named("api_key") apiKey: String
     ): Interceptor = Interceptor { chain ->
         val newRequest = chain.request().newBuilder()
             .header("X-API-KEY", apiKey)
@@ -69,6 +69,7 @@ class NetworkModule {
     @Named("base_url")
     fun provideBaseUrl(): String = BASE_URL
 
+    @Provides
     fun provideKinopoiskApi(
         retrofit: Retrofit
     ): KinopoiskApi = retrofit.create(KinopoiskApi::class.java)

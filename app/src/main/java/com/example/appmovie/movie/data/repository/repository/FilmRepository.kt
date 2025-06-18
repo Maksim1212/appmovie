@@ -7,8 +7,9 @@ import com.example.appmovie.movie.data.remote.model.CollectionsResponse
 import com.example.appmovie.movie.data.repository.FilmStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class FilmRepository(
+class FilmRepository @Inject constructor(
     private val kinopoiskApi: KinopoiskApi
 ) {
 
