@@ -1,11 +1,11 @@
-package com.example.appmovie
+package com.example.appmovie.movie.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.appmovie.R
 import com.example.appmovie.databinding.ActivityMainBinding
-import com.example.appmovie.movie.presentation.favorite.FavoriteFragment
 
 class MainActivity : AppCompatActivity() {
 

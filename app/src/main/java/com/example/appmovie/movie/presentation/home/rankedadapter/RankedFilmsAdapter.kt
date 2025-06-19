@@ -1,14 +1,15 @@
-package com.example.appmovie.movie.presentation.home
+package com.example.appmovie.movie.presentation.home.rankedadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemTopMainBinding
+import com.example.appmovie.movie.presentation.home.HomeUiState
 
 class RankedFilmsAdapter(
     private val glide: RequestManager
-) : ListAdapter<HomeUiState.RankedFilmItemState, RankedFilmsHolder >(TopRankedFilmsDiffCallback()) {
+) : ListAdapter<HomeUiState.RankedFilmItemState, RankedFilmsHolder>(RankedFilmsDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
