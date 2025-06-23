@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,14 +31,13 @@ import javax.inject.Inject
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val retrofitContainer = RetrofitContainer
-    private var filmRepository = FilmRepository(
-        kinopoiskApi = retrofitContainer.kinopoiskApi
-    )
-    private val homeViewModel = HomeViewModel(
-        getFilmByGenreUseCase = GetFilmByGenreUseCase(filmRepository),
-        getTopRankedFilmsUseCase = GetTopRankedFilmsUseCase(filmRepository)
-    )
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val homeViewModel by lazy {
+        ViewModelProvider(this,viewModelFactory)[HomeViewModel::class.java]
+    }
     private var rankedFilmsAdapter: RankedFilmsAdapter? = null
     private var categoriesFilmsAdapter: CategoriesFilmsAdapter? = null
 
