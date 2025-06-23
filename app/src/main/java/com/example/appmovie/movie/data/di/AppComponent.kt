@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         NetworkModule::class,
-        ViewModelModule::class
+        ModelModule::class
     ]
 )
 @Singleton
