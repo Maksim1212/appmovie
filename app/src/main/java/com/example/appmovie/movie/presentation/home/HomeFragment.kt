@@ -25,6 +25,7 @@ import com.example.appmovie.movie.presentation.home.rankedadapter.RankedHorizont
 import com.example.appmovie.movie.presentation.home.rankedadapter.RankedFilmsAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -39,6 +40,11 @@ class HomeFragment : Fragment() {
     )
     private var rankedFilmsAdapter: RankedFilmsAdapter? = null
     private var categoriesFilmsAdapter: CategoriesFilmsAdapter? = null
+
+    // @Inject
+    // lateinit var factory: Factory
+    //
+    // private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

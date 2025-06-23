@@ -1,6 +1,7 @@
 package com.example.appmovie.movie.data.di
 
 import android.content.Context
+import com.example.appmovie.movie.presentation.home.Factory
 import com.example.appmovie.movie.presentation.home.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -15,6 +16,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun provideContext(): Context
+
+    fun factory(): Factory
 
     fun inject(kinopoiskFragment: HomeFragment)
 
