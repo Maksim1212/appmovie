@@ -1,5 +1,6 @@
 package com.example.appmovie.movie.presentation.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
+import com.example.appmovie.movie.App
+import com.example.appmovie.movie.data.di.AppComponent
 import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
@@ -31,20 +35,20 @@ import javax.inject.Inject
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val homeViewModel by lazy {
-        ViewModelProvider(this,viewModelFactory)[HomeViewModel::class.java]
-    }
     private var rankedFilmsAdapter: RankedFilmsAdapter? = null
     private var categoriesFilmsAdapter: CategoriesFilmsAdapter? = null
 
-    // @Inject
-    // lateinit var factory: Factory
-    //
-    // private lateinit var homeViewModel: HomeViewModel
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
+    private val homeViewModel: HomeViewModel by lazy {
+        ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as App).applicationContext
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +60,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val homeViewModel = ViewModelProvider(this, Factory)[HomeViewModel::class]
 
         recyclerViewForTheMovieRankedFilms()
 

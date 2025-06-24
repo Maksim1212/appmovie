@@ -10,17 +10,15 @@ import javax.inject.Singleton
 @Component(
     modules = [
         NetworkModule::class,
-        ModelModule::class
+        Module::class
     ]
 )
 @Singleton
 interface AppComponent {
 
-    fun provideContext(): Context
-
     fun factory(): Factory
 
-    fun inject(kinopoiskFragment: HomeFragment)
+    fun inject(fragment: HomeFragment)
 
     @Component.Builder
     interface Builder {
