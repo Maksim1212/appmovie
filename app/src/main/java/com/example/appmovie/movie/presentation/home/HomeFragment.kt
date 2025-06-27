@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +18,6 @@ import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.movie.App
-import com.example.appmovie.movie.data.di.AppComponent
-import com.example.appmovie.movie.data.remote.RetrofitContainer
-import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
-import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
 import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsAdapter
 import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsItemDecoration
 import com.example.appmovie.movie.presentation.home.rankedadapter.RankedHorizontalSpacingItemDecoration
@@ -42,12 +36,12 @@ class HomeFragment : Fragment() {
     lateinit var factory: ViewModelProvider.Factory
 
     private val homeViewModel: HomeViewModel by lazy {
-        ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+        ViewModelProvider(this, factory)[HomeViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as App).applicationContext
+        App.appComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -60,8 +54,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val homeViewModel = ViewModelProvider(this, Factory)[HomeViewModel::class]
 
         recyclerViewForTheMovieRankedFilms()
 
@@ -84,7 +76,11 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = rankedFilmsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvRankedFilms.addItemDecoration(RankedHorizontalSpacingItemDecoration(spacingInPixels))
+        binding.rvRankedFilms.addItemDecoration(
+            RankedHorizontalSpacingItemDecoration(
+                spacingInPixels
+            )
+        )
 
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
