@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
 }
 
 val keysFile = rootProject.file("keys.properties")
@@ -31,9 +32,11 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
+            buildConfigField("String", "BASE_URL", keys.getProperty("BASE_URL", "\"\"") ?: "\"\"")
         }
         debug {
             buildConfigField("String", "API_KEY", keys.getProperty("API_KEY", "\"\"") ?: "\"\"")
+            buildConfigField("String", "BASE_URL", keys.getProperty("BASE_URL", "\"\"") ?: "\"\"")
         }
     }
     compileOptions {
@@ -83,4 +86,8 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
+
+    // Dagger 2
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

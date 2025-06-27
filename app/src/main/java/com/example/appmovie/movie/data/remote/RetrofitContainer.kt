@@ -8,9 +8,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "https://kinopoiskapiunofficial.tech/api/v2.2/"
+
 
 object RetrofitContainer {
+
+    private const val BASE_URL = "https://kinopoiskapiunofficial.tech/api/v2.2/"
 
     private val httpClient by lazy {
         OkHttpClient.Builder()

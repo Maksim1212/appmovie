@@ -1,11 +1,10 @@
-package com.example.appmovie.movie.presentation.home
+package com.example.appmovie.movie.presentation.home.rankedadapter
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
-class HorizontalSpacingItemDecoration(private val popularFilms: Int) : ItemDecoration() {
+class RankedHorizontalSpacingItemDecoration(private val popularFilms: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
