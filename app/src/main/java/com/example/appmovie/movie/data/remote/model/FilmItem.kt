@@ -33,10 +33,14 @@ data class FilmItem(
     val ratingImdb: Double?,
     @SerialName("ratingKinopoisk")
     val ratingKinopoisk: Double?,
+    @SerialName("shortDescription")
+    val shortDescription: String,
     @SerialName("type")
     val type: String,
     @SerialName("year")
-    val year: Int?
+    val year: Int?,
+    @SerialName("filmLength")
+    val filmLength: Int?
 )
 
 @Serializable

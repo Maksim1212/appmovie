@@ -1,6 +1,6 @@
-package com.example.appmovie.movie.data
+package com.example.appmovie.movie.data.modelhome
 
-data class CategoriesFilmsModel(
+data class FilmModel(
     val id: Int,
     val cover: String,
     val header: String,

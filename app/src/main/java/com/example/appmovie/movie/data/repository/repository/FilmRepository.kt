@@ -1,6 +1,6 @@
 package com.example.appmovie.movie.data.repository.repository
 
-import com.example.appmovie.movie.data.FilmModel
+import com.example.appmovie.movie.data.modelhome.FilmModel
 import com.example.appmovie.movie.data.remote.KinopoiskApi
 import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse

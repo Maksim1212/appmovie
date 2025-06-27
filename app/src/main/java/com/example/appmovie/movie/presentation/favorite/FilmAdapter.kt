@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
-import com.example.appmovie.movie.data.FilmModel
+import com.example.appmovie.movie.data.modelhome.FilmModel
 
 class FilmAdapter(
     private val list: List<FilmModel>,

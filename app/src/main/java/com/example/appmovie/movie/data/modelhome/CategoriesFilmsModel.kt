@@ -1,12 +1,11 @@
-package com.example.appmovie.movie.data
+package com.example.appmovie.movie.data.modelhome
 
-data class RankedFilmModel(
+data class CategoriesFilmsModel(
     val id: Int,
     val cover: String,
     val header: String,
     val genre: String,
     val time: String,
     val rating: String,
-    val data: Int,
-    val rank: Int
+    val data: Int
 )

@@ -9,10 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-
 object RetrofitContainer {
-
-    private const val BASE_URL = "https://kinopoiskapiunofficial.tech/api/v2.2/"
 
     private val httpClient by lazy {
         OkHttpClient.Builder()
@@ -26,7 +23,7 @@ object RetrofitContainer {
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
     }
 

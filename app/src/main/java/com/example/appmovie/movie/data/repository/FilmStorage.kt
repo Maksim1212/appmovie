@@ -1,8 +1,8 @@
 package com.example.appmovie.movie.data.repository
 
-import com.example.appmovie.movie.data.FilmModel
-import com.example.appmovie.movie.data.RankedFilmModel
-import com.example.appmovie.movie.data.CategoriesFilmsModel
+import com.example.appmovie.movie.data.modelhome.FilmModel
+import com.example.appmovie.movie.data.modelhome.RankedFilmModel
+import com.example.appmovie.movie.data.modelhome.CategoriesFilmsModel
 
 object FilmStorage {
     val selectedFilms = arrayListOf(
