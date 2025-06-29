@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -66,12 +68,30 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun openInformationFragment1(filmItemState: HomeUiState.FilmItemState) {
+        val newFragment = InformationFilmFragment.newInstance(filmItemState)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.informationFilmFragment, newFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun openInformationFragment2(rankedFilmItemState: HomeUiState.RankedFilmItemState) {
+        val newFragment = InformationFilmFragment.newInstance(rankedFilmItemState)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.informationFilmFragment, newFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     private fun recyclerViewForTheMovieRankedFilms() {
 
         val recyclerView: RecyclerView = binding.rvRankedFilms
         rankedFilmsAdapter = RankedFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        )
+        ) { info ->
+            openInformationFragment2(rankedFilmItemState =)
+        }
 
         recyclerView.adapter = rankedFilmsAdapter
 
@@ -94,7 +114,9 @@ class HomeFragment : Fragment() {
 
         categoriesFilmsAdapter = CategoriesFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        )
+        ) { info ->
+            openInformationFragment1(filmItemState =)
+        }
 
         recyclerView.adapter = categoriesFilmsAdapter
 

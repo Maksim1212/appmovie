@@ -8,7 +8,8 @@ import com.example.appmovie.movie.presentation.home.HomeUiState
 
 class RankedFilmsHolder(
     val binding: ItemTopMainBinding,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val onItemClick: (HomeUiState.RankedFilmItemState) -> Unit
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -19,6 +20,10 @@ class RankedFilmsHolder(
             glide
                 .load(rankedFilmItemState.image.toUri())
                 .into(imagePopularFilms)
+
+            itemView.setOnClickListener {
+                onItemClick(rankedFilmItemState)
+            }
         }
     }
 }
