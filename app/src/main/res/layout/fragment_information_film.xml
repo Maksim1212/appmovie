@@ -11,31 +11,28 @@
         android:layout_height="wrap_content"
         android:background="@color/main_color_background_app">
 
-        <include
-        android:id="@+id/header_in_main_menu"
-        layout="@layout/header_back_fragment_home" />
-
         <ImageView
             android:id="@+id/promo_cover"
             android:layout_width="match_parent"
             android:layout_height="210dp"
+            android:layout_marginTop="100dp"
             android:background="@color/blue_color"
             android:src="@drawable/ic_calendar_blank"
-            android:layout_marginTop="100dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/header_in_main_menu"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cover_info_film"
             android:layout_width="@dimen/size_shapeable_imageView_width"
             android:layout_height="@dimen/size_shapeable_imageView_height"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="28dp"
             android:background="@color/main_color_background_app"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/promo_cover"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner"
             tools:src="@drawable/ic_example" />
 
@@ -66,12 +63,12 @@
             android:id="@+id/name_info_film"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="308dp"
+            android:layout_marginTop="336dp"
             android:fontFamily="@font/poppins"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_medium"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="139dp"
+            tools:layout_editor_absoluteX="141dp"
             tools:text="Spiderman No Way Home" />
 
 
