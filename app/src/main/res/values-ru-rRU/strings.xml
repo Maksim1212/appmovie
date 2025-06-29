@@ -14,4 +14,7 @@
     <string name="try_again_or_come_back_later">Попробуйте еще раз или зайдите позже</string>
     <string name="to_try">Попробовать</string>
 
+    <!--    InfoFilm-->
+    <string name="detail">Детали</string>
+
 </resources>
