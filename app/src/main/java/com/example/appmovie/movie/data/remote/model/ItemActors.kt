@@ -1,11 +1,10 @@
 package com.example.appmovie.movie.data.remote.model
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ActorsItem(
+data class ItemActors(
     @SerialName("description")
     val description: String?,
     @SerialName("nameEn")
