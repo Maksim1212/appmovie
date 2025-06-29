@@ -25,22 +25,22 @@ class FilmRepository @Inject constructor(
         emit(kinopoiskApi.getFilmsGenre(genre = id))
     }
 
-    fun getActorsFilm(id: Int): Flow<CollectionActorsFilm> = flow {
-        emit(kinopoiskApi.getActorsFilm(nameEn = id, nameRu = id))
-    }
-
-    fun getInformationOfFilm(id: Int): Flow<CollectionInformationOfFilm> = flow {
-        emit(
-            kinopoiskApi.getInformationofFilm(
-                id,
-                filmLength = id,
-                year = id,
-                posterUrl = id.toString(),
-                posterUrlPreview = id.toString(),
-                ratingKinopoisk = id,
-                shortDescription = id.toString(),
-                genres = id
-            )
-        )
-    }
+    // fun getActorsFilm(id: Int): Flow<CollectionActorsFilm> = flow {
+    //     emit(kinopoiskApi.getActorsFilm(nameEn = id, nameRu = id))
+    // }
+    //
+    // fun getInformationOfFilm(id: Int): Flow<CollectionInformationOfFilm> = flow {
+    //     emit(
+    //         kinopoiskApi.getInformationofFilm(
+    //             id,
+    //             filmLength = id,
+    //             year = id,
+    //             posterUrl = id.toString(),
+    //             posterUrlPreview = id.toString(),
+    //             ratingKinopoisk = id,
+    //             shortDescription = id.toString(),
+    //             genres = id
+    //         )
+    //     )
+    // }
 }

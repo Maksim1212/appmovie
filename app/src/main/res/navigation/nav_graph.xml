@@ -20,4 +20,9 @@
         android:name="com.example.appmovie.movie.presentation.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/informationFilmFragment"
+        android:name="com.example.appmovie.movie.presentation.home.InformationFilmFragment"
+        android:label="fragment_information_film"
+        tools:layout="@layout/fragment_information_film" />
 </navigation>
