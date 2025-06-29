@@ -54,5 +54,8 @@
     <!--    item_top_main-->
     <dimen name="size_height_text_view">104dp</dimen>
 
+    <!--    item_header_back_fragment_home-->
+    <dimen name="size_back">16dp</dimen>
+
 
 </resources>
