@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -68,20 +67,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun openInformationFragment1(filmItemState: HomeUiState.FilmItemState) {
-        val newFragment = InformationFilmFragment.newInstance(filmItemState)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.informationFilmFragment, newFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    private fun openInformationFragment2(rankedFilmItemState: HomeUiState.RankedFilmItemState) {
-        val newFragment = InformationFilmFragment.newInstance(rankedFilmItemState)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.informationFilmFragment, newFragment)
-            .addToBackStack(null)
-            .commit()
+    private fun openInformationFragment(id: Int) {
+        val navController = this.findNavController()
+        val bundle = Bundle().apply {
+            putInt("id", id)
+        }
+        navController.navigate(R.id.informationFilmFragment, bundle)
     }
 
     private fun recyclerViewForTheMovieRankedFilms() {
@@ -89,14 +80,18 @@ class HomeFragment : Fragment() {
         val recyclerView: RecyclerView = binding.rvRankedFilms
         rankedFilmsAdapter = RankedFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        ) { info ->
-            openInformationFragment2(rankedFilmItemState =)
+        ) { id ->
+            openInformationFragment(id = id)
         }
 
         recyclerView.adapter = rankedFilmsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvRankedFilms.addItemDecoration(RankedHorizontalSpacingItemDecoration(spacingInPixels))
+        binding.rvRankedFilms.addItemDecoration(
+            RankedHorizontalSpacingItemDecoration(
+                spacingInPixels
+            )
+        )
 
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -110,8 +105,8 @@ class HomeFragment : Fragment() {
 
         categoriesFilmsAdapter = CategoriesFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        ) { info ->
-            openInformationFragment1(filmItemState =)
+        ) { id ->
+            openInformationFragment(id = id)
         }
 
         recyclerView.adapter = categoriesFilmsAdapter

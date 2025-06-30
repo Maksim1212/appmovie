@@ -1,15 +1,11 @@
-package com.example.appmovie.movie.presentation.home
+package com.example.appmovie.movie.presentation.filminfo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.appmovie.R
-import com.example.appmovie.databinding.FragmentFavoriteBinding
+import androidx.fragment.app.Fragment
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
-import com.example.appmovie.movie.data.remote.RetrofitContainer
-import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
 class InformationFilmFragment : Fragment() {
 
@@ -26,6 +22,6 @@ class InformationFilmFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.getInt("id")
     }
 }
-

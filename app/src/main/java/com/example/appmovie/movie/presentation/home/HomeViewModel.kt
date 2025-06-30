@@ -105,12 +105,14 @@ class HomeViewModel @Inject constructor(
     private fun convertFilmByGenreToFilmItemState(
         categoriesFilmGenresEntity: CategoriesFilmGenresEntity
     ): HomeUiState.FilmItemState = HomeUiState.FilmItemState(
+        id = categoriesFilmGenresEntity.id,
         image = categoriesFilmGenresEntity.cover,
     )
 
     private fun convertRankedFilmEntityToRankedFilmItemState(
         rankedFilmEntity: RankedFilmEntity
     ): HomeUiState.RankedFilmItemState = HomeUiState.RankedFilmItemState(
+        id = rankedFilmEntity.id,
         image = rankedFilmEntity.cover,
         rank = rankedFilmEntity.rank.toString()
     )

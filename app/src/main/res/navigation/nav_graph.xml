@@ -22,7 +22,11 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/informationFilmFragment"
-        android:name="com.example.appmovie.movie.presentation.home.InformationFilmFragment"
+        android:name="com.example.appmovie.movie.presentation.filminfo.InformationFilmFragment"
         android:label="fragment_information_film"
-        tools:layout="@layout/fragment_information_film" />
+        tools:layout="@layout/fragment_information_film">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

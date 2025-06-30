@@ -9,7 +9,7 @@ import com.example.appmovie.movie.presentation.home.HomeUiState
 class RankedFilmsHolder(
     val binding: ItemTopMainBinding,
     private val glide: RequestManager,
-    private val onItemClick: (HomeUiState.RankedFilmItemState) -> Unit
+    private val onItemClick: (Int) -> Unit
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -22,7 +22,7 @@ class RankedFilmsHolder(
                 .into(imagePopularFilms)
 
             itemView.setOnClickListener {
-                onItemClick(rankedFilmItemState)
+                onItemClick(rankedFilmItemState.id)
             }
         }
     }
