@@ -4,8 +4,8 @@ import com.example.appmovie.movie.data.FilmModel
 import com.example.appmovie.movie.data.remote.KinopoiskApi
 import com.example.appmovie.movie.data.remote.model.CollectionActorsFilm
 import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
-import com.example.appmovie.movie.data.remote.model.CollectionInformationOfFilm
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
+import com.example.appmovie.movie.data.remote.model.FilmItem
 import com.example.appmovie.movie.data.repository.FilmStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,21 +26,12 @@ class FilmRepository @Inject constructor(
     }
 
     fun getActorsFilm(id: Int): Flow<CollectionActorsFilm> = flow {
-        emit(kinopoiskApi.getActorsFilm(nameEn = id, nameRu = id))
+        emit(kinopoiskApi.getActorsFilm(id))
     }
 
-    fun getInformationOfFilm(id: Int): Flow<CollectionInformationOfFilm> = flow {
+    fun getInformationOfFilm(id: Int): Flow<FilmItem> = flow {
         emit(
-            kinopoiskApi.getInformationofFilm(
-                id,
-                filmLength = id,
-                year = id,
-                posterUrl = id.toString(),
-                posterUrlPreview = id.toString(),
-                ratingKinopoisk = id,
-                shortDescription = id.toString(),
-                genres = id
-            )
+            kinopoiskApi.getInformationofFilm(id)
         )
     }
 }
