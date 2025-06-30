@@ -22,7 +22,7 @@ interface KinopoiskApi {
     ) : CollectionGenresResponse
 
     @GET("v2.2/films/{id}")
-    suspend fun getInformationofFilm(
+    suspend fun getInformationOfFilm(
         @Path("id") id: Int
     ): FilmItem
 
