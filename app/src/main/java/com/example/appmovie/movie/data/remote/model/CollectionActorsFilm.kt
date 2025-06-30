@@ -5,7 +5,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ActorsItem(
+data class CollectionActorsFilm(
+    @SerialName("itemActors")
+    val itemActors: ArrayList<ItemActors?>
+)
+@Serializable
+data class ItemActors(
     @SerialName("description")
     val description: String?,
     @SerialName("nameEn")
