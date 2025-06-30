@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     lateinit var factory: ViewModelProvider.Factory
 
     private val homeViewModel: HomeViewModel by lazy {
-        ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        ViewModelProvider(this, factory).get(HomeViewModel::class.java)
     }
 
     override fun onAttach(context: Context) {
@@ -96,11 +96,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = rankedFilmsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvRankedFilms.addItemDecoration(
-            RankedHorizontalSpacingItemDecoration(
-                spacingInPixels
-            )
-        )
+        binding.rvRankedFilms.addItemDecoration(RankedHorizontalSpacingItemDecoration(spacingInPixels))
 
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

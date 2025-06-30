@@ -2,8 +2,8 @@ package com.example.appmovie.movie.data.remote
 
 import com.example.appmovie.movie.data.remote.model.CollectionActorsFilm
 import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
-import com.example.appmovie.movie.data.remote.model.CollectionInformationOfFilm
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
+import com.example.appmovie.movie.data.remote.model.FilmItem
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -22,20 +22,12 @@ interface KinopoiskApi {
     ) : CollectionGenresResponse
 
     @GET("v2.2/films/{id}")
-    suspend fun getInformationofFilm(
-        @Path("id") id: Int,
-        @Query("filmLength") filmLength: Int,
-        @Query("posterUrlPreview") posterUrlPreview: String,
-        @Query("posterUrl") posterUrl: String,
-        @Query("year") year: Int,
-        @Query("ratingKinopoisk") ratingKinopoisk: Double,
-        @Query("genres") genres: Int,
-        @Query("shortDescription") shortDescription: String,
-    ): CollectionInformationOfFilm
+    suspend fun getInformationOfFilm(
+        @Path("id") id: Int
+    ): FilmItem
 
     @GET("v1/staff")
     suspend fun getActorsFilm(
-        @Query("NameEn") nameEn: String,
-        @Query("NameRu") nameRu: String
+        @Query("id") id: Int
     ): CollectionActorsFilm
 }
