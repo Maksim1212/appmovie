@@ -24,7 +24,7 @@ class FilmInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt("id")
-        var bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
+        val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.visibility = View.GONE
     }
 }
