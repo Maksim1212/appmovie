@@ -10,13 +10,13 @@ data class HomeUiState(
 ) {
 
     data class RankedFilmItemState(
-        val id: Int,
+        val id: Int = -1,
         val image: String = "",
         val rank: String = ""
     )
 
     data class FilmItemState(
-        val id: Int,
+        val id: Int = -1,
         val image: String = "",
     )
 }

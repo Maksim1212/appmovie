@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
     private fun openInformationFragment(id: Int) {
         val navController = this.findNavController()
         val bundle = Bundle().apply {
-            putInt("id", id)
+            putInt(nameFragmentInfo, id)
         }
         navController.navigate(R.id.informationFilmFragment, bundle)
     }
@@ -228,5 +228,9 @@ class HomeFragment : Fragment() {
     fun View.hide(): View {
         isVisible = false
         return this
+    }
+
+    companion object {
+        const val nameFragmentInfo = "id"
     }
 }
