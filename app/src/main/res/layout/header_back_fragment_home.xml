@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/header_back_info_film"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="40dp">
 
     <TextView
         android:id="@+id/header_text_view_back_info_film"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_twelve"
         android:background="@color/main_color_background_app"
-        android:fontFamily="@font/montserrat_semi_bold"
-        android:gravity="center"
+        android:fontFamily="@font/montserrat_600"
+        android:layout_marginTop="6dp"
         android:text="@string/detail"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/size_back"
+        style="@style/DescriptionTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="6dp"/>
+        android:layout_marginStart="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -35,9 +32,6 @@
         android:src="@drawable/top_bar_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="6dp"/>
-
-
-
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="26dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

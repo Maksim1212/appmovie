@@ -10,4 +10,23 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">23dp</item>
     </style>
+
+    <style name="DescriptionTitle">
+        <item name="android:textSize">@dimen/size_back</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/montserrat_600</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
+    <style name="TheSubtitleOfTheText">
+        <item name="android:textSize">@dimen/size_subtitle_of_the_text</item>
+        <item name="fontFamily">@font/poppins_600</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
+    <style name="IconInInfo">
+        <item name="android:textSize">@dimen/size_icon_info</item>
+        <item name="fontFamily">@font/montserrat_500</item>
+        <item name="android:textColor">#808283</item>
+    </style>
 </resources>
