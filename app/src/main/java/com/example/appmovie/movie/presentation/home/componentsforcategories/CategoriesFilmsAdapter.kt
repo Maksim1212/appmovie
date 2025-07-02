@@ -9,6 +9,7 @@ import com.example.appmovie.movie.presentation.home.HomeUiState
 
 class CategoriesFilmsAdapter(
     private val glide: RequestManager,
+    private val onItemClick: (Int) -> Unit
 ) : ListAdapter<HomeUiState.FilmItemState, CategoriesFilmsHolder>(CategoriesDiffCallback()) {
 
     override fun onCreateViewHolder(
@@ -20,7 +21,8 @@ class CategoriesFilmsAdapter(
             parent,
             false
         ),
-        glide
+        glide,
+        onItemClick
     )
 
     override fun onBindViewHolder(

@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -66,17 +67,31 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun openInformationFragment(id: Int) {
+        val navController = this.findNavController()
+        val bundle = Bundle().apply {
+            putInt(nameFragmentInfo, id)
+        }
+        navController.navigate(R.id.informationFilmFragment, bundle)
+    }
+
     private fun recyclerViewForTheMovieRankedFilms() {
 
         val recyclerView: RecyclerView = binding.rvRankedFilms
         rankedFilmsAdapter = RankedFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        )
+        ) { id ->
+            openInformationFragment(id = id)
+        }
 
         recyclerView.adapter = rankedFilmsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.size_medium)
-        binding.rvRankedFilms.addItemDecoration(RankedHorizontalSpacingItemDecoration(spacingInPixels))
+        binding.rvRankedFilms.addItemDecoration(
+            RankedHorizontalSpacingItemDecoration(
+                spacingInPixels
+            )
+        )
 
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -90,7 +105,9 @@ class HomeFragment : Fragment() {
 
         categoriesFilmsAdapter = CategoriesFilmsAdapter(
             glide = Glide.with(this@HomeFragment)
-        )
+        ) { id ->
+            openInformationFragment(id = id)
+        }
 
         recyclerView.adapter = categoriesFilmsAdapter
 
@@ -211,5 +228,9 @@ class HomeFragment : Fragment() {
     fun View.hide(): View {
         isVisible = false
         return this
+    }
+
+    companion object {
+        const val nameFragmentInfo = "id"
     }
 }

@@ -8,7 +8,8 @@ import com.example.appmovie.movie.presentation.home.HomeUiState
 
 class CategoriesFilmsHolder(
     val binding: ItemCategoriesCoverBinding,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val onItemClick: (Int) -> Unit
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -17,6 +18,11 @@ class CategoriesFilmsHolder(
             glide
                 .load(filmItemState.image.toUri())
                 .into(coverCategoriesFilm)
+
+            itemView.setOnClickListener {
+                onItemClick(filmItemState.id)
+            }
+
         }
     }
 }

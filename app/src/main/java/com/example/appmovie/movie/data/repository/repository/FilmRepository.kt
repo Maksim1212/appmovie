@@ -31,7 +31,7 @@ class FilmRepository @Inject constructor(
 
     fun getInformationOfFilm(id: Int): Flow<FilmItem> = flow {
         emit(
-            kinopoiskApi.getInformationofFilm(id)
+            kinopoiskApi.getInformationOfFilm(id)
         )
     }
 }
