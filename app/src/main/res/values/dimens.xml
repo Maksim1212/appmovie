@@ -75,6 +75,12 @@
     <dimen name="size_margin_top_name_film_info">14dp</dimen>
     <dimen name="name_film_info">200dp</dimen>
 
+    <!--    header_back-->
+    <dimen name="size_margin_top_back">6dp</dimen>
+    <dimen name="size_margin_start_back">10dp</dimen>
+    <dimen name="size_margin_top_back_i">8dp</dimen>
+    <dimen name="size_margin_end_back">26dp</dimen>
+
     <!--    for styles-->
     <dimen name="size_subtitle_of_the_text">18dp</dimen>
     <dimen name="size_icon_info">12dp</dimen>

@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/size_back" />
 
         <ImageView
-            android:id="@+id/promo_cover_film_info"
+            android:id="@+id/iv_promo_cover_film_info"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_height_promo_cover"
             android:layout_marginTop="@dimen/size_margin_top_promo_cover"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="@id/header_in_film_info" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/cover_film_info"
+            android:id="@+id/iv_cover_film_info"
             android:layout_width="@dimen/size_shapeable_imageView_width"
             android:layout_height="@dimen/size_shapeable_imageView_height"
             android:layout_marginStart="@dimen/size_margin_start_cover_info"
@@ -46,13 +46,13 @@
             tools:src="@drawable/ic_example" />
 
         <ImageView
-            android:id="@+id/rating_film_info"
+            android:id="@+id/iv_rating_film_info"
             android:layout_width="@dimen/size_big"
             android:layout_height="@dimen/size_big"
             android:layout_marginStart="@dimen/size_margin_start_ratings_film_info"
             android:layout_marginTop="@dimen/size_margin_top_rating_film_info"
             android:src="@drawable/star"
-            app:layout_constraintStart_toEndOf="@id/cover_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -65,29 +65,29 @@
             android:text="9.5"
             android:textColor="@color/orange_color"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintStart_toEndOf="@id/rating_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_rating_film_info"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/name_film_info"
+            android:id="@+id/tv_name_film_info"
             style="@style/TheSubtitleOfTheText"
             android:layout_width="@dimen/name_film_info"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_margin_start_name_film_info"
             android:layout_marginTop="@dimen/size_margin_top_name_film_info"
             android:text="Spiderman No Way Home"
-            app:layout_constraintStart_toEndOf="@id/cover_film_info"
-            app:layout_constraintTop_toBottomOf="@id/promo_cover_film_info" />
+            app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
+            app:layout_constraintTop_toBottomOf="@id/iv_promo_cover_film_info" />
 
         <ImageView
-            android:id="@+id/ic_calendar_film_info"
+            android:id="@+id/iv_calendar_film_info"
             android:layout_width="@dimen/size_big"
             android:layout_height="@dimen/size_big"
             android:layout_marginStart="@dimen/size_margin_start_calendar_film_info"
             android:layout_marginTop="@dimen/size_margin_top_calendar_film_info"
             android:src="@drawable/ic_calendar_info"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cover_film_info" />
+            app:layout_constraintTop_toBottomOf="@id/iv_cover_film_info" />
 
         <TextView
             android:id="@+id/tv_data_film_info"
@@ -96,12 +96,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
             android:text="2021"
-            app:layout_constraintBottom_toBottomOf="@id/ic_calendar_film_info"
-            app:layout_constraintStart_toEndOf="@id/ic_calendar_film_info"
-            app:layout_constraintTop_toTopOf="@id/ic_calendar_film_info" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_calendar_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_calendar_film_info"
+            app:layout_constraintTop_toTopOf="@id/iv_calendar_film_info" />
 
         <ImageView
-            android:id="@+id/strip_film_info"
+            android:id="@+id/iv_strip_film_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
@@ -111,14 +111,14 @@
             app:layout_constraintTop_toTopOf="@id/tv_data_film_info" />
 
         <ImageView
-            android:id="@+id/ic_time_film_info"
+            android:id="@+id/iv_time_film_info"
             android:layout_width="@dimen/size_big"
             android:layout_height="@dimen/size_big"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
             android:src="@drawable/ic_calendar_info"
-            app:layout_constraintBottom_toBottomOf="@id/strip_film_info"
-            app:layout_constraintStart_toEndOf="@id/strip_film_info"
-            app:layout_constraintTop_toTopOf="@id/strip_film_info" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_strip_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_strip_film_info"
+            app:layout_constraintTop_toTopOf="@id/iv_strip_film_info" />
 
         <TextView
             android:id="@+id/tv_time_film_info"
@@ -127,12 +127,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
             android:text="228 Minutes"
-            app:layout_constraintBottom_toBottomOf="@id/ic_time_film_info"
-            app:layout_constraintStart_toEndOf="@id/ic_time_film_info"
-            app:layout_constraintTop_toTopOf="@id/ic_time_film_info" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_time_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_time_film_info"
+            app:layout_constraintTop_toTopOf="@id/iv_time_film_info" />
 
         <ImageView
-            android:id="@+id/stripp_film_info"
+            android:id="@+id/iv_stripp_film_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
@@ -142,14 +142,14 @@
             app:layout_constraintTop_toTopOf="@id/tv_time_film_info" />
 
         <ImageView
-            android:id="@+id/ic_genre_film_info"
+            android:id="@+id/iv_genre_film_info"
             android:layout_width="@dimen/size_big"
             android:layout_height="@dimen/size_big"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
             android:src="@drawable/ic_ticket_info"
-            app:layout_constraintBottom_toBottomOf="@id/stripp_film_info"
-            app:layout_constraintStart_toEndOf="@id/stripp_film_info"
-            app:layout_constraintTop_toTopOf="@id/stripp_film_info" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_stripp_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_stripp_film_info"
+            app:layout_constraintTop_toTopOf="@id/iv_stripp_film_info" />
 
         <TextView
             android:id="@+id/tv_genre_film_info"
@@ -158,8 +158,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
             android:text="Action"
-            app:layout_constraintBottom_toBottomOf="@id/ic_genre_film_info"
-            app:layout_constraintStart_toEndOf="@id/ic_genre_film_info"
-            app:layout_constraintTop_toTopOf="@id/ic_genre_film_info" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_genre_film_info"
+            app:layout_constraintStart_toEndOf="@id/iv_genre_film_info"
+            app:layout_constraintTop_toTopOf="@id/iv_genre_film_info" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
