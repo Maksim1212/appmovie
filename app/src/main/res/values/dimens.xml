@@ -30,6 +30,7 @@
     <dimen name="size_margin_top_tv">116dp</dimen>
     <dimen name="size_width_image">140dp</dimen>
     <dimen name="size_height_image">200dp</dimen>
+    <dimen name="size_name_actors">60dp</dimen>
 
     <!--    fragment_search-->
     <dimen name="size_tv">50sp</dimen>
