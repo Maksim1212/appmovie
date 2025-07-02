@@ -161,5 +161,60 @@
             app:layout_constraintBottom_toBottomOf="@id/iv_genre_film_info"
             app:layout_constraintStart_toEndOf="@id/iv_genre_film_info"
             app:layout_constraintTop_toTopOf="@id/iv_genre_film_info" />
+
+        <ImageView
+            android:id="@+id/iv_error_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eror_margin_top"
+            android:src="@drawable/box_eror"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_width_cover"
+            android:text="@string/an_error_has_occurred"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_error_image_view"
+            app:layout_constraintStart_toStartOf="@+id/iv_error_image_view"
+            app:layout_constraintTop_toTopOf="@+id/iv_error_image_view" />
+
+        <TextView
+            android:id="@+id/tv_error_text_view_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/try_again_or_come_back_later"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/tv_error_text_view"
+            app:layout_constraintStart_toStartOf="@id/tv_error_text_view"
+            app:layout_constraintTop_toBottomOf="@id/tv_error_text_view" />
+
+        <Button
+            android:id="@+id/b_error_to_try_button"
+            style="@style/ColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_offset"
+            android:text="@string/to_try"
+            app:layout_constraintEnd_toEndOf="@+id/tv_error_text_view_again"
+            app:layout_constraintStart_toStartOf="@+id/tv_error_text_view_again"
+            app:layout_constraintTop_toBottomOf="@+id/tv_error_text_view_again" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
