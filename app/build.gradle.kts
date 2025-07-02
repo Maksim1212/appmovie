@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.viewpager2)
+    implementation (libs.hdodenhof.circleimageview)
 
     // Navigation
     implementation(libs.androidx.navigation.fragment)
