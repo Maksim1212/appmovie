@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_small"
         android:layout_marginTop="@dimen/size_ten"
-        android:fontFamily="@font/montserrat_semi_bold"
+        android:fontFamily="@font/montserrat_600"
         android:textColor="@color/orange_color"
         android:textSize="@dimen/text_size_small"
         app:layout_constraintStart_toEndOf="@id/ic_star"

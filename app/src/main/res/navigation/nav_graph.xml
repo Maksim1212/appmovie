@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/informationFilmFragment"
-        android:name="com.example.appmovie.movie.presentation.filminfo.InformationFilmFragment"
+        android:name="com.example.appmovie.movie.presentation.filminfo.FilmInfoFragment"
         android:label="fragment_information_film"
         tools:layout="@layout/fragment_information_film">
         <argument

@@ -54,5 +54,36 @@
     <!--    item_top_main-->
     <dimen name="size_height_text_view">104dp</dimen>
 
+    <!--    item_header_back_fragment_home-->
+    <dimen name="size_back">16dp</dimen>
+
+    <!--    fragment_film_info-->
+    <dimen name="size_height_promo_cover">200dp</dimen>
+    <dimen name="size_margin_top_promo_cover">80dp</dimen>
+    <dimen name="size_height_cover_info">120dp</dimen>
+    <dimen name="size_width_cover_info">80dp</dimen>
+    <dimen name="size_margin_start_cover_info">10dp</dimen>
+    <dimen name="size_margin_end_cover_info">250dp</dimen>
+    <dimen name="size_margin_bottom_cover_info">120dp</dimen>
+    <dimen name="size_margin_start_rating_film_info">4dp</dimen>
+    <dimen name="size_margin_top_rating_film_info">260dp</dimen>
+    <dimen name="size_margin_start_ratings_film_info">210dp</dimen>
+    <dimen name="size_margin_start_calendar_film_info">70dp</dimen>
+    <dimen name="size_margin_top_calendar_film_info">16dp</dimen>
+    <dimen name="the_distance_between_the_housekeepers">6dp</dimen>
+    <dimen name="size_margin_start_name_film_info">20dp</dimen>
+    <dimen name="size_margin_top_name_film_info">14dp</dimen>
+    <dimen name="name_film_info">200dp</dimen>
+
+    <!--    header_back-->
+    <dimen name="size_margin_top_back">6dp</dimen>
+    <dimen name="size_margin_start_back">10dp</dimen>
+    <dimen name="size_margin_top_back_i">8dp</dimen>
+    <dimen name="size_margin_end_back">26dp</dimen>
+
+    <!--    for styles-->
+    <dimen name="size_subtitle_of_the_text">18dp</dimen>
+    <dimen name="size_icon_info">12dp</dimen>
+
 
 </resources>
