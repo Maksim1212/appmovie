@@ -25,8 +25,46 @@ class InfoFilmViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<InfoFilmUiState>(InfoFilmUiState.Loading)
     val uiState: StateFlow<InfoFilmUiState> = _uiState.asStateFlow()
 
-    fun loadInitialData() {
+    fun loadInitialData(position: Int) {
         loadInfoFilm()
+        loadMenuFilm(0)
+    }
+
+    fun loadMenuFilm(tabPosition: Int) {
+        viewModelScope.launch {
+            val menuInfo = when (tabPosition) {
+                0 -> MenuInfo.ABOUTMOVIE
+                1 -> MenuInfo.CAST
+                2 -> MenuInfo.LINKTOKINOPOISK
+                else -> MenuInfo.ABOUTMOVIE
+            }
+            getActorsFilmsUseCase.invoke(id = 0)
+                .onStart {
+                    _uiState.update {
+                        it.start()
+                    }
+                }
+                .catch { e ->
+                    _uiState.update {
+                        it.catch()
+                    }
+                }
+                .onCompletion {
+                    _uiState.update {
+                        it.onCompletion()
+                    }
+                }
+                .collectLatest { genresFilmEntity ->
+                    _uiState.update {
+                        it.copy(films = genresFilmEntity.map {
+                            convertInfoFilmToFilmItemState(
+                                it
+                            )
+                        })
+                    }
+                }
+
+        }
     }
 
     private fun loadInfoFilm() {
@@ -68,6 +106,13 @@ class InfoFilmViewModel @Inject constructor(
         rating = infoFilmEntity.rating,
         genre = infoFilmEntity.genre,
         actors = emptyList(),
-        filmLength = infoFilmEntity.filmLength
+        filmLength = infoFilmEntity.filmLength,
+        webUrl = infoFilmEntity.webUrl
     )
+
+    enum class MenuInfo(string: String) {
+        ABOUTMOVIE("About Movie"),
+        LINKTOKINOPOISK("Link to kinopoisk"),
+        CAST("Cast"),
+    }
 }

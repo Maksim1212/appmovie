@@ -86,5 +86,9 @@
     <dimen name="size_subtitle_of_the_text">18dp</dimen>
     <dimen name="size_icon_info">12dp</dimen>
 
+    <!--    for info-->
+    <dimen name="the_distance_between">10dp</dimen>
+    <dimen name="the_distance_up">50dp</dimen>
+
 
 </resources>

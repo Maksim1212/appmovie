@@ -17,6 +17,8 @@ class ActorsFilmsHolder(
             glide
                 .load(actors.coverActors.toUri())
                 .into(ivProfileActor)
+
+            tvNameActors.text = actors.nameActors
         }
     }
 }

@@ -17,8 +17,12 @@ import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.movie.App
 import com.example.appmovie.movie.presentation.MainActivity
+import com.example.appmovie.movie.presentation.hide
+import com.example.appmovie.movie.presentation.infofilm.aboutmovie.AboutFilmAdapter
 import com.example.appmovie.movie.presentation.infofilm.actor.ActorsFilmItemDecoration
 import com.example.appmovie.movie.presentation.infofilm.actor.ActorsFilmsAdapter
+import com.example.appmovie.movie.presentation.infofilm.linltokinopoisk.KinopoiskAdapter
+import com.example.appmovie.movie.presentation.show
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +32,8 @@ class InfoFilmFragment : Fragment() {
     private var _binding: FragmentInformationFilmBinding? = null
     private val binding get() = _binding!!
     private var actorsFilmAdapter: ActorsFilmsAdapter? = null
+    private var aboutFilmAdapter: AboutFilmAdapter? = null
+    private var webUrlAdapter: KinopoiskAdapter? = null
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -52,18 +58,18 @@ class InfoFilmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.bErrorToTryButton.setOnClickListener {
-            viewModel.loadInitialData()
-        }
+        // binding.bErrorToTryButton.setOnClickListener {
+        //     viewModel.loadInitialData(tab.position)
+        // }
 
         recyclerViewForInfoFilms()
 
         observeUiState()
 
         val filmIdFromArgs = arguments?.getInt(FILM_ID)
+
         addDecorators()
 
-        val filmIdFromArgs = arguments?.getInt("id")
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
     }
@@ -86,7 +92,7 @@ class InfoFilmFragment : Fragment() {
             glide = Glide.with(this@InfoFilmFragment)
         )
 
-        recyclerView.adapter = actorsFilmAdapter
+        recyclerView.adapter = aboutFilmAdapter
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.about_movie))
         tabLayout.addTab(tabLayout.newTab().setText(R.string.cast))
@@ -98,7 +104,13 @@ class InfoFilmFragment : Fragment() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.setCurrentFilmId(tab.position)
+                viewModel.loadInitialData(tab.position)
+
+                when (tab.position) {
+                    0 -> recyclerView.adapter = aboutFilmAdapter
+                    1 -> recyclerView.adapter = actorsFilmAdapter
+                    2 -> recyclerView.adapter = webUrlAdapter
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -133,16 +145,6 @@ class InfoFilmFragment : Fragment() {
                 }
             }
         }
-    }
-
-    fun View.show(): View {
-        isVisible = true
-        return this
-    }
-
-    fun View.hide(): View {
-        isVisible = false
-        return this
     }
 
     private fun showContent() {

@@ -23,6 +23,7 @@ class GetInfoFilmUseCase @Inject constructor(private val filmRepository: FilmRep
             filmLength = filmLength?.toString() ?: "",
             genre = genres?.joinToString { it.genre } ?: "",
             shortDescription = shortDescription,
+            webUrl = webUrl,
         )
     }
 }
