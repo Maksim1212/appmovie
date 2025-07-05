@@ -21,7 +21,7 @@ interface AppComponent {
 
     fun inject(fragment: HomeFragment)
 
-    fun injectInfo(fragment: InfoFilmFragment)
+    fun inject(fragment: InfoFilmFragment)
 
     @Component.Builder
     interface Builder {

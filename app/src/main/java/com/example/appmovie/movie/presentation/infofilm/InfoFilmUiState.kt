@@ -8,9 +8,10 @@ sealed interface InfoFilmUiState {
         val cover: String = "",
         val rating: String = "",
         val year: String = "",
-        val time: String = "",
+        val filmLength: String = "",
         val genre: String = "",
         val actors: List<Actors> = emptyList(),
+        val shortDescription: String = "",
     ) : InfoFilmUiState {
 
         data class Actors(
@@ -21,5 +22,5 @@ sealed interface InfoFilmUiState {
 
     data object Loading : InfoFilmUiState
 
-    data object Error: InfoFilmUiState
+    data object Error : InfoFilmUiState
 }

@@ -14,6 +14,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.movie.App
 import com.example.appmovie.movie.presentation.MainActivity
+import com.example.appmovie.movie.presentation.hide
+import com.example.appmovie.movie.presentation.show
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,14 +33,14 @@ class InfoFilmFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        App.appComponent.injectInfo(this)
+        App.appComponent.inject(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInformationFilmBinding.inflate(inflater,container,false)
+        _binding = FragmentInformationFilmBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,27 +53,28 @@ class InfoFilmFragment : Fragment() {
 
         observeUiState()
 
-        val filmIdFromArgs = arguments?.getInt("id")
+        val filmIdFromArgs = arguments?.getInt(FILM_ID)
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
-        viewModel.setCurrentFilmId(filmIdFromArgs)
     }
 
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { info ->
-                    when(info) {
+                    when (info) {
                         InfoFilmUiState.Error -> {
                             showError()
                             hideLoading()
                             hideContent()
                         }
+
                         InfoFilmUiState.Loading -> {
                             showLoading()
                             hideContent()
                             hideError()
                         }
+
                         is InfoFilmUiState.Success -> {
                             showContent()
                             hideLoading()
@@ -82,16 +85,6 @@ class InfoFilmFragment : Fragment() {
                 }
             }
         }
-    }
-
-    fun View.show(): View {
-        isVisible = true
-        return this
-    }
-
-    fun View.hide(): View {
-        isVisible = false
-        return this
     }
 
     private fun showContent() {
@@ -159,4 +152,9 @@ class InfoFilmFragment : Fragment() {
             bErrorToTryButton.hide()
         }
     }
+
+    companion object {
+        const val FILM_ID = "id"
+    }
 }
+
