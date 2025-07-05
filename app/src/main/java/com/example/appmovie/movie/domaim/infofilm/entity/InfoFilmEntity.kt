@@ -9,4 +9,5 @@ data class InfoFilmEntity(
     val filmLength: String = "",
     val genre: String = "",
     val shortDescription: String = "",
+    val webUrl: String = "",
 )
