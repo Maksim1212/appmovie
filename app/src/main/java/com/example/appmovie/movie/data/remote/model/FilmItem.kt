@@ -36,7 +36,11 @@ data class FilmItem(
     @SerialName("type")
     val type: String,
     @SerialName("year")
-    val year: Int?
+    val year: Int?,
+    @SerialName("filmLength")
+    val filmLength: Int?,
+    @SerialName("shortDescription")
+    val shortDescription: String,
 )
 
 @Serializable

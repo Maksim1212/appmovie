@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -19,10 +18,12 @@ import com.example.appmovie.databinding.FragmentHomeBinding
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.movie.App
+import com.example.appmovie.movie.presentation.hide
 import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsAdapter
 import com.example.appmovie.movie.presentation.home.componentsforcategories.CategoriesFilmsItemDecoration
 import com.example.appmovie.movie.presentation.home.rankedadapter.RankedHorizontalSpacingItemDecoration
 import com.example.appmovie.movie.presentation.home.rankedadapter.RankedFilmsAdapter
+import com.example.appmovie.movie.presentation.show
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -218,16 +219,6 @@ class HomeFragment : Fragment() {
         with(binding) {
             progressBar.hide()
         }
-    }
-
-    fun View.show(): View {
-        isVisible = true
-        return this
-    }
-
-    fun View.hide(): View {
-        isVisible = false
-        return this
     }
 
     companion object {
