@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemActorsBinding
 import com.example.appmovie.movie.presentation.infofilm.InfoFilmUiState
+import javax.inject.Inject
 
-class ActorsFilmsAdapter (
+class ActorsFilmsAdapter @Inject constructor (
     private val glide: RequestManager,
 ) : ListAdapter<InfoFilmUiState.Success.Actors, ActorsFilmsHolder>(ActorsFilmsDiffCallback()) {
 

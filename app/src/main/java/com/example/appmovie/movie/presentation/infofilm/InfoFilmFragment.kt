@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.movie.App
@@ -42,6 +43,9 @@ class InfoFilmFragment : Fragment() {
         ViewModelProvider(this, factory).get(InfoFilmViewModel::class.java)
     }
 
+    @Inject
+    lateinit var glide: RequestManager
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         App.appComponent.inject(this)
@@ -58,9 +62,15 @@ class InfoFilmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // binding.bErrorToTryButton.setOnClickListener {
-        //     viewModel.loadInitialData(tab.position)
-        // }
+        viewModel.loadFilmInfo(1, 0)
+        viewModel.onTabSelected(0)
+        viewModel.loadAboutFilm(0)
+        viewModel.loadActors(0)
+        viewModel.loadWebUrl(0)
+
+        binding.bErrorToTryButton.setOnClickListener {
+            viewModel.onTabSelected(0)
+        }
 
         recyclerViewForInfoFilms()
 
@@ -104,7 +114,7 @@ class InfoFilmFragment : Fragment() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.loadInitialData(tab.position)
+                viewModel.onTabSelected(tab.position)
 
                 when (tab.position) {
                     0 -> recyclerView.adapter = aboutFilmAdapter
@@ -147,6 +157,7 @@ class InfoFilmFragment : Fragment() {
         }
     }
 
+
     private fun showContent() {
         with(binding) {
             tvDataFilmInfo.show()
@@ -162,6 +173,8 @@ class InfoFilmFragment : Fragment() {
             ivPromoCoverFilmInfo.show()
             ivGenreFilmInfo.show()
             ivRatingFilmInfo.show()
+            rvInfo.show()
+            tabLayoutHome.show()
         }
     }
 
@@ -195,6 +208,8 @@ class InfoFilmFragment : Fragment() {
             ivPromoCoverFilmInfo.hide()
             ivGenreFilmInfo.hide()
             ivRatingFilmInfo.hide()
+            rvInfo.hide()
+            tabLayoutHome.hide()
         }
     }
 
@@ -210,6 +225,7 @@ class InfoFilmFragment : Fragment() {
             tvErrorTextView.hide()
             tvErrorTextViewAgain.hide()
             bErrorToTryButton.hide()
+            rvInfo.hide()
         }
     }
 

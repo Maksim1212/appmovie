@@ -2,6 +2,7 @@ package com.example.appmovie.movie.presentation.infofilm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appmovie.movie.domaim.infofilm.entity.ActorsFilmEntity
 import com.example.appmovie.movie.domaim.infofilm.entity.InfoFilmEntity
 import com.example.appmovie.movie.domaim.infofilm.usecase.GetActorsFilmsUseCase
 import com.example.appmovie.movie.domaim.infofilm.usecase.GetInfoFilmUseCase
@@ -9,13 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.collections.map
 
 class InfoFilmViewModel @Inject constructor(
     private val getInfoFilmUseCase: GetInfoFilmUseCase,
@@ -25,79 +21,85 @@ class InfoFilmViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<InfoFilmUiState>(InfoFilmUiState.Loading)
     val uiState: StateFlow<InfoFilmUiState> = _uiState.asStateFlow()
 
-    fun loadInitialData(position: Int) {
-        loadInfoFilm()
-        loadMenuFilm(0)
+    private var currentFilmId: Int = 0
+
+    private val _selectedTab = MutableStateFlow(0)
+    val selectedTab: StateFlow<Int> = _selectedTab.asStateFlow()
+
+    fun loadFilmInfo(id: Int, tabPosition: Int = 0) {
+        currentFilmId = id
+        _selectedTab.value = tabPosition
+
+        loadDataForTab(tabPosition)
     }
 
-    fun loadMenuFilm(tabPosition: Int) {
-        viewModelScope.launch {
-            val menuInfo = when (tabPosition) {
-                0 -> MenuInfo.ABOUTMOVIE
-                1 -> MenuInfo.CAST
-                2 -> MenuInfo.LINKTOKINOPOISK
-                else -> MenuInfo.ABOUTMOVIE
-            }
-            getActorsFilmsUseCase.invoke(id = 0)
-                .onStart {
-                    _uiState.update {
-                        it.start()
-                    }
-                }
-                .catch { e ->
-                    _uiState.update {
-                        it.catch()
-                    }
-                }
-                .onCompletion {
-                    _uiState.update {
-                        it.onCompletion()
-                    }
-                }
-                .collectLatest { genresFilmEntity ->
-                    _uiState.update {
-                        it.copy(films = genresFilmEntity.map {
-                            convertInfoFilmToFilmItemState(
-                                it
-                            )
-                        })
-                    }
-                }
+    fun onTabSelected(tabPosition: Int) {
+        _selectedTab.value = tabPosition
+        loadDataForTab(tabPosition)
+    }
 
+    private fun loadDataForTab(tabPosition: Int) {
+        viewModelScope.launch {
+            _uiState.value = InfoFilmUiState.Loading
+
+            when (tabPosition) {
+                0 -> loadAboutFilm(currentFilmId)
+                1 -> loadActors(currentFilmId)
+                2 -> loadWebUrl(currentFilmId)
+            }
         }
     }
 
-    private fun loadInfoFilm() {
+    fun loadAboutFilm(id: Int) {
         viewModelScope.launch {
-            getInfoFilmUseCase.invoke(id = 1)
-                .onStart {
-                    _uiState.update {
-                        it.start()
-                    }
+            getInfoFilmUseCase(id)
+                .catch { e -> _uiState.value = InfoFilmUiState.Error }
+                .collect { filmEntity ->
+                    _uiState.value = convertInfoFilmToFilmItemState(filmEntity, emptyList())
                 }
-                .catch { e ->
-                    _uiState.update {
-                        it.catch(e)
+        }
+    }
+
+    fun loadActors(id: Int) {
+        viewModelScope.launch {
+            getActorsFilmsUseCase(id)
+                .catch { e -> _uiState.value = InfoFilmUiState.Error }
+                .collect { actorsList ->
+                    val currentState = _uiState.value
+                    if (currentState is InfoFilmUiState.Success) {
+                        _uiState.value = currentState.copy(actors = actorsList.map { actor ->
+                            InfoFilmUiState.Success.Actors(
+                                nameActors = actor.nameActors,
+                                coverActors = actor.coverActors
+                            )
+                        })
+                    } else {
+
+                        loadAboutFilm(id)
                     }
+
                 }
-                .onCompletion {
-                    _uiState.update {
-                        it.onCompletion()
-                    }
-                }
-                .collectLatest { list ->
-                    val infoFilm = list.map {
-                        convertInfoFilmToFilmItemState()
-                    }
-                    _uiState.update { state ->
-                        state.copy()
+        }
+    }
+
+    fun loadWebUrl(id: Int) {
+        viewModelScope.launch {
+            getInfoFilmUseCase(id)
+                .catch { e -> _uiState.value = InfoFilmUiState.Error }
+                .collect { filmEntity ->
+                    if (filmEntity != null) {
+                        val currentState = _uiState.value
+                        if (currentState is InfoFilmUiState.Success) {
+                            _uiState.value = currentState.copy(webUrl = filmEntity.webUrl)
+                        }
                     }
                 }
         }
     }
 
     private fun convertInfoFilmToFilmItemState(
-        infoFilmEntity: InfoFilmEntity
+        infoFilmEntity: InfoFilmEntity,
+        actorsList: List<ActorsFilmEntity>
     ): InfoFilmUiState.Success = InfoFilmUiState.Success(
         id = infoFilmEntity.id,
         cover = infoFilmEntity.cover,
@@ -105,14 +107,14 @@ class InfoFilmViewModel @Inject constructor(
         year = infoFilmEntity.year,
         rating = infoFilmEntity.rating,
         genre = infoFilmEntity.genre,
-        actors = emptyList(),
+        actors = actorsList.map { actor ->
+            InfoFilmUiState.Success.Actors(
+                nameActors = actor.nameActors,
+                coverActors = actor.coverActors,
+            )
+        },
         filmLength = infoFilmEntity.filmLength,
-        webUrl = infoFilmEntity.webUrl
+        webUrl = infoFilmEntity.webUrl,
+        headerText = "",
     )
-
-    enum class MenuInfo(string: String) {
-        ABOUTMOVIE("About Movie"),
-        LINKTOKINOPOISK("Link to kinopoisk"),
-        CAST("Cast"),
-    }
 }
