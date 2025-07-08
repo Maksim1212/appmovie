@@ -21,9 +21,10 @@ class GetInfoFilmUseCase @Inject constructor(private val filmRepository: FilmRep
             year = year?.toString() ?: "",
             rating = ratingKinopoisk?.toString() ?: "",
             filmLength = filmLength?.toString() ?: "",
-            genre = genres?.joinToString { it.genre } ?: "",
+            genre = (genres?.first()?.genre ?: "").toString(),
             shortDescription = shortDescription,
             webUrl = webUrl,
+            nameRu = nameRu.toString(),
         )
     }
 }

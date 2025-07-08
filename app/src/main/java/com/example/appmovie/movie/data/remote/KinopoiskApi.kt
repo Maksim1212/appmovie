@@ -28,6 +28,6 @@ interface KinopoiskApi {
 
     @GET("v1/staff")
     suspend fun getActorsFilm(
-        @Query("id") id: Int
+        @Query("filmId") id: Int
     ): CollectionActorsFilm
 }

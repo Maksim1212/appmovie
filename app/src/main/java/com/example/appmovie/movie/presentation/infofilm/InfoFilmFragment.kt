@@ -11,11 +11,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
+import com.example.appmovie.databinding.HeaderBackFragmentHomeBinding
 import com.example.appmovie.movie.App
 import com.example.appmovie.movie.presentation.MainActivity
 import com.example.appmovie.movie.presentation.hide
@@ -35,6 +37,8 @@ class InfoFilmFragment : Fragment() {
     private var actorsFilmAdapter: ActorsFilmsAdapter? = null
     private var aboutFilmAdapter: AboutFilmAdapter? = null
     private var webUrlAdapter: KinopoiskAdapter? = null
+    private var _headerBinding: HeaderBackFragmentHomeBinding? = null
+    private val headerBinding get() = _headerBinding!!
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -56,20 +60,17 @@ class InfoFilmFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInformationFilmBinding.inflate(inflater, container, false)
+
+        _headerBinding = HeaderBackFragmentHomeBinding.bind(binding.root)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loadFilmInfo(1, 0)
-        viewModel.onTabSelected(0)
-        viewModel.loadAboutFilm(0)
-        viewModel.loadActors(0)
-        viewModel.loadWebUrl(0)
-
-        binding.bErrorToTryButton.setOnClickListener {
-            viewModel.onTabSelected(0)
+        headerBinding.ivBBackHomeFr.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         recyclerViewForInfoFilms()
@@ -77,6 +78,16 @@ class InfoFilmFragment : Fragment() {
         observeUiState()
 
         val filmIdFromArgs = arguments?.getInt(FILM_ID)
+        if (filmIdFromArgs != null && filmIdFromArgs != -1) {
+            viewModel.loadInitialData(filmIdFromArgs)
+        }
+
+
+        binding.bErrorToTryButton.setOnClickListener {
+            if (filmIdFromArgs != null && filmIdFromArgs != -1) {
+                viewModel.loadInitialData(filmIdFromArgs)
+            }
+        }
 
         addDecorators()
 
@@ -114,7 +125,6 @@ class InfoFilmFragment : Fragment() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.onTabSelected(tab.position)
 
                 when (tab.position) {
                     0 -> recyclerView.adapter = aboutFilmAdapter
@@ -149,6 +159,24 @@ class InfoFilmFragment : Fragment() {
                             showContent()
                             hideLoading()
                             hideError()
+
+                            binding.tvGenreFilmInfo.text = info.genre
+                            binding.tvNameFilmInfo.text = info.nameRu
+                            binding.tvRatingFilmInfo.text = info.rating
+                            binding.tvDataFilmInfo.text = info.year
+                            binding.tvTimeFilmInfo.text = info.filmLength
+
+                            Glide.with(binding.root.context)
+                                .load(info.promoCover)
+                                .into(binding.ivPromoCoverFilmInfo)
+
+                            Glide.with(binding.root.context)
+                                .load(info.cover)
+                                .into(binding.ivCoverFilmInfo)
+
+                            actorsFilmAdapter?.submitList(info.actors)
+                            aboutFilmAdapter?.submitList(info.shortDescription as List<InfoFilmUiState.Success?>?)
+                            webUrlAdapter?.submitList(info.webUrl as List<InfoFilmUiState.Success?>?)
                         }
                     }
 
@@ -156,7 +184,6 @@ class InfoFilmFragment : Fragment() {
             }
         }
     }
-
 
     private fun showContent() {
         with(binding) {
@@ -175,6 +202,7 @@ class InfoFilmFragment : Fragment() {
             ivRatingFilmInfo.show()
             rvInfo.show()
             tabLayoutHome.show()
+            tvTimeFilmInfoMin.show()
         }
     }
 
@@ -210,6 +238,7 @@ class InfoFilmFragment : Fragment() {
             ivRatingFilmInfo.hide()
             rvInfo.hide()
             tabLayoutHome.hide()
+            tvTimeFilmInfoMin.hide()
         }
     }
 

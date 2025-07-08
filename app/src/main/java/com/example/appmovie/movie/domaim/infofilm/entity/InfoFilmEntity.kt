@@ -10,4 +10,5 @@ data class InfoFilmEntity(
     val genre: String = "",
     val shortDescription: String = "",
     val webUrl: String = "",
+    val nameRu: String = "",
 )

@@ -12,7 +12,9 @@ sealed interface InfoFilmUiState {
         val genre: String = "",
         val actors: List<Actors> = emptyList(),
         val shortDescription: String = "",
-        val webUrl: String = ""
+        val webUrl: String = "",
+        val selectedTab: Int = 0,
+        val nameRu: String = "",
     ) : InfoFilmUiState {
 
         data class Actors(
