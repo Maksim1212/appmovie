@@ -128,9 +128,9 @@ class InfoFilmFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
                 when (tab.position) {
-                    0 -> recyclerView.adapter = actorsFilmAdapter
-                    1 -> binding.rvInfo
-                    2 -> binding.rvInfo
+                    0 -> recyclerViewActorsShow()
+                    1 -> aboutFilmShow()
+                    2 -> webUrlShow()
                 }
             }
 
@@ -185,8 +185,6 @@ class InfoFilmFragment : Fragment() {
             }
         }
     }
-
-
 
 
     private fun showContent() {
@@ -258,6 +256,30 @@ class InfoFilmFragment : Fragment() {
             tvErrorTextView.hide()
             tvErrorTextViewAgain.hide()
             bErrorToTryButton.hide()
+            rvInfo.hide()
+        }
+    }
+
+    private fun recyclerViewActorsShow() {
+        with(binding) {
+            tvAboutFilmInfo.tvAboutFilm.hide()
+            tvWebUrlInfo.tvWebUrl.hide()
+            rvInfo.adapter = actorsFilmAdapter
+        }
+    }
+
+    private fun aboutFilmShow() {
+        with(binding) {
+            tvAboutFilmInfo.tvAboutFilm.show()
+            tvWebUrlInfo.tvWebUrl.hide()
+            rvInfo.hide()
+        }
+    }
+
+    private fun webUrlShow() {
+        with(binding) {
+            tvAboutFilmInfo.tvAboutFilm.hide()
+            tvWebUrlInfo.tvWebUrl.show()
             rvInfo.hide()
         }
     }

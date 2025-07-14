@@ -27,8 +27,7 @@ class InfoFilmViewModel @Inject constructor(
     val uiState: StateFlow<InfoFilmUiState> = _uiState.asStateFlow()
 
     fun loadInitialData(id: Int) {
-        loadInfoFilm(id)
-        loadActorsFilm(id, coroutineScope = viewModelScope)
+        loadActorsFilm(id)
     }
 
     private fun loadInfoFilm(id: Int) {
@@ -51,8 +50,8 @@ class InfoFilmViewModel @Inject constructor(
         }
     }
 
-    fun loadActorsFilm(id: Int, coroutineScope: CoroutineScope) {
-        coroutineScope.launch {
+    fun loadActorsFilm(id: Int) {
+        viewModelScope.launch {
             try {
                 _uiState.update { InfoFilmUiState.Loading }
 
