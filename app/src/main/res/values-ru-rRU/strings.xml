@@ -16,5 +16,8 @@
 
     <!--    InfoFilm-->
     <string name="detail">Детали</string>
+    <string name="about_movie">О фильме</string>
+    <string name="cast">Актёры</string>
+    <string name="link_to_kinopoisk">Ссылка на кинопоиск</string>
 
 </resources>

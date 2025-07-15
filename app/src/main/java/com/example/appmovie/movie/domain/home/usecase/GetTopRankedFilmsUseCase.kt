@@ -1,8 +1,8 @@
-package com.example.appmovie.movie.domaim.home.usecase
+package com.example.appmovie.movie.domain.home.usecase
 
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
+import com.example.appmovie.movie.domain.home.entity.RankedFilmEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

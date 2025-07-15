@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.domaim.infofilm.entity
+package com.example.appmovie.movie.domain.infofilm.entity
 
 data class InfoFilmEntity(
     val id: Int,
@@ -8,5 +8,7 @@ data class InfoFilmEntity(
     val year: String = "",
     val filmLength: String = "",
     val genre: String = "",
-    val shortDescription: String = "",
+    val description: String = "",
+    val webUrl: String = "",
+    val nameRu: String = "",
 )
