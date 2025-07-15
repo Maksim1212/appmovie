@@ -18,7 +18,6 @@ import com.bumptech.glide.RequestManager
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.databinding.HeaderBackFragmentHomeBinding
-import com.example.appmovie.databinding.TextAboutFilmBinding
 import com.example.appmovie.movie.App
 import com.example.appmovie.movie.presentation.MainActivity
 import com.example.appmovie.movie.presentation.hide
@@ -36,8 +35,6 @@ class InfoFilmFragment : Fragment() {
     private var actorsFilmAdapter: ActorsFilmsAdapter? = null
     private var _headerBinding: HeaderBackFragmentHomeBinding? = null
     private val headerBinding get() = _headerBinding!!
-    private var _rvBinding: TextAboutFilmBinding? = null
-    private val rvBinding get() = _rvBinding!!
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -76,6 +73,8 @@ class InfoFilmFragment : Fragment() {
 
         observeUiState()
 
+        addDecorators()
+
         val filmIdFromArgs = arguments?.getInt(FILM_ID)
         if (filmIdFromArgs != null && filmIdFromArgs != -1) {
             viewModel.loadInitialData(filmIdFromArgs)
@@ -92,8 +91,6 @@ class InfoFilmFragment : Fragment() {
 
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
-
-
     }
 
     private fun addDecorators() {
@@ -128,8 +125,8 @@ class InfoFilmFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
 
                 when (tab.position) {
-                    0 -> recyclerViewActorsShow()
-                    1 -> aboutFilmShow()
+                    0 -> aboutFilmShow()
+                    1 -> recyclerViewActorsShow()
                     2 -> webUrlShow()
                 }
             }
@@ -166,8 +163,8 @@ class InfoFilmFragment : Fragment() {
                             binding.tvRatingFilmInfo.text = info.rating
                             binding.tvDataFilmInfo.text = info.year
                             binding.tvTimeFilmInfo.text = info.filmLength
-                            rvBinding.tvAboutFilm.text = info.shortDescription
-                            rvBinding.tvAboutFilm.text = info.webUrl
+                            binding.tvAboutFilm.text = info.description
+                            binding.tvWebUrlFilm.text = info.webUrl
 
                             Glide.with(binding.root.context)
                                 .load(info.promoCover)
@@ -262,24 +259,25 @@ class InfoFilmFragment : Fragment() {
 
     private fun recyclerViewActorsShow() {
         with(binding) {
-            tvAboutFilmInfo.tvAboutFilm.hide()
-            tvWebUrlInfo.tvWebUrl.hide()
+            tvAboutFilm.hide()
+            tvWebUrlFilm.hide()
+            rvInfo.show()
             rvInfo.adapter = actorsFilmAdapter
         }
     }
 
     private fun aboutFilmShow() {
         with(binding) {
-            tvAboutFilmInfo.tvAboutFilm.show()
-            tvWebUrlInfo.tvWebUrl.hide()
+            tvAboutFilm.show()
+            tvWebUrlFilm.hide()
             rvInfo.hide()
         }
     }
 
     private fun webUrlShow() {
         with(binding) {
-            tvAboutFilmInfo.tvAboutFilm.hide()
-            tvWebUrlInfo.tvWebUrl.show()
+            tvAboutFilm.hide()
+            tvWebUrlFilm.show()
             rvInfo.hide()
         }
     }

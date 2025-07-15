@@ -1,8 +1,8 @@
-package com.example.appmovie.movie.domaim.infofilm.usecase
+package com.example.appmovie.movie.domain.infofilm.usecase
 
 import com.example.appmovie.movie.data.remote.model.FilmItem
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.infofilm.entity.InfoFilmEntity
+import com.example.appmovie.movie.domain.infofilm.entity.InfoFilmEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class GetInfoFilmUseCase @Inject constructor(private val filmRepository: FilmRep
             rating = ratingKinopoisk?.toString() ?: "",
             filmLength = filmLength?.toString() ?: "",
             genre = (genres?.first()?.genre ?: "").toString(),
-            shortDescription = shortDescription,
+            description = description.toString(),
             webUrl = webUrl,
             nameRu = nameRu.toString(),
         )
