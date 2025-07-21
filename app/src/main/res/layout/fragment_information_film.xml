@@ -31,18 +31,26 @@
             android:layout_height="wrap_content"
             android:background="@color/main_color_background_app">
 
-            <ImageView
-                android:id="@+id/iv_promo_cover_film_info"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/iv_promo_cover_film_info_m"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_height_promo_cover"
-                android:layout_marginTop="@dimen/size_margin_top_promo_cover"
-                android:background="@color/blue_color"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_calendar_blank"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/header_in_film_info"
-                tools:ignore="NotSibling" />
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.BottomRoundedCorners"
+                tools:ignore="NotSibling">
+
+                <ImageView
+                    android:id="@+id/iv_promo_cover_film_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_calendar_blank" />
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_cover_film_info"
@@ -53,15 +61,26 @@
                 android:background="@color/main_color_background_app"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/iv_promo_cover_film_info"
+                app:layout_constraintTop_toTopOf="@id/iv_promo_cover_film_info_m"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner"
                 tools:src="@drawable/ic_example" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_cover_film_null"
+                android:layout_width="54dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="194dp"
+                android:layout_marginTop="156dp"
+                app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/menu_null"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.RoundedCorner" />
 
             <ImageView
                 android:id="@+id/iv_rating_film_info"
                 android:layout_width="@dimen/size_big"
                 android:layout_height="@dimen/size_big"
-                android:layout_marginStart="170dp"
+                android:layout_marginStart="200dp"
                 android:layout_marginTop="160dp"
                 android:src="@drawable/star"
                 app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
@@ -89,7 +108,7 @@
                 android:layout_marginTop="@dimen/size_margin_top_name_film_info"
                 android:text="Spiderman No Way Home"
                 app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
-                app:layout_constraintTop_toBottomOf="@id/iv_promo_cover_film_info" />
+                app:layout_constraintTop_toBottomOf="@id/iv_promo_cover_film_info_m" />
 
             <ImageView
                 android:id="@+id/iv_calendar_film_info"
@@ -261,8 +280,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/m_start_rv"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -296,6 +315,17 @@
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_cover_film_info" />
+
+            <Button
+                android:id="@+id/b_kinopoisk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:visibility="gone"
+                android:layout_marginTop="50dp"
+                android:text="Смотреть на кинопоиске"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout_home" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

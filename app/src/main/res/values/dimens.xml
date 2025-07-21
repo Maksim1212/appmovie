@@ -43,6 +43,9 @@
     <dimen name="m_top">34dp</dimen>
     <dimen name="m_start_rv">24dp</dimen>
     <dimen name="eror_margin_top">300dp</dimen>
+    <dimen name="item_top_margin">2dp</dimen>
+    <dimen name="item_bottom_margin">10dp</dimen>
+    <dimen name="item_right_margin">2dp</dimen>
 
     <!--    item_categories_cover-->
     <dimen name="size_width_cover">100dp</dimen>

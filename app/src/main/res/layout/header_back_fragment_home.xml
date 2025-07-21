@@ -29,6 +29,7 @@
         android:layout_marginStart="@dimen/size_margin_start_back" />
 
     <ImageView
+        android:id="@+id/film_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/top_bar_right"

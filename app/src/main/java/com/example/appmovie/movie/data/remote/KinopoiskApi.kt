@@ -1,9 +1,9 @@
 package com.example.appmovie.movie.data.remote
 
-import com.example.appmovie.movie.data.remote.model.CollectionActorsFilm
 import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
 import com.example.appmovie.movie.data.remote.model.FilmItem
+import com.example.appmovie.movie.data.remote.model.ItemActors
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -29,5 +29,5 @@ interface KinopoiskApi {
     @GET("v1/staff")
     suspend fun getActorsFilm(
         @Query("filmId") id: Int
-    ): CollectionActorsFilm
+    ):List<ItemActors?>
 }

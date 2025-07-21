@@ -19,6 +19,7 @@ import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.databinding.HeaderBackFragmentHomeBinding
 import com.example.appmovie.movie.App
+import com.example.appmovie.movie.data.database.FilmEntity
 import com.example.appmovie.movie.presentation.MainActivity
 import com.example.appmovie.movie.presentation.hide
 import com.example.appmovie.movie.presentation.infofilm.actor.ActorsFilmItemDecoration
@@ -87,20 +88,15 @@ class InfoFilmFragment : Fragment() {
             }
         }
 
-        addDecorators()
-
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
-    }
 
-    private fun addDecorators() {
-        val topOffset = resources.getDimensionPixelSize(R.dimen.top_offset)
-        val rightOffset = resources.getDimensionPixelSize(R.dimen.right_offset)
-        val bottomOffset = resources.getDimensionPixelSize(R.dimen.bottom_offset)
+        binding.bKinopoisk.setOnClickListener {
+        }
 
-        val itemDecorator =
-            ActorsFilmItemDecoration(topOffset, rightOffset, bottomOffset)
-        binding.rvInfo.addItemDecoration(itemDecorator)
+        headerBinding.filmAdd.setOnClickListener {
+            val film = FilmEntity(null,binding.)
+        }
     }
 
     private fun recyclerViewForInfoFilms() {
@@ -136,6 +132,16 @@ class InfoFilmFragment : Fragment() {
         })
     }
 
+    private fun addDecorators() {
+        val topOffset = resources.getDimensionPixelSize(R.dimen.item_top_margin)
+        val rightOffset = resources.getDimensionPixelSize(R.dimen.item_right_margin)
+        val bottomOffset = resources.getDimensionPixelSize(R.dimen.item_bottom_margin)
+
+        val itemDecorator =
+            ActorsFilmItemDecoration(topOffset, rightOffset, bottomOffset)
+        binding.rvInfo.addItemDecoration(itemDecorator)
+    }
+
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -165,6 +171,9 @@ class InfoFilmFragment : Fragment() {
                             binding.tvTimeFilmInfo.text = info.filmLength
                             binding.tvAboutFilm.text = info.description
                             binding.tvWebUrlFilm.text = info.webUrl
+                            binding.bKinopoisk.setOnClickListener {
+                                info.webUrl
+                            }
 
                             Glide.with(binding.root.context)
                                 .load(info.promoCover)
@@ -260,7 +269,7 @@ class InfoFilmFragment : Fragment() {
     private fun recyclerViewActorsShow() {
         with(binding) {
             tvAboutFilm.hide()
-            tvWebUrlFilm.hide()
+            bKinopoisk.hide()
             rvInfo.show()
             rvInfo.adapter = actorsFilmAdapter
         }
@@ -269,7 +278,7 @@ class InfoFilmFragment : Fragment() {
     private fun aboutFilmShow() {
         with(binding) {
             tvAboutFilm.show()
-            tvWebUrlFilm.hide()
+            bKinopoisk.hide()
             rvInfo.hide()
         }
     }
@@ -277,7 +286,7 @@ class InfoFilmFragment : Fragment() {
     private fun webUrlShow() {
         with(binding) {
             tvAboutFilm.hide()
-            tvWebUrlFilm.show()
+            bKinopoisk.show()
             rvInfo.hide()
         }
     }
