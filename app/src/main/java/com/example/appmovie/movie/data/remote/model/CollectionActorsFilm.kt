@@ -5,24 +5,19 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CollectionActorsFilm(
-    @SerialName("itemActors")
-    val itemActors: ArrayList<ItemActors?>
-)
-@Serializable
 data class ItemActors(
     @SerialName("description")
-    val description: String?,
+    val description: String,
     @SerialName("nameEn")
-    val nameEn: String?,
+    val nameEn: String,
     @SerialName("nameRu")
-    val nameRu: String?,
+    val nameRu: String,
     @SerialName("posterUrl")
-    val posterUrl: String?,
+    val posterUrl: String,
     @SerialName("professionKey")
-    val professionKey: String?,
+    val professionKey: String,
     @SerialName("professionText")
-    val professionText: String?,
+    val professionText: String,
     @SerialName("staffId")
-    val staffId: Int?
+    val staffId: Int
 )

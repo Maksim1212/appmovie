@@ -8,4 +8,6 @@
     <color name="gray">#808283</color>
     <color name="search">#3A3F47</color>
     <color name="search_color">#67686D</color>
+    <color name="menu_null">#52283652</color>
+
 </resources>

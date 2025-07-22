@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="ShapeAppearanceOverlay.MyApp.RoundedCorner" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
@@ -29,4 +30,14 @@
         <item name="fontFamily">@font/montserrat_500</item>
         <item name="android:textColor">#808283</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.MyApp.BottomRoundedCorners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+    </style>
+
 </resources>

@@ -131,7 +131,6 @@ class HomeFragment : Fragment() {
         })
 
         addDecorators()
-
     }
 
     private fun observeUiState() {

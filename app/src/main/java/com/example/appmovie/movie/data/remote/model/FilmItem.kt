@@ -41,6 +41,8 @@ data class FilmItem(
     val filmLength: Int?,
     @SerialName("shortDescription")
     val shortDescription: String,
+    @SerialName("webUrl")
+    val webUrl: String,
 )
 
 @Serializable
