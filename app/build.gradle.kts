@@ -75,7 +75,6 @@ dependencies {
     // Glide
     implementation(libs.glide)
     implementation(libs.glide.compiler)
-    implementation(libs.androidx.room.common.jvm)
 
     // Tests
     testImplementation(libs.junit)
@@ -92,9 +91,4 @@ dependencies {
     // Dagger 2
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
-
-    //BD
-    implementation (libs.androidx.sqlite.ktx)
-    implementation (libs.room.runtime)
-    kapt (libs.room.compiler)
 }
