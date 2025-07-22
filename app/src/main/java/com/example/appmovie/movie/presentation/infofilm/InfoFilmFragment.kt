@@ -1,6 +1,8 @@
 package com.example.appmovie.movie.presentation.infofilm
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +21,6 @@ import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentInformationFilmBinding
 import com.example.appmovie.databinding.HeaderBackFragmentHomeBinding
 import com.example.appmovie.movie.App
-import com.example.appmovie.movie.data.database.FilmEntity
 import com.example.appmovie.movie.presentation.MainActivity
 import com.example.appmovie.movie.presentation.hide
 import com.example.appmovie.movie.presentation.infofilm.actor.ActorsFilmItemDecoration
@@ -91,12 +92,11 @@ class InfoFilmFragment : Fragment() {
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
 
-        binding.bKinopoisk.setOnClickListener {
-        }
 
-        headerBinding.filmAdd.setOnClickListener {
-            val film = FilmEntity(null,binding.)
-        }
+
+        // headerBinding.filmAdd.setOnClickListener {
+        //     val film = FilmEntity(null,binding.)
+        // }
     }
 
     private fun recyclerViewForInfoFilms() {
@@ -171,9 +171,15 @@ class InfoFilmFragment : Fragment() {
                             binding.tvTimeFilmInfo.text = info.filmLength
                             binding.tvAboutFilm.text = info.description
                             binding.tvWebUrlFilm.text = info.webUrl
+
                             binding.bKinopoisk.setOnClickListener {
-                                info.webUrl
+                                val intent: Intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse(info.webUrl)
+                                )
+                                startActivity(intent)
                             }
+
 
                             Glide.with(binding.root.context)
                                 .load(info.promoCover)
