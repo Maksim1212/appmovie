@@ -11,7 +11,7 @@
         layout="@layout/header_back_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_margin_top"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -114,7 +114,7 @@
                 android:id="@+id/iv_calendar_film_info"
                 android:layout_width="@dimen/size_big"
                 android:layout_height="@dimen/size_big"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="80dp"
                 android:layout_marginTop="@dimen/size_margin_top_calendar_film_info"
                 android:src="@drawable/ic_calendar_info"
                 app:layout_constraintStart_toStartOf="parent"

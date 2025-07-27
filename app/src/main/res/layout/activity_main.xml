@@ -26,8 +26,7 @@
         android:background="@color/blue_color"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -36,8 +35,7 @@
         android:layout_height="@dimen/size_recycler_view_height"
         android:background="@color/main_color_background_app"
         android:elevation="@dimen/size_small"
-        android:padding="@dimen/size_ten"
-        android:paddingBottom="@dimen/size_ten"
+        android:padding="8dp"
         app:itemIconTint="@color/item_icon_selector"
         app:itemRippleColor="@android:color/transparent"
         app:itemTextColor="@color/item_text_selector"
