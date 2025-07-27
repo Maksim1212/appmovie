@@ -19,7 +19,7 @@ interface KinopoiskApi {
     @GET("v2.2/films")
     suspend fun getFilmsGenre(
         @Query("genres") genre: Int,
-    ) : CollectionGenresResponse
+    ): CollectionGenresResponse
 
     @GET("v2.2/films/{id}")
     suspend fun getInformationOfFilm(
@@ -29,5 +29,5 @@ interface KinopoiskApi {
     @GET("v1/staff")
     suspend fun getActorsFilm(
         @Query("filmId") id: Int
-    ):List<ItemActors?>
+    ): List<ItemActors?>
 }

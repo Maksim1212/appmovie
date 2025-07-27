@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
-import com.example.appmovie.databinding.HeaderFragmentFavoriteBinding
 import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
@@ -22,8 +20,6 @@ class FavoriteFragment : Fragment() {
     private var filmRepository = FilmRepository(
         kinopoiskApi = retrofitContainer.kinopoiskApi
     )
-    private var _headerBinding: HeaderFragmentFavoriteBinding? = null
-    private val headerBinding get() = _headerBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +31,6 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        headerBinding.ivBackIconF.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         var selectedFilms = filmRepository.getSelectedFilms()
 

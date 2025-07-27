@@ -91,12 +91,6 @@ class InfoFilmFragment : Fragment() {
 
         val bottomNavigationView = (activity as? MainActivity)?.binding?.bottomNavigation
         bottomNavigationView?.isVisible = false
-
-
-
-        // headerBinding.filmAdd.setOnClickListener {
-        //     val film = FilmEntity(null,binding.)
-        // }
     }
 
     private fun recyclerViewForInfoFilms() {
@@ -164,30 +158,31 @@ class InfoFilmFragment : Fragment() {
                             hideLoading()
                             hideError()
 
-                            binding.tvGenreFilmInfo.text = info.genre
-                            binding.tvNameFilmInfo.text = info.nameRu
-                            binding.tvRatingFilmInfo.text = info.rating
-                            binding.tvDataFilmInfo.text = info.year
-                            binding.tvTimeFilmInfo.text = info.filmLength
-                            binding.tvAboutFilm.text = info.description
-                            binding.tvWebUrlFilm.text = info.webUrl
+                            with(binding) {
+                                tvGenreFilmInfo.text = info.genre
+                                tvNameFilmInfo.text = info.nameRu
+                                tvRatingFilmInfo.text = info.rating
+                                tvDataFilmInfo.text = info.year
+                                tvTimeFilmInfo.text = info.filmLength
+                                tvAboutFilm.text = info.description
+                                tvWebUrlFilm.text = info.webUrl
 
-                            binding.bKinopoisk.setOnClickListener {
-                                val intent: Intent = Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse(info.webUrl)
-                                )
-                                startActivity(intent)
+                                bKinopoisk.setOnClickListener {
+                                    val intent: Intent = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse(info.webUrl)
+                                    )
+                                    startActivity(intent)
+                                }
+
+                                Glide.with(root.context)
+                                    .load(info.promoCover)
+                                    .into(binding.ivPromoCoverFilmInfo)
+
+                                Glide.with(root.context)
+                                    .load(info.cover)
+                                    .into(binding.ivCoverFilmInfo)
                             }
-
-
-                            Glide.with(binding.root.context)
-                                .load(info.promoCover)
-                                .into(binding.ivPromoCoverFilmInfo)
-
-                            Glide.with(binding.root.context)
-                                .load(info.cover)
-                                .into(binding.ivCoverFilmInfo)
 
                             actorsFilmAdapter?.submitList(info.actors)
                         }
@@ -197,7 +192,6 @@ class InfoFilmFragment : Fragment() {
             }
         }
     }
-
 
     private fun showContent() {
         with(binding) {

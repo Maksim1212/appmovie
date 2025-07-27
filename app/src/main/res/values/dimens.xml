@@ -78,12 +78,21 @@
     <dimen name="size_margin_start_name_film_info">20dp</dimen>
     <dimen name="size_margin_top_name_film_info">14dp</dimen>
     <dimen name="name_film_info">200dp</dimen>
+    <dimen name="size_margin_top">10dp</dimen>
+    <dimen name="size_margin_top_scroll">20dp</dimen>
+    <dimen name="size_margin_start_sheap">30dp</dimen>
+    <dimen name="size_margin_top_sheap">150dp</dimen>
+    <dimen name="size_width_sheap_image">54dp</dimen>
+    <dimen name="size_height_sheap_image">24dp</dimen>
+    <dimen name="size_start_sheap_image">194dp</dimen>
+    <dimen name="size_top_sheap_image">156dp</dimen>
 
     <!--    header_back-->
     <dimen name="size_margin_top_back">6dp</dimen>
     <dimen name="size_margin_start_back">10dp</dimen>
     <dimen name="size_margin_top_back_i">8dp</dimen>
     <dimen name="size_margin_end_back">26dp</dimen>
+    <dimen name="size_height">40dp</dimen>
 
     <!--    for styles-->
     <dimen name="size_subtitle_of_the_text">18dp</dimen>
