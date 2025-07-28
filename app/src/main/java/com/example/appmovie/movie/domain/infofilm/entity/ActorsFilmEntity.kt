@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.domaim.infofilm.entity
+package com.example.appmovie.movie.domain.infofilm.entity
 
 data class ActorsFilmEntity(
     val id: Int,

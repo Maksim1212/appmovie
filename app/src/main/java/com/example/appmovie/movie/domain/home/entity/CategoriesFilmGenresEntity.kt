@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.domaim.home.entity
+package com.example.appmovie.movie.domain.home.entity
 
 data class CategoriesFilmGenresEntity (
     val id: Int,

@@ -2,20 +2,18 @@ package com.example.appmovie.movie.presentation.infofilm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appmovie.movie.domaim.infofilm.entity.InfoFilmEntity
-import com.example.appmovie.movie.domaim.infofilm.usecase.GetActorsFilmsUseCase
-import com.example.appmovie.movie.domaim.infofilm.usecase.GetInfoFilmUseCase
+import com.example.appmovie.movie.domain.infofilm.entity.ActorsFilmEntity
+import com.example.appmovie.movie.domain.infofilm.entity.InfoFilmEntity
+import com.example.appmovie.movie.domain.infofilm.usecase.GetActorsFilmsUseCase
+import com.example.appmovie.movie.domain.infofilm.usecase.GetInfoFilmUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.collections.map
 
 class InfoFilmViewModel @Inject constructor(
     private val getInfoFilmUseCase: GetInfoFilmUseCase,
@@ -25,49 +23,79 @@ class InfoFilmViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<InfoFilmUiState>(InfoFilmUiState.Loading)
     val uiState: StateFlow<InfoFilmUiState> = _uiState.asStateFlow()
 
-    fun loadInitialData() {
-        loadInfoFilm()
+    fun loadInitialData(id: Int) {
+        loadActorsFilm(id)
+        loadInfoFilm(id)
     }
 
-    private fun loadInfoFilm() {
+    private fun loadInfoFilm(id: Int) {
         viewModelScope.launch {
-            getInfoFilmUseCase.invoke(id = 1)
-                .onStart {
-                    _uiState.update {
-                        it.start()
-                    }
-                }
-                .catch { e ->
-                    _uiState.update {
-                        it.catch(e)
-                    }
-                }
-                .onCompletion {
-                    _uiState.update {
-                        it.onCompletion()
-                    }
-                }
-                .collectLatest { list ->
-                    val infoFilm = list.map {
-                        convertInfoFilmToFilmItemState()
-                    }
-                    _uiState.update { state ->
-                        state.copy()
+            getInfoFilmUseCase(id)
+                .onStart { _uiState.update { InfoFilmUiState.Loading } }
+                .catch { e -> _uiState.value = InfoFilmUiState.Error }
+                .collect { filmEntity ->
+                    val currentState = _uiState.value
+                    if (currentState is InfoFilmUiState.Success) {
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateFilmInfo(filmEntity)
+                        }
+                    } else {
+                        _uiState.update {
+                            InfoFilmUiState.Success(id = id).updateFilmInfo(filmEntity)
+                        }
                     }
                 }
         }
     }
 
-    private fun convertInfoFilmToFilmItemState(
+    private fun loadActorsFilm(id: Int) {
+        viewModelScope.launch {
+            getActorsFilmsUseCase(id)
+                .onStart { _uiState.update { InfoFilmUiState.Loading } }
+                .catch { e -> _uiState.value = InfoFilmUiState.Error }
+                .collect { actorsList ->
+                    val currentState = _uiState.value
+                    if (currentState is InfoFilmUiState.Success) {
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateActorsInfo(actorsList)
+                        }
+                    } else {
+                        _uiState.update {
+                            InfoFilmUiState.Success(id = id).updateActorsInfo(actorsList)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun InfoFilmUiState.Success.updateFilmInfo(
         infoFilmEntity: InfoFilmEntity
-    ): InfoFilmUiState.Success = InfoFilmUiState.Success(
-        id = infoFilmEntity.id,
-        cover = infoFilmEntity.cover,
-        promoCover = infoFilmEntity.promoCover,
-        year = infoFilmEntity.year,
-        rating = infoFilmEntity.rating,
-        genre = infoFilmEntity.genre,
-        actors = emptyList(),
-        filmLength = infoFilmEntity.filmLength
-    )
+    ): InfoFilmUiState.Success {
+        return this.copy(
+            id = infoFilmEntity.id,
+            cover = infoFilmEntity.cover,
+            promoCover = infoFilmEntity.promoCover,
+            year = infoFilmEntity.year,
+            rating = infoFilmEntity.rating,
+            genre = infoFilmEntity.genre,
+            filmLength = infoFilmEntity.filmLength,
+            webUrl = infoFilmEntity.webUrl,
+            headerText = "",
+            nameRu = infoFilmEntity.nameRu,
+            description = infoFilmEntity.description,
+        )
+    }
+
+    fun InfoFilmUiState.Success.updateActorsInfo(
+        actorsList: List<ActorsFilmEntity>
+    ): InfoFilmUiState.Success {
+        return this.copy(
+            actors = actorsList.map { actor ->
+                InfoFilmUiState.Success.Actors(
+                    nameActors = actor.nameActors,
+                    coverActors = actor.coverActors,
+                )
+            },
+        )
+    }
 }

@@ -1,8 +1,8 @@
-package com.example.appmovie.movie.domaim.infofilm.usecase
+package com.example.appmovie.movie.domain.infofilm.usecase
 
-import com.example.appmovie.movie.data.remote.model.CollectionActorsFilm
+import com.example.appmovie.movie.data.remote.model.ItemActors
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
-import com.example.appmovie.movie.domaim.infofilm.entity.ActorsFilmEntity
+import com.example.appmovie.movie.domain.infofilm.entity.ActorsFilmEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -14,13 +14,14 @@ class GetActorsFilmsUseCase @Inject constructor(private val filmRepository: Film
             it.convertToEntity()
         }
 
-    private fun CollectionActorsFilm.convertToEntity(): List<ActorsFilmEntity> =
-        this.convertToEntity()
-            .mapIndexed { index, item ->
+    private fun List<ItemActors?>.convertToEntity(): List<ActorsFilmEntity> =
+        this.mapNotNull { item ->
+            item?.let {
                 ActorsFilmEntity(
-                    id = item.id,
-                    nameActors = item.nameActors,
-                    coverActors = item.coverActors,
+                    id = item.staffId,
+                    nameActors = item.nameRu,
+                    coverActors = item.posterUrl,
                 )
             }
+        }
 }
