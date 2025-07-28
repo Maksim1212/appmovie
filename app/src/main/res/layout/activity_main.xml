@@ -35,7 +35,7 @@
         android:layout_height="@dimen/size_recycler_view_height"
         android:background="@color/main_color_background_app"
         android:elevation="@dimen/size_small"
-        android:padding="8dp"
+        android:padding="@dimen/bottom_offset"
         app:itemIconTint="@color/item_icon_selector"
         app:itemRippleColor="@android:color/transparent"
         app:itemTextColor="@color/item_text_selector"
