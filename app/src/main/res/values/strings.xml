@@ -16,6 +16,9 @@
     <string name="an_error_has_occurred">An error has occurred!</string>
     <string name="try_again_or_come_back_later">Try again or come back later</string>
     <string name="to_try">To try</string>
+    <string name="about_movie">About Movie</string>
+    <string name="cast">Cast</string>
+    <string name="link_to_kinopoisk">Link to kinopoisk</string>
 
     <!--    InfoFilm-->
     <string name="detail">Detail</string>

@@ -1,6 +1,6 @@
-package com.example.appmovie.movie.presentation.filminfo
+package com.example.appmovie.movie.presentation.infofilm
 
-sealed interface InfoUiState {
+sealed interface InfoFilmUiState {
     data class Success(
         val id: Int,
         val headerText: String = "",
@@ -8,10 +8,14 @@ sealed interface InfoUiState {
         val cover: String = "",
         val rating: String = "",
         val year: String = "",
-        val time: String = "",
+        val filmLength: String = "",
         val genre: String = "",
         val actors: List<Actors> = emptyList(),
-    ) : InfoUiState {
+        val description: String = "",
+        val webUrl: String = "",
+        val selectedTab: Int = 0,
+        val nameRu: String = "",
+    ) : InfoFilmUiState {
 
         data class Actors(
             val nameActors: String = "",
@@ -19,7 +23,7 @@ sealed interface InfoUiState {
         )
     }
 
-    // data object Loading() : InfoUiState
-    //
-    // data object Error() : InfoUiState
+    data object Loading : InfoFilmUiState
+
+    data object Error : InfoFilmUiState
 }

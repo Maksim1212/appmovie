@@ -2,10 +2,10 @@ package com.example.appmovie.movie.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appmovie.movie.domaim.home.entity.CategoriesFilmGenresEntity
-import com.example.appmovie.movie.domaim.home.entity.RankedFilmEntity
-import com.example.appmovie.movie.domaim.home.usecase.GetFilmByGenreUseCase
-import com.example.appmovie.movie.domaim.home.usecase.GetTopRankedFilmsUseCase
+import com.example.appmovie.movie.domain.home.entity.CategoriesFilmGenresEntity
+import com.example.appmovie.movie.domain.home.entity.RankedFilmEntity
+import com.example.appmovie.movie.domain.home.usecase.GetFilmByGenreUseCase
+import com.example.appmovie.movie.domain.home.usecase.GetTopRankedFilmsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

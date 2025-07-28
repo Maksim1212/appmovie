@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header_back_info_film"
     android:layout_width="match_parent"
-    android:layout_height="40dp">
+    android:background="@color/main_color_background_app"
+    android:layout_height="@dimen/size_height">
 
     <TextView
         android:id="@+id/tv_back_info_film"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
+        android:id="@+id/iv_back_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_button"
@@ -27,6 +29,7 @@
         android:layout_marginStart="@dimen/size_margin_start_back" />
 
     <ImageView
+        android:id="@+id/film_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/top_bar_right"
