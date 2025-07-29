@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATED_JAVA_ANNOTATION")
 
-package com.example.appmovie.movie.data.di
+package com.example.appmovie.movie.di
 
 import com.example.appmovie.BuildConfig
 import com.example.appmovie.movie.data.remote.KinopoiskApi

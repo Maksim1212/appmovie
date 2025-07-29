@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.data.di
+package com.example.appmovie.movie.di
 
 import android.content.Context
 import com.bumptech.glide.Glide

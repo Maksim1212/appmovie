@@ -1,8 +1,8 @@
 package com.example.appmovie.movie
 
 import android.app.Application
-import com.example.appmovie.movie.data.di.AppComponent
-import com.example.appmovie.movie.data.di.DaggerAppComponent
+import com.example.appmovie.movie.di.AppComponent
+import com.example.appmovie.movie.di.DaggerAppComponent
 
 class App : Application() {
 

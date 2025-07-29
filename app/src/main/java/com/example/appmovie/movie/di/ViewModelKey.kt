@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.data.di
+package com.example.appmovie.movie.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

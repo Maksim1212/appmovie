@@ -1,5 +1,6 @@
 package com.example.appmovie.movie.presentation.favorite
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
+import com.example.appmovie.movie.App
 import com.example.appmovie.movie.data.remote.RetrofitContainer
 import com.example.appmovie.movie.data.repository.repository.FilmRepository
 
@@ -20,6 +22,11 @@ class FavoriteFragment : Fragment() {
     private var filmRepository = FilmRepository(
         kinopoiskApi = retrofitContainer.kinopoiskApi
     )
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        App.appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

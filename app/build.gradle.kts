@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 val keysFile = rootProject.file("keys.properties")
@@ -90,5 +90,11 @@ dependencies {
 
     // Dagger 2
     implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+    ksp(libs.dagger.compiler)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
+    ksp(libs.room.compiler)
 }
