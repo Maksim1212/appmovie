@@ -34,10 +34,4 @@ class FilmRepository @Inject constructor(
             kinopoiskApi.getInformationOfFilm(id)
         )
     }
-
-    fun getFilmFavorite(id: Int): Flow<FilmItem> = flow {
-        emit(
-            kinopoiskApi.getInformationOfFilm(id)
-        )
-    }
 }
