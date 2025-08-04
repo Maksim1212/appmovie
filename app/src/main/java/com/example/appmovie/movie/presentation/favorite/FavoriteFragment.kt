@@ -6,22 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.movie.App
-import com.example.appmovie.movie.data.remote.RetrofitContainer
-import com.example.appmovie.movie.data.repository.repository.FilmRepository
+import com.example.appmovie.movie.presentation.hide
+import com.example.appmovie.movie.presentation.show
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
-    private val retrofitContainer = RetrofitContainer
-    private var filmRepository = FilmRepository(
-        kinopoiskApi = retrofitContainer.kinopoiskApi
-    )
+
+    private var favoriteFilmAdapter: FavoriteFilmAdapter? = null
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
+    private val favoriteViewModel: FilmFavoriteViewModel by lazy {
+        ViewModelProvider(this, factory).get(FilmFavoriteViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,24 +42,106 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var selectedFilms = filmRepository.getSelectedFilms()
+        recyclerViewForFavoriteFilms()
+        observeUiState()
+    }
 
-        binding.rvFilmFavorite.adapter = FilmAdapter(
-            selectedFilms,
-            action = { _ -> },
+    private fun recyclerViewForFavoriteFilms() {
+        val recyclerView = binding.rvFilmFavorite
+
+        favoriteFilmAdapter = FavoriteFilmAdapter(
             glide = Glide.with(this@FavoriteFragment)
         )
-        binding.rvFilmFavorite.layoutManager = LinearLayoutManager(context)
 
-        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.item_film)
-        binding.rvFilmFavorite.addItemDecoration(FilmsItemDecoration(spacingInPixels))
+        recyclerView.adapter = favoriteFilmAdapter
 
+        val layoutManager =
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL, false
+            )
+        recyclerView.layoutManager = layoutManager
     }
+
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                favoriteViewModel.uiState.collect { favorite ->
+                    when (favorite) {
+                        FavoriteUiState.Error -> {
+                            showError()
+                            hideLoading()
+                            hideSuccess()
+                        }
+
+                        FavoriteUiState.Loading -> {
+                            showLoading()
+                            hideSuccess()
+                            hideError()
+                        }
+
+                        is FavoriteUiState.Success -> {
+                            showSuccess()
+                            hideLoading()
+                            hideError()
+
+                            with(binding) {
+
+                                //     Glide.with(root.context)
+                                //         .load(favorite.favoriteFilms)
+                                //         .into(binding.rvFilmFavorite)
+                                //
+                                // }
+
+                                favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    fun showError() {
+        binding.erorTextView1.show()
+        binding.erorTextView2.show()
+        binding.erorImageView.show()
+        binding.erorToTryButton2.show()
+    }
+
+    fun hideError() {
+        binding.erorTextView1.hide()
+        binding.erorTextView2.hide()
+        binding.erorImageView.hide()
+        binding.erorToTryButton2.hide()
+    }
+
+    fun showLoading() {
+        binding.progressBar.show()
+    }
+
+    fun hideLoading() {
+        binding.progressBar.hide()
+    }
+
+    fun hideSuccess() {
+        binding.rvFilmFavorite.hide()
+    }
+
+    fun showSuccess() {
+        binding.rvFilmFavorite.show()
+    }
+
 }

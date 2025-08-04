@@ -20,11 +20,65 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_film_favorite"
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/size_eight"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/size_eight"
         android:layout_marginTop="@dimen/size_seventy"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_in_main_menu"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_in_main_menu" />
+
+    <TextView
+        android:id="@+id/eror_text_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_width_cover"
+        android:text="@string/an_error_has_occurred"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/eror_image_view"
+        app:layout_constraintStart_toStartOf="@+id/eror_image_view"
+        app:layout_constraintTop_toTopOf="@+id/eror_image_view" />
+
+    <TextView
+        android:id="@+id/eror_text_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again_or_come_back_later"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/eror_text_view1"
+        app:layout_constraintStart_toStartOf="@id/eror_text_view1"
+        app:layout_constraintTop_toBottomOf="@id/eror_text_view1" />
+
+    <ImageView
+        android:id="@+id/eror_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eror_margin_top"
+        android:src="@drawable/box_eror"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/eror_to_try_button2"
+        style="@style/ColorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_offset"
+        android:text="@string/to_try"
+        app:layout_constraintEnd_toEndOf="@+id/eror_text_view2"
+        app:layout_constraintStart_toStartOf="@+id/eror_text_view2"
+        app:layout_constraintTop_toBottomOf="@+id/eror_text_view2" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,28 +4,22 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
-import com.example.appmovie.movie.data.FilmModel
 
 class FilmHolder(
     private val binding: ItemFilmBinding,
-    private val action: (FilmModel) -> Unit,
     private val glide: RequestManager
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(film: FilmModel) {
+    fun onBind(favoriteUiState: FavoriteUiState.Success.FilmFavorite) {
         with(binding) {
-            tvHeader.text = film.header
-            tvGenre.text = film.genre
-            tvTime.text = film.time
-            tvRating.text = film.rating
-            tvData.text = film.data.toString()
+            tvName.text = favoriteUiState.nameRu
+            tvGenre.text = favoriteUiState.genre
+            tvRating.text = favoriteUiState.rating
+            tvData.text = favoriteUiState.year
+            tvTime.text = favoriteUiState.filmLength
 
             glide
-                .load(film.cover.toUri()).into(cover)
-
-            root.setOnClickListener {
-                action(film)
-            }
+                .load(favoriteUiState.cover.toUri()).into(cover)
         }
     }
 }
