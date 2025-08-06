@@ -2,6 +2,7 @@ package com.example.appmovie.movie.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.appmovie.movie.presentation.favorite.FilmFavoriteViewModel
 import com.example.appmovie.movie.presentation.home.Factory
 import com.example.appmovie.movie.presentation.home.HomeViewModel
 import com.example.appmovie.movie.presentation.infofilm.InfoFilmViewModel
@@ -23,4 +24,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(InfoFilmViewModel::class)
     fun bindInfoViewModel(viewModel: InfoFilmViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FilmFavoriteViewModel::class)
+    fun bindFavoriteViewModel(viewModel: FilmFavoriteViewModel): ViewModel
 }

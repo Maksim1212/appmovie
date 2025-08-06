@@ -1,4 +1,4 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.favorite.list
 
 import android.graphics.Rect
 import android.view.View

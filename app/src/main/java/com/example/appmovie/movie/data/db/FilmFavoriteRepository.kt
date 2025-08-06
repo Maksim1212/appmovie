@@ -1,5 +1,6 @@
 package com.example.appmovie.movie.data.db
 
+import com.example.appmovie.movie.domain.favorite.entity.FilmEntityFavorite
 import javax.inject.Inject
 
 class FilmFavoriteRepository @Inject constructor(
@@ -9,11 +10,11 @@ class FilmFavoriteRepository @Inject constructor(
         favoriteFilmDao.saveFavoriteFilm(favoriteFilmEntity)
     }
 
-    fun getFilmsFavorite(): List<FavoriteFilmEntity> {
+    fun getFilmsFavorite(filmEntityFavorite: FilmEntityFavorite): List<FavoriteFilmEntity> {
         return favoriteFilmDao.getAllFavoriteFilms()
     }
 
-    fun deleteFilmFavorite(favoriteFilmEntity: FavoriteFilmEntity) {
+    fun deleteFilmFavorite(favoriteFilmEntity: FilmEntityFavorite) {
         favoriteFilmDao.deleteFavoriteFilm(favoriteFilmEntity)
     }
 

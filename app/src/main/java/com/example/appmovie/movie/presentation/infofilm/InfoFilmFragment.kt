@@ -71,6 +71,10 @@ class InfoFilmFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        // headerBinding.filmAdd.setOnClickListener {
+        //     viewModel.
+        // }
+
         recyclerViewForInfoFilms()
 
         observeUiState()
