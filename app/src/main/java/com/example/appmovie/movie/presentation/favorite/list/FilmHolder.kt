@@ -1,9 +1,10 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.favorite.list
 
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
+import com.example.appmovie.movie.presentation.favorite.FavoriteUiState
 
 class FilmHolder(
     private val binding: ItemFilmBinding,

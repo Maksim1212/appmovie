@@ -27,28 +27,28 @@
         app:layout_constraintTop_toBottomOf="@+id/header_in_main_menu" />
 
     <TextView
-        android:id="@+id/eror_text_view1"
+        android:id="@+id/error_text_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_width_cover"
         android:text="@string/an_error_has_occurred"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/eror_image_view"
-        app:layout_constraintStart_toStartOf="@+id/eror_image_view"
-        app:layout_constraintTop_toTopOf="@+id/eror_image_view" />
+        app:layout_constraintEnd_toEndOf="@+id/error_image_view"
+        app:layout_constraintStart_toStartOf="@+id/error_image_view"
+        app:layout_constraintTop_toTopOf="@+id/error_image_view" />
 
     <TextView
-        android:id="@+id/eror_text_view2"
+        android:id="@+id/error_text_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/try_again_or_come_back_later"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@id/eror_text_view1"
-        app:layout_constraintStart_toStartOf="@id/eror_text_view1"
-        app:layout_constraintTop_toBottomOf="@id/eror_text_view1" />
+        app:layout_constraintEnd_toEndOf="@id/error_text_header"
+        app:layout_constraintStart_toStartOf="@id/error_text_header"
+        app:layout_constraintTop_toBottomOf="@id/error_text_header" />
 
     <ImageView
-        android:id="@+id/eror_image_view"
+        android:id="@+id/error_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/eror_margin_top"
@@ -58,15 +58,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/eror_to_try_button2"
+        android:id="@+id/eror_to_try_button"
         style="@style/ColorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_offset"
         android:text="@string/to_try"
-        app:layout_constraintEnd_toEndOf="@+id/eror_text_view2"
-        app:layout_constraintStart_toStartOf="@+id/eror_text_view2"
-        app:layout_constraintTop_toBottomOf="@+id/eror_text_view2" />
+        app:layout_constraintEnd_toEndOf="@+id/error_text_text"
+        app:layout_constraintStart_toStartOf="@+id/error_text_text"
+        app:layout_constraintTop_toBottomOf="@+id/error_text_text" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

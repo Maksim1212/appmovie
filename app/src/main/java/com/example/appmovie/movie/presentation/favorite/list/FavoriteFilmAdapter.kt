@@ -1,10 +1,12 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.favorite.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
+import com.example.appmovie.movie.presentation.favorite.FavoriteUiState
+import com.example.appmovie.movie.presentation.favorite.list.FilmHolder
 import javax.inject.Inject
 
 class FavoriteFilmAdapter @Inject constructor(

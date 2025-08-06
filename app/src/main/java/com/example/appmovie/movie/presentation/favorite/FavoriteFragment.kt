@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.movie.App
+import com.example.appmovie.movie.presentation.favorite.list.FavoriteFilmAdapter
 import com.example.appmovie.movie.presentation.hide
 import com.example.appmovie.movie.presentation.show
 import kotlinx.coroutines.launch
