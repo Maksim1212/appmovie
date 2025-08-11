@@ -2,6 +2,9 @@ package com.example.appmovie.movie.presentation.infofilm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appmovie.movie.domain.favorite.usecase.DeleteFavoriteFilmUseCase
+import com.example.appmovie.movie.domain.favorite.usecase.GetFavoriteFilmUseCase
+import com.example.appmovie.movie.domain.favorite.usecase.SaveFavoriteFilmUseCase
 import com.example.appmovie.movie.domain.infofilm.entity.ActorsFilmEntity
 import com.example.appmovie.movie.domain.infofilm.entity.InfoFilmEntity
 import com.example.appmovie.movie.domain.infofilm.usecase.GetActorsFilmsUseCase
@@ -18,6 +21,9 @@ import javax.inject.Inject
 class InfoFilmViewModel @Inject constructor(
     private val getInfoFilmUseCase: GetInfoFilmUseCase,
     private val getActorsFilmsUseCase: GetActorsFilmsUseCase,
+    private val getFavoriteFilmUseCase: GetFavoriteFilmUseCase,
+    private val saveFavoriteFilmUseCase: SaveFavoriteFilmUseCase,
+    private val deleteFavoriteFilmUseCase: DeleteFavoriteFilmUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<InfoFilmUiState>(InfoFilmUiState.Loading)
@@ -26,6 +32,64 @@ class InfoFilmViewModel @Inject constructor(
     fun loadInitialData(id: Int) {
         loadActorsFilm(id)
         loadInfoFilm(id)
+        loadFavoriteFilm(id)
+    }
+
+    fun deleteFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            deleteFavoriteFilmUseCase(id)
+                .onStart { _uiState.update { InfoFilmUiState.Loading } }
+                .catch {
+                    _uiState.update { InfoFilmUiState.Error }
+                }
+                .collect { _ ->
+                    val currentState = _uiState.value
+                    if (currentState is InfoFilmUiState.Success)
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateFilmFavorite(false)
+                        }
+                }
+        }
+    }
+
+    fun saveFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            saveFavoriteFilm(id)
+                .onStart { _uiState.update { InfoFilmUiState.Loading } }
+                .catch {
+                    _uiState.update { InfoFilmUiState.Error }
+                }
+                .collect { _ ->
+                    val currentState = _uiState.value
+                    if (currentState is InfoFilmUiState.Success)
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateFilmFavorite(true)
+                        }
+                }
+        }
+    }
+
+    private fun loadFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            getFavoriteFilmUseCase(id)
+                .onStart { _uiState.update { InfoFilmUiState.Loading } }
+                .catch { _uiState.update { InfoFilmUiState.Error } }
+                .collect { isFilmFavorite ->
+                    val currentState = _uiState.value
+                    val isFavorite = isFilmFavorite != null
+                    if (currentState is InfoFilmUiState.Success) {
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateFilmFavorite(isFavorite)
+                        }
+                    } else {
+                        _uiState.update {
+                            InfoFilmUiState.Success(id).updateFilmFavorite(isFavorite)
+                        }
+                    }
+                }
+
+        }
+
     }
 
     private fun loadInfoFilm(id: Int) {
@@ -68,7 +132,7 @@ class InfoFilmViewModel @Inject constructor(
         }
     }
 
-    fun InfoFilmUiState.Success.updateFilmInfo(
+    private fun InfoFilmUiState.Success.updateFilmInfo(
         infoFilmEntity: InfoFilmEntity
     ): InfoFilmUiState.Success {
         return this.copy(
@@ -86,7 +150,7 @@ class InfoFilmViewModel @Inject constructor(
         )
     }
 
-    fun InfoFilmUiState.Success.updateActorsInfo(
+    private fun InfoFilmUiState.Success.updateActorsInfo(
         actorsList: List<ActorsFilmEntity>
     ): InfoFilmUiState.Success {
         return this.copy(
@@ -96,6 +160,14 @@ class InfoFilmViewModel @Inject constructor(
                     coverActors = actor.coverActors,
                 )
             },
+        )
+    }
+
+    private fun InfoFilmUiState.Success.updateFilmFavorite(
+        isFilmFavorite: Boolean
+    ): InfoFilmUiState.Success {
+        return this.copy(
+            isFilmFavorite = isFilmFavorite
         )
     }
 }

@@ -1,20 +1,21 @@
 package com.example.appmovie.movie.data.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
-import com.example.appmovie.movie.domain.favorite.entity.FilmEntityFavorite
 
 @Dao
 interface FavoriteFilmDao {
     @Insert(onConflict = REPLACE)
     fun saveFavoriteFilm(favoriteFilmEntity: FavoriteFilmEntity)
 
-    @Delete
-    fun deleteFavoriteFilm(favoriteFilmEntity: FilmEntityFavorite)
+    @Query("DELETE FROM favorite_film WHERE id=:id")
+    fun deleteFavoriteFilm(id: Int)
 
     @Query("SELECT * FROM favorite_film")
     fun getAllFavoriteFilms(): List<FavoriteFilmEntity>
+
+    @Query("SELECT id FROM favorite_film WHERE id = :id")
+    fun getFilmFavorite(id: Int): Int?
 }

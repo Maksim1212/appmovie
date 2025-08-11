@@ -1,24 +1,33 @@
 package com.example.appmovie.movie.data.db
 
-import com.example.appmovie.movie.domain.favorite.entity.FilmEntityFavorite
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class FilmFavoriteRepository @Inject constructor(
     private val favoriteFilmDao: FavoriteFilmDao
 ) {
-    fun saveFilmFavorite(favoriteFilmEntity: FavoriteFilmEntity) {
-        favoriteFilmDao.saveFavoriteFilm(favoriteFilmEntity)
+    fun saveFilmFavorite(favoriteFilmEntity: FavoriteFilmEntity): Flow<Unit> = flow {
+        emit(
+            favoriteFilmDao.saveFavoriteFilm(favoriteFilmEntity)
+        )
     }
 
-    fun getFilmsFavorite(filmEntityFavorite: FilmEntityFavorite): List<FavoriteFilmEntity> {
-        return favoriteFilmDao.getAllFavoriteFilms()
+    fun getFilmsFavorite(): Flow<List<FavoriteFilmEntity>> = flow {
+        emit(
+            favoriteFilmDao.getAllFavoriteFilms()
+        )
     }
 
-    fun deleteFilmFavorite(favoriteFilmEntity: FilmEntityFavorite) {
-        favoriteFilmDao.deleteFavoriteFilm(favoriteFilmEntity)
+
+    fun deleteFilmFavorite(id: Int): Flow<Unit> = flow {
+        emit(
+            favoriteFilmDao.deleteFavoriteFilm(id = id))
     }
 
-    companion object {
-        private const val DATABASE_NAME = "appmovie.db"
+    fun getFilmFavorite(id: Int): Flow<Int?> = flow {
+        emit(
+            favoriteFilmDao.getFilmFavorite(id)
+        )
     }
 }

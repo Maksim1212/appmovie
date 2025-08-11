@@ -97,36 +97,28 @@ class FavoriteFragment : Fragment() {
                             hideLoading()
                             hideError()
 
-                            with(binding) {
-
-                                //     Glide.with(root.context)
-                                //         .load(favorite.favoriteFilms)
-                                //         .into(binding.rvFilmFavorite)
-                                //
-                                // }
-
-                                favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
-                            }
+                            favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
                         }
-
                     }
+
                 }
             }
         }
     }
 
+
     fun showError() {
-        binding.erorTextView1.show()
-        binding.erorTextView2.show()
-        binding.erorImageView.show()
-        binding.erorToTryButton2.show()
+        binding.errorTextText.show()
+        binding.errorTextHeader.show()
+        binding.errorImageView.show()
+        binding.errorToTryButton.show()
     }
 
     fun hideError() {
-        binding.erorTextView1.hide()
-        binding.erorTextView2.hide()
-        binding.erorImageView.hide()
-        binding.erorToTryButton2.hide()
+        binding.errorTextText.hide()
+        binding.errorTextHeader.hide()
+        binding.errorImageView.hide()
+        binding.errorToTryButton.hide()
     }
 
     fun showLoading() {

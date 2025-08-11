@@ -15,6 +15,7 @@ sealed interface InfoFilmUiState {
         val webUrl: String = "",
         val selectedTab: Int = 0,
         val nameRu: String = "",
+        val isFilmFavorite: Boolean = false
     ) : InfoFilmUiState {
 
         data class Actors(

@@ -71,10 +71,6 @@ class InfoFilmFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        // headerBinding.filmAdd.setOnClickListener {
-        //     viewModel.
-        // }
-
         recyclerViewForInfoFilms()
 
         observeUiState()
@@ -85,7 +81,6 @@ class InfoFilmFragment : Fragment() {
         if (filmIdFromArgs != null && filmIdFromArgs != -1) {
             viewModel.loadInitialData(filmIdFromArgs)
         }
-
 
         binding.bErrorToTryButton.setOnClickListener {
             if (filmIdFromArgs != null && filmIdFromArgs != -1) {
@@ -189,6 +184,21 @@ class InfoFilmFragment : Fragment() {
                             }
 
                             actorsFilmAdapter?.submitList(info.actors)
+
+                            binding.headerInFilmInfo.filmAdd.setImageDrawable(
+                                if (info.isFilmFavorite) {
+                                    context?.getDrawable(R.drawable.ic_vector_yes)
+                                } else {
+                                    context?.getDrawable(R.drawable.ic_bookmark)
+                                }
+                            )
+
+                            binding.headerInFilmInfo.filmAdd.setOnClickListener {
+                                if (info.isFilmFavorite) {
+                                    viewModel.saveFavoriteFilm(info.id)
+                                } else
+                                    viewModel.deleteFavoriteFilm(info.id)
+                            }
                         }
                     }
 
