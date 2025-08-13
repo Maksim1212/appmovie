@@ -7,7 +7,6 @@ import javax.inject.Inject
 class DeleteFavoriteFilmUseCase @Inject constructor(
     private val filmFavoriteRepository: FilmFavoriteRepository
 ) {
-    operator fun invoke(id: Int): Flow<Unit> {
-        return filmFavoriteRepository.deleteFilmFavorite(id)
-    }
+    operator fun invoke(id: Int): Flow<Unit> =
+        filmFavoriteRepository.deleteFilmFavorite(id)
 }

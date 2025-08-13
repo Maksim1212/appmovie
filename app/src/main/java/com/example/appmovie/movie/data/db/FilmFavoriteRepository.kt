@@ -7,13 +7,13 @@ import javax.inject.Inject
 class FilmFavoriteRepository @Inject constructor(
     private val favoriteFilmDao: FavoriteFilmDao
 ) {
-    fun saveFilmFavorite(favoriteFilmEntity: FavoriteFilmEntity): Flow<Unit> = flow {
+    fun saveFilmFavorite(favoriteFilmData: FavoriteFilmData): Flow<Unit> = flow {
         emit(
-            favoriteFilmDao.saveFavoriteFilm(favoriteFilmEntity)
+            favoriteFilmDao.saveFavoriteFilm(favoriteFilmData)
         )
     }
 
-    fun getFilmsFavorite(): Flow<List<FavoriteFilmEntity>> = flow {
+    fun getFilmsFavorite(): Flow<List<FavoriteFilmData>> = flow {
         emit(
             favoriteFilmDao.getAllFavoriteFilms()
         )
@@ -27,7 +27,7 @@ class FilmFavoriteRepository @Inject constructor(
 
     fun getFilmFavorite(id: Int): Flow<Int?> = flow {
         emit(
-            favoriteFilmDao.getFilmFavorite(id)
+            favoriteFilmDao.getFavoriteFilm(id)
         )
     }
 }

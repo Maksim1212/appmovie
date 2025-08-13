@@ -8,14 +8,14 @@ import androidx.room.Query
 @Dao
 interface FavoriteFilmDao {
     @Insert(onConflict = REPLACE)
-    fun saveFavoriteFilm(favoriteFilmEntity: FavoriteFilmEntity)
+    fun saveFavoriteFilm(favoriteFilmData: FavoriteFilmData)
 
     @Query("DELETE FROM favorite_film WHERE id=:id")
     fun deleteFavoriteFilm(id: Int)
 
     @Query("SELECT * FROM favorite_film")
-    fun getAllFavoriteFilms(): List<FavoriteFilmEntity>
+    fun getAllFavoriteFilms(): List<FavoriteFilmData>
 
     @Query("SELECT id FROM favorite_film WHERE id = :id")
-    fun getFilmFavorite(id: Int): Int?
+    fun getFavoriteFilm(id: Int): Int?
 }

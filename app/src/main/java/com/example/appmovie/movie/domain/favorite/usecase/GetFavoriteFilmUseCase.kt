@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 class GetFavoriteFilmUseCase(
     private val filmFavoriteRepository: FilmFavoriteRepository
 ) {
-    operator fun invoke(id: Int): Flow<Int?> {
-        return filmFavoriteRepository.getFilmFavorite(id)
-    }
+    operator fun invoke(id: Int): Flow<Int?> =
+        filmFavoriteRepository.getFilmFavorite(id)
 }

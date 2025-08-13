@@ -1,8 +1,9 @@
 package com.example.appmovie.movie.presentation.favorite
 
+import android.R.attr.id
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appmovie.movie.domain.favorite.entity.FilmEntityFavorite
+import com.example.appmovie.movie.domain.favorite.entity.FavoriteFilmDomain
 import com.example.appmovie.movie.domain.favorite.usecase.GetFavoriteFilmsUseCase
 import com.example.appmovie.movie.presentation.infofilm.InfoFilmUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +27,7 @@ class FilmFavoriteViewModel @Inject constructor(
 
     fun loadFavoriteFilms() {
         viewModelScope.launch {
-            getFavoriteFilmsUseCase
+            getFavoriteFilmsUseCase()
                 .onStart { _uiState.update { FavoriteUiState.Loading } }
                 .catch { e ->
                     _uiState.update { FavoriteUiState.Error }
@@ -34,13 +35,13 @@ class FilmFavoriteViewModel @Inject constructor(
                             val currentState = _uiState.value
                             if (currentState is InfoFilmUiState.Success) {
                                 _uiState.update { state ->
-                                    (state as InfoFilmUiState.Success).updateFilmFavorite(
-                                        favoriteFilm)
+                                    (state as InfoFilmUiState.Success).updateFilmFavorite(favoriteFilm)
+                                    (favoriteFilm)
                                 }
                             } else {
                                 _uiState.update {
-                                    InfoFilmUiState.Success(id = id).updateFilmFavorite(
-                                        favoriteFilm)
+                                    InfoFilmUiState.Success(id = id).updateFilmFavorite(favoriteFilm)
+                                    (favoriteFilm)
                                 }
                             }
                         }
@@ -49,16 +50,16 @@ class FilmFavoriteViewModel @Inject constructor(
     }
 
     private fun InfoFilmUiState.Success.updateFilmFavorite(
-       filmEntityFavorite: FilmEntityFavorite
+        favoriteFilmDomain: FavoriteFilmDomain
     ): InfoFilmUiState.Success {
         return this.copy(
-            id = filmEntityFavorite.id,
-            cover = filmEntityFavorite.cover,
-            filmLength = filmEntityFavorite.filmLength,
-            rating = filmEntityFavorite.rating,
-            year = filmEntityFavorite.year,
-            genre = filmEntityFavorite.genre,
-            nameRu = filmEntityFavorite.nameRu
+            id = favoriteFilmDomain.id,
+            cover = favoriteFilmDomain.cover,
+            filmLength = favoriteFilmDomain.filmLength,
+            rating = favoriteFilmDomain.rating,
+            year = favoriteFilmDomain.year,
+            genre = favoriteFilmDomain.genre,
+            nameRu = favoriteFilmDomain.nameRu
         )
     }
 }
