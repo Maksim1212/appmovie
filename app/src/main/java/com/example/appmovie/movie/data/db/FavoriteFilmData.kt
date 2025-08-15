@@ -14,7 +14,7 @@ data class FavoriteFilmData(
     val rating: String,
     @ColumnInfo(name = "year")
     val year: String,
-    @ColumnInfo(name = "film_lenght")
+    @ColumnInfo(name = "film_length")
     val filmLength: String,
     @ColumnInfo(name = "genre")
     val genre: String,

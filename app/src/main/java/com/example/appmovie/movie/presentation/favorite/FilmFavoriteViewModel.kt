@@ -1,11 +1,10 @@
 package com.example.appmovie.movie.presentation.favorite
 
-import android.R.attr.id
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appmovie.movie.domain.favorite.entity.FavoriteFilmDomain
 import com.example.appmovie.movie.domain.favorite.usecase.GetFavoriteFilmsUseCase
-import com.example.appmovie.movie.presentation.infofilm.InfoFilmUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,39 +26,52 @@ class FilmFavoriteViewModel @Inject constructor(
 
     fun loadFavoriteFilms() {
         viewModelScope.launch {
+            Log.d("FilmFavoriteVM", "Starting to load all favorite films")
             getFavoriteFilmsUseCase()
-                .onStart { _uiState.update { FavoriteUiState.Loading } }
+                .onStart {
+                    _uiState.update { FavoriteUiState.Loading }
+                    Log.d("FilmFavoriteVM", "Loading state set to Loading")
+                }
                 .catch { e ->
+                    Log.e("FilmFavoriteVM", "Error loading favorite films", e)
                     _uiState.update { FavoriteUiState.Error }
-                        .collect { favoriteFilm ->
-                            val currentState = _uiState.value
-                            if (currentState is InfoFilmUiState.Success) {
-                                _uiState.update { state ->
-                                    (state as InfoFilmUiState.Success).updateFilmFavorite(favoriteFilm)
-                                    (favoriteFilm)
-                                }
-                            } else {
-                                _uiState.update {
-                                    InfoFilmUiState.Success(id = id).updateFilmFavorite(favoriteFilm)
-                                    (favoriteFilm)
-                                }
-                            }
+                }
+                .collect { favoriteFilms ->
+                    Log.d(
+                        "FilmFavoriteVM",
+                        "Successfully loaded favorite films: ${favoriteFilms.size} films"
+                    )
+                    val currentState = _uiState.value
+                    if (currentState is FavoriteUiState.Success) {
+                        _uiState.update { state ->
+                            (state as FavoriteUiState.Success)
+                                .updateFilmFavorite(favoriteFilms)
                         }
+                    } else {
+                        _uiState.update {
+                            FavoriteUiState.Success()
+                                .updateFilmFavorite(favoriteFilms)
+                        }
+                    }
                 }
         }
     }
 
-    private fun InfoFilmUiState.Success.updateFilmFavorite(
-        favoriteFilmDomain: FavoriteFilmDomain
-    ): InfoFilmUiState.Success {
+    private fun FavoriteUiState.Success.updateFilmFavorite(
+        favoriteListFilmDomain: List<FavoriteFilmDomain>
+    ): FavoriteUiState.Success {
         return this.copy(
-            id = favoriteFilmDomain.id,
-            cover = favoriteFilmDomain.cover,
-            filmLength = favoriteFilmDomain.filmLength,
-            rating = favoriteFilmDomain.rating,
-            year = favoriteFilmDomain.year,
-            genre = favoriteFilmDomain.genre,
-            nameRu = favoriteFilmDomain.nameRu
+            favoriteFilms = favoriteListFilmDomain.map {
+                FavoriteUiState.Success.FilmFavorite(
+                    id = it.id,
+                    cover = it.cover,
+                    rating = it.rating,
+                    year = it.year,
+                    filmLength = it.filmLength,
+                    genre = it.genre,
+                    nameRu = it.nameRu,
+                )
+            }
         )
     }
 }

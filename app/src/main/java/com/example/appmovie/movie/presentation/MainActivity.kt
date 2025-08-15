@@ -1,6 +1,7 @@
 package com.example.appmovie.movie.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -14,34 +15,46 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        binding.run {
-            setContentView(root)
-            bottomNavigation.setupWithNavController(navController)
-            bottomNavigation.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.homeFragment -> {
-                        navController.navigate(R.id.homeFragment)
-                        true
-                    }
+        binding.bottomNavigation.setupWithNavController(navController)
 
-                    R.id.searchFragment -> {
-                        navController.navigate(R.id.searchFragment)
-                        true
-                    }
-
-                    R.id.favoriteFragment -> {
-                        navController.navigate(R.id.favoriteFragment)
-                        true
-                    }
-
-                    else -> false
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment, R.id.searchFragment, R.id.favoriteFragment -> {
+                    binding.bottomNavigation.visibility = View.VISIBLE
                 }
+
+                else -> {
+                    binding.bottomNavigation.visibility = View.GONE
+                }
+            }
+        }
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment)
+                    true
+                }
+
+                R.id.searchFragment -> {
+                    navController.navigate(R.id.searchFragment)
+                    true
+                }
+
+                R.id.favoriteFragment -> {
+                    navController.navigate(R.id.favoriteFragment)
+                    true
+                }
+
+                else -> false
             }
         }
     }
 }
+
