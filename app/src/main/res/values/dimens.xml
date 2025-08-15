@@ -46,7 +46,6 @@
     <dimen name="item_top_margin">2dp</dimen>
     <dimen name="item_bottom_margin">10dp</dimen>
     <dimen name="item_right_margin">2dp</dimen>
-    <dimen name="item_bottom_margin_favorite">30dp</dimen>
 
     <!--    item_categories_cover-->
     <dimen name="size_width_cover">100dp</dimen>

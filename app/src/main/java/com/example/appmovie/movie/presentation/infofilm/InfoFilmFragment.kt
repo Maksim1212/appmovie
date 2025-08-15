@@ -153,7 +153,6 @@ class InfoFilmFragment : Fragment() {
                         }
 
                         is InfoFilmUiState.Success -> {
-
                             showContent()
                             hideLoading()
                             hideError()
@@ -168,38 +167,41 @@ class InfoFilmFragment : Fragment() {
                                 tvWebUrlFilm.text = info.webUrl
 
                                 bKinopoisk.setOnClickListener {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(info.webUrl))
+                                    val intent: Intent = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse(info.webUrl)
+                                    )
                                     startActivity(intent)
                                 }
 
                                 Glide.with(root.context)
                                     .load(info.promoCover)
-                                    .into(ivPromoCoverFilmInfo)
+                                    .into(binding.ivPromoCoverFilmInfo)
 
                                 Glide.with(root.context)
                                     .load(info.cover)
-                                    .into(ivCoverFilmInfo)
+                                    .into(binding.ivCoverFilmInfo)
+                            }
 
-                                actorsFilmAdapter?.submitList(info.actors)
+                            actorsFilmAdapter?.submitList(info.actors)
 
-                                headerInFilmInfo.filmAdd.setImageDrawable(
-                                    if (info.isFilmFavorite) {
-                                        context?.getDrawable(R.drawable.ic_vector_yes)
-                                    } else {
-                                        context?.getDrawable(R.drawable.ic_bookmark)
-                                    }
-                                )
-
-                                headerInFilmInfo.filmAdd.setOnClickListener {
-                                    if (info.isFilmFavorite) {
-                                        viewModel.deleteFavoriteFilm(info.id)
-                                    } else {
-                                        viewModel.saveFavoriteFilm(info.id)
-                                    }
+                            binding.headerInFilmInfo.filmAdd.setImageDrawable(
+                                if (info.isFilmFavorite) {
+                                    context?.getDrawable(R.drawable.ic_vector_yes)
+                                } else {
+                                    context?.getDrawable(R.drawable.ic_bookmark)
                                 }
+                            )
+
+                            binding.headerInFilmInfo.filmAdd.setOnClickListener {
+                                if (info.isFilmFavorite) {
+                                    viewModel.saveFavoriteFilm(info.id)
+                                } else
+                                    viewModel.deleteFavoriteFilm(info.id)
                             }
                         }
                     }
+
                 }
             }
         }

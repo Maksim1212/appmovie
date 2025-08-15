@@ -1,7 +1,5 @@
 package com.example.appmovie.movie.presentation.infofilm
 
-import com.example.appmovie.movie.domain.favorite.entity.FavoriteFilmDomain
-
 sealed interface InfoFilmUiState {
     data class Success(
         val id: Int,
@@ -29,16 +27,4 @@ sealed interface InfoFilmUiState {
     data object Loading : InfoFilmUiState
 
     data object Error : InfoFilmUiState
-
 }
-
-fun InfoFilmUiState.Success.convertToDomain(): FavoriteFilmDomain =
-    FavoriteFilmDomain(
-        id = this.id,
-        nameRu = this.nameRu,
-        cover = this.cover,
-        filmLength = this.filmLength,
-        genre = this.genre,
-        rating = this.rating,
-        year = this.year,
-    )
