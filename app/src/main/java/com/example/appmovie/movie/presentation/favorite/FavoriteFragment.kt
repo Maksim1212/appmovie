@@ -12,9 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.appmovie.R
 import com.example.appmovie.databinding.FragmentFavoriteBinding
 import com.example.appmovie.movie.App
 import com.example.appmovie.movie.presentation.favorite.list.FavoriteFilmAdapter
+import com.example.appmovie.movie.presentation.favorite.list.FilmsItemDecoration
 import com.example.appmovie.movie.presentation.hide
 import com.example.appmovie.movie.presentation.show
 import kotlinx.coroutines.launch
@@ -55,7 +57,12 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerViewForFavoriteFilms()
+
         observeUiState()
+
+        addDecorators()
+
+        favoriteViewModel.loadInitialData()
     }
 
     private fun recyclerViewForFavoriteFilms() {
@@ -70,9 +77,18 @@ class FavoriteFragment : Fragment() {
         val layoutManager =
             LinearLayoutManager(
                 requireContext(),
-                LinearLayoutManager.HORIZONTAL, false
+                LinearLayoutManager.VERTICAL, false
             )
         recyclerView.layoutManager = layoutManager
+    }
+
+    private fun addDecorators() {
+        val bottomOffset = resources.getDimensionPixelSize(R.dimen.item_bottom_margin_favorite)
+        val leftOffset = resources.getDimensionPixelSize(R.dimen.item_bottom_margin_favorite)
+
+        val itemDecorator =
+            FilmsItemDecoration(bottomOffset, leftOffset)
+        binding.rvFilmFavorite.addItemDecoration(itemDecorator)
     }
 
     private fun observeUiState() {
@@ -106,7 +122,6 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-
     fun showError() {
         binding.errorTextText.show()
         binding.errorTextHeader.show()
@@ -136,5 +151,4 @@ class FavoriteFragment : Fragment() {
     fun showSuccess() {
         binding.rvFilmFavorite.show()
     }
-
 }

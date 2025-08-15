@@ -10,6 +10,7 @@ interface FavoriteFilmDao {
     @Insert(onConflict = REPLACE)
     fun saveFavoriteFilm(favoriteFilmData: FavoriteFilmData)
 
+
     @Query("DELETE FROM favorite_film WHERE id=:id")
     fun deleteFavoriteFilm(id: Int)
 
