@@ -1,7 +1,11 @@
 package com.example.appmovie.movie.presentation.infofilm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appmovie.movie.domain.favorite.usecase.DeleteFavoriteFilmUseCase
+import com.example.appmovie.movie.domain.favorite.usecase.GetFavoriteFilmUseCase
+import com.example.appmovie.movie.domain.favorite.usecase.SaveFavoriteFilmUseCase
 import com.example.appmovie.movie.domain.infofilm.entity.ActorsFilmEntity
 import com.example.appmovie.movie.domain.infofilm.entity.InfoFilmEntity
 import com.example.appmovie.movie.domain.infofilm.usecase.GetActorsFilmsUseCase
@@ -18,6 +22,9 @@ import javax.inject.Inject
 class InfoFilmViewModel @Inject constructor(
     private val getInfoFilmUseCase: GetInfoFilmUseCase,
     private val getActorsFilmsUseCase: GetActorsFilmsUseCase,
+    private val getFavoriteFilmUseCase: GetFavoriteFilmUseCase,
+    private val saveFavoriteFilmUseCase: SaveFavoriteFilmUseCase,
+    private val deleteFavoriteFilmUseCase: DeleteFavoriteFilmUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<InfoFilmUiState>(InfoFilmUiState.Loading)
@@ -26,6 +33,77 @@ class InfoFilmViewModel @Inject constructor(
     fun loadInitialData(id: Int) {
         loadActorsFilm(id)
         loadInfoFilm(id)
+        loadFavoriteFilm(id)
+    }
+
+    fun deleteFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            val currentState = _uiState.value
+            if (currentState is InfoFilmUiState.Success) {
+                deleteFavoriteFilmUseCase(id)
+                    .onStart {
+                        Log.d("FilmFavoriteVM", "Deleting film: $id")
+                    }
+                    .catch {
+                        Log.d("FilmFavoriteVM", "Error deleting film: ${it.message}")
+                        _uiState.update { InfoFilmUiState.Error }
+                    }
+                    .collect {
+                        _uiState.update {
+                            currentState.copy(isFilmFavorite = false)
+                        }
+                    }
+            }
+        }
+    }
+
+    fun saveFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            val currentState = _uiState.value
+            if (currentState is InfoFilmUiState.Success) {
+                saveFavoriteFilmUseCase(currentState.convertToDomain())
+                    .onStart {
+                        Log.d("FilmFavoriteVM", "Saving film: ${currentState.id}")
+                    }
+                    .catch {
+                        Log.d("FilmFavoriteVM", "Error saving film")
+                        _uiState.update { InfoFilmUiState.Error }
+                    }
+                    .collect {
+                        _uiState.update {
+                            currentState.copy(isFilmFavorite = true)
+                        }
+                    }
+            }
+        }
+    }
+
+    private fun loadFavoriteFilm(id: Int) {
+        viewModelScope.launch {
+            getFavoriteFilmUseCase(id)
+                .onStart {
+                    _uiState.update { InfoFilmUiState.Loading }
+                    Log.d("FilmFavoriteVM", "Loading favorite film with id: $id")
+                }
+                .catch { e ->
+                    Log.e("FilmFavoriteVM", "Error loading favorite film with id: ", e)
+                    _uiState.update { InfoFilmUiState.Error }
+                }
+                .collect { isFilmFavorite ->
+                    val currentState = _uiState.value
+                    val isFavorite = isFilmFavorite != null
+                    Log.d("FilmFavoriteVM", "Film with id: $id isFavorite: $isFavorite")
+                    if (currentState is InfoFilmUiState.Success) {
+                        _uiState.update { state ->
+                            (state as InfoFilmUiState.Success).updateFilmFavorite(isFavorite)
+                        }
+                    } else {
+                        _uiState.update {
+                            InfoFilmUiState.Success(id).updateFilmFavorite(isFavorite)
+                        }
+                    }
+                }
+        }
     }
 
     private fun loadInfoFilm(id: Int) {
@@ -68,7 +146,7 @@ class InfoFilmViewModel @Inject constructor(
         }
     }
 
-    fun InfoFilmUiState.Success.updateFilmInfo(
+    private fun InfoFilmUiState.Success.updateFilmInfo(
         infoFilmEntity: InfoFilmEntity
     ): InfoFilmUiState.Success {
         return this.copy(
@@ -86,7 +164,7 @@ class InfoFilmViewModel @Inject constructor(
         )
     }
 
-    fun InfoFilmUiState.Success.updateActorsInfo(
+    private fun InfoFilmUiState.Success.updateActorsInfo(
         actorsList: List<ActorsFilmEntity>
     ): InfoFilmUiState.Success {
         return this.copy(
@@ -96,6 +174,14 @@ class InfoFilmViewModel @Inject constructor(
                     coverActors = actor.coverActors,
                 )
             },
+        )
+    }
+
+    private fun InfoFilmUiState.Success.updateFilmFavorite(
+        isFilmFavorite: Boolean
+    ): InfoFilmUiState.Success {
+        return this.copy(
+            isFilmFavorite = isFilmFavorite
         )
     }
 }

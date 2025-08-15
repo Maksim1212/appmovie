@@ -22,7 +22,7 @@
         tools:src="@drawable/ic_example" />
 
     <TextView
-        android:id="@+id/tv_header"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_ten"
@@ -55,7 +55,7 @@
         android:textColor="@color/orange_color"
         android:textSize="@dimen/text_size_small"
         app:layout_constraintStart_toEndOf="@id/ic_star"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
         tools:text="9.5" />
 
     <ImageView

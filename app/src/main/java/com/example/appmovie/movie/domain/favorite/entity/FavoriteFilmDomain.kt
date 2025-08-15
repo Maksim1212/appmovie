@@ -1,6 +1,6 @@
 package com.example.appmovie.movie.domain.favorite.entity
 
-class FilmEntityFavorite(
+class FavoriteFilmDomain(
     val id: Int,
     val cover: String = "",
     val rating: String = "",
