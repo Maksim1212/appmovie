@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
 
         observeUiState()
 
-        binding.erorToTryButton.setOnClickListener {
+        binding.errorToTryButton.setOnClickListener {
             homeViewModel.loadInitialData()
         }
     }
@@ -176,19 +176,19 @@ class HomeFragment : Fragment() {
 
     private fun showError() {
         with(binding) {
-            erorImageView.show()
-            erorToTryButton.show()
-            erorTextView1.show()
-            erorTextView2.show()
+            errorTextViewHome.show()
+            errorToTryButton.show()
+            errorTextViewHome.show()
+            errorTextViewTry.show()
         }
     }
 
     private fun hideError() {
         with(binding) {
-            erorImageView.hide()
-            erorTextView1.hide()
-            erorTextView2.hide()
-            erorToTryButton.hide()
+            errorImageViewHome.hide()
+            errorTextViewHome.hide()
+            errorTextViewTry.hide()
+            errorToTryButton.hide()
         }
     }
 

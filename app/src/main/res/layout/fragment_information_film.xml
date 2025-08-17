@@ -11,7 +11,7 @@
         layout="@layout/header_back_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/include_layout_margin_top_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -80,8 +80,8 @@
                 android:id="@+id/iv_rating_film_info"
                 android:layout_width="@dimen/size_big"
                 android:layout_height="@dimen/size_big"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="160dp"
+                android:layout_marginStart="@dimen/rating_margin_start"
+                android:layout_marginTop="@dimen/rating_margin_top"
                 android:src="@drawable/star"
                 app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -91,9 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_margin_start_rating_film_info"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="@dimen/rating_margin_top"
                 android:fontFamily="@font/montserrat_600"
-                android:text="9.5"
                 android:textColor="@color/orange_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toEndOf="@id/iv_rating_film_info"
@@ -106,7 +105,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_margin_start_name_film_info"
                 android:layout_marginTop="@dimen/size_margin_top_name_film_info"
-                android:text="Spiderman No Way Home"
                 app:layout_constraintStart_toEndOf="@id/iv_cover_film_info"
                 app:layout_constraintTop_toBottomOf="@id/iv_promo_cover_film_info_m" />
 
@@ -114,7 +112,7 @@
                 android:id="@+id/iv_calendar_film_info"
                 android:layout_width="@dimen/size_big"
                 android:layout_height="@dimen/size_big"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="@dimen/calendar_layout_margin_start"
                 android:layout_marginTop="@dimen/size_margin_top_calendar_film_info"
                 android:src="@drawable/ic_calendar_info"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
-                android:text="2021"
+                android:text="@string/data"
                 app:layout_constraintBottom_toBottomOf="@id/iv_calendar_film_info"
                 app:layout_constraintStart_toEndOf="@id/iv_calendar_film_info"
                 app:layout_constraintTop_toTopOf="@id/iv_calendar_film_info" />
@@ -157,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
-                android:text="100"
+                android:text="@string/time"
                 app:layout_constraintBottom_toBottomOf="@id/iv_time_film_info"
                 app:layout_constraintStart_toEndOf="@id/iv_time_film_info"
                 app:layout_constraintTop_toTopOf="@id/iv_time_film_info" />
@@ -168,13 +166,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
-                android:text="Минут"
+                android:text="@string/minute"
                 app:layout_constraintBottom_toBottomOf="@id/tv_time_film_info"
                 app:layout_constraintStart_toEndOf="@id/tv_time_film_info"
                 app:layout_constraintTop_toTopOf="@id/tv_time_film_info" />
 
             <ImageView
-                android:id="@+id/iv_stripp_film_info"
+                android:id="@+id/iv_strip_film_info_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
@@ -189,9 +187,9 @@
                 android:layout_height="@dimen/size_big"
                 android:layout_marginStart="@dimen/the_distance_between_the_housekeepers"
                 android:src="@drawable/ic_ticket_info"
-                app:layout_constraintBottom_toBottomOf="@id/iv_stripp_film_info"
-                app:layout_constraintStart_toEndOf="@id/iv_stripp_film_info"
-                app:layout_constraintTop_toTopOf="@id/iv_stripp_film_info" />
+                app:layout_constraintBottom_toBottomOf="@id/iv_strip_film_info_genre"
+                app:layout_constraintStart_toEndOf="@id/iv_strip_film_info_genre"
+                app:layout_constraintTop_toTopOf="@id/iv_strip_film_info_genre" />
 
             <TextView
                 android:id="@+id/tv_genre_film_info"
@@ -209,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/eror_margin_top"
-                android:src="@drawable/box_eror"
+                android:src="@drawable/box_error"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -292,10 +290,10 @@
             <TextView
                 android:id="@+id/tv_about_film"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginEnd="10dp"
+                android:layout_height="@dimen/about_layout_height"
+                android:layout_marginStart="@dimen/about_layout_margin_start"
+                android:layout_marginTop="@dimen/about_layout_margin_top"
+                android:layout_marginEnd="@dimen/about_layout_margin_end"
                 android:gravity="start"
                 android:text="dfdfdfdf"
                 android:textColor="@color/white"
@@ -306,10 +304,10 @@
             <TextView
                 android:id="@+id/tv_web_url_film"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginEnd="10dp"
+                android:layout_height="@dimen/web_layout_height"
+                android:layout_marginStart="@dimen/web_layout_margin_start"
+                android:layout_marginTop="@dimen/web_layout_margin_top"
+                android:layout_marginEnd="@dimen/web_layout_margin_end"
                 android:gravity="start"
                 android:textColor="@color/white"
                 android:visibility="gone"
@@ -320,13 +318,12 @@
                 android:id="@+id/b_kinopoisk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="90dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="@dimen/button_layout_margin_start"
+                android:layout_marginTop="@dimen/button_layout_margin_top"
                 android:text="Смотреть на кинопоиске"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tab_layout_home" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

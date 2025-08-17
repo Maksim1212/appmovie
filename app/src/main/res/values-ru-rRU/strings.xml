@@ -19,5 +19,9 @@
     <string name="about_movie">О фильме</string>
     <string name="cast">Актёры</string>
     <string name="link_to_kinopoisk">Ссылка на кинопоиск</string>
+    <string name="data">2020</string>
+    <string name="time">100</string>
+    <string name="minute">Минут</string>
+    <string name="SearchFragment">Поиск</string>
 
 </resources>

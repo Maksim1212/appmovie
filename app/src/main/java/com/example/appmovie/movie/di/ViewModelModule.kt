@@ -6,6 +6,7 @@ import com.example.appmovie.movie.presentation.favorite.FilmFavoriteViewModel
 import com.example.appmovie.movie.presentation.home.Factory
 import com.example.appmovie.movie.presentation.home.HomeViewModel
 import com.example.appmovie.movie.presentation.infofilm.InfoFilmViewModel
+import com.example.appmovie.movie.presentation.search.SearchFilmViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,4 +30,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(FilmFavoriteViewModel::class)
     fun bindFavoriteViewModel(viewModel: FilmFavoriteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchFilmViewModel::class)
+    fun bindSearchViewModel(viewModel: SearchFilmViewModel): ViewModel
 }

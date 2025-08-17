@@ -4,6 +4,7 @@ import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
 import com.example.appmovie.movie.data.remote.model.FilmItem
 import com.example.appmovie.movie.data.remote.model.ItemActors
+import com.example.appmovie.movie.data.remote.model.SearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -30,4 +31,9 @@ interface KinopoiskApi {
     suspend fun getActorsFilm(
         @Query("filmId") id: Int
     ): List<ItemActors?>
+
+    @GET("v2.1/films/search-by-keyword")
+    suspend fun searchByKeyword(
+        @Query("keyword") keyword: String
+    ): SearchResponse
 }

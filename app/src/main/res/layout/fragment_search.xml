@@ -7,16 +7,94 @@
     android:background="@color/main_color_background_app"
     tools:context="com.example.appmovie.movie.presentation.search.SearchFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/header_in_film_search"
+        layout="@layout/header_fragment_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SearchFragment"
-        android:textColor="#F8F6F6"
-        android:textSize="@dimen/size_tv"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/search_bar_search"
+        layout="@layout/search_film"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_in_film_search" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size_margin_top_scroll"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_search">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color_background_app">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layout_margin_start"
+                android:layout_marginEnd="@dimen/layout_margin_end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/error_image_view_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_height_promo_cover"
+                android:src="@drawable/search_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/error_text_header_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_width_cover"
+                android:text="we are sorry, we can not find the movie :("
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/error_image_view_search"
+                app:layout_constraintStart_toStartOf="@+id/error_image_view_search"
+                app:layout_constraintTop_toTopOf="@+id/error_image_view_search" />
+
+            <TextView
+                android:id="@+id/error_text_text_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find your movie by Type title, categories, years, etc "
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/error_text_header_search"
+                app:layout_constraintStart_toStartOf="@id/error_text_header_search"
+                app:layout_constraintTop_toBottomOf="@id/error_text_header_search" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
