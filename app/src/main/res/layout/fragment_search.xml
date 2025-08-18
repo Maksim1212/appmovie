@@ -12,7 +12,7 @@
         layout="@layout/header_fragment_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/include_layout_margin_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         layout="@layout/search_film"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/layout_margin_start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_in_film_search" />
 
@@ -66,8 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_width_cover"
-                android:text="we are sorry, we can not find the movie :("
+                android:fontFamily="@font/poppins"
+                android:text="@string/header_search_fragment"
                 android:textColor="@color/white"
+                android:textSize="@dimen/header_search_fragment"
                 app:layout_constraintEnd_toEndOf="@+id/error_image_view_search"
                 app:layout_constraintStart_toStartOf="@+id/error_image_view_search"
                 app:layout_constraintTop_toTopOf="@+id/error_image_view_search" />
@@ -76,8 +78,9 @@
                 android:id="@+id/error_text_text_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Find your movie by Type title, categories, years, etc "
+                android:text="@string/search_fragment"
                 android:textColor="@color/white"
+                android:textSize="@dimen/search_fragment"
                 app:layout_constraintEnd_toEndOf="@id/error_text_header_search"
                 app:layout_constraintStart_toStartOf="@id/error_text_header_search"
                 app:layout_constraintTop_toBottomOf="@id/error_text_header_search" />
