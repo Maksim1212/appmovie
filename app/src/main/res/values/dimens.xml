@@ -99,6 +99,7 @@
     <dimen name="web_layout_margin_start">10dp</dimen>
     <dimen name="web_layout_margin_top">150dp</dimen>
     <dimen name="web_layout_margin_end">10dp</dimen>
+    <dimen name="size_menu">60dp</dimen>
 
     <dimen name="button_layout_margin_start">90dp</dimen>
     <dimen name="button_layout_margin_top">50dp</dimen>
@@ -128,6 +129,5 @@
     <dimen name="include_layout_margin_start">40dp</dimen>
     <dimen name="search_fragment">12sp</dimen>
     <dimen name="header_search_fragment">16sp</dimen>
-
 
 </resources>
