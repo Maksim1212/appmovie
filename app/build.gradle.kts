@@ -12,7 +12,7 @@ if (keysFile.exists()) {
 
 android {
     namespace = "com.example.appmovie"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.appmovie"
@@ -66,7 +66,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.viewpager2)
-    implementation (libs.hdodenhof.circleimageview)
+    implementation(libs.hdodenhof.circleimageview)
 
     // Navigation
     implementation(libs.androidx.navigation.fragment)
@@ -74,7 +74,7 @@ dependencies {
 
     // Glide
     implementation(libs.glide)
-    implementation(libs.glide.compiler)
+    ksp(libs.glide.compiler)
 
     // Tests
     testImplementation(libs.junit)
@@ -95,6 +95,9 @@ dependencies {
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+
+    // Splash screen
+    implementation(libs.androidx.core.splashscreen)
 
     ksp(libs.room.compiler)
 }
