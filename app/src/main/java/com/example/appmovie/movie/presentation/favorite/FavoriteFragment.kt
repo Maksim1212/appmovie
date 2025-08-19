@@ -100,20 +100,28 @@ class FavoriteFragment : Fragment() {
                             showError()
                             hideLoading()
                             hideSuccess()
+                            hideEmpty()
                         }
 
                         FavoriteUiState.Loading -> {
                             showLoading()
                             hideSuccess()
                             hideError()
+                            hideEmpty()
                         }
 
                         is FavoriteUiState.Success -> {
-                            showSuccess()
                             hideLoading()
                             hideError()
 
-                            favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
+                            if (favorite.favoriteFilms.isEmpty()) {
+                                showEmpty()
+                                hideSuccess()
+                            } else {
+                                showSuccess()
+                                hideEmpty()
+                                favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
+                            }
                         }
                     }
                 }
@@ -121,33 +129,61 @@ class FavoriteFragment : Fragment() {
         }
     }
 
+    fun showEmpty() {
+        with(binding) {
+            anEmptyFragment.show()
+            headerAnEmptyFragment.show()
+            imageAnEmptyFragment.show()
+        }
+    }
+
+    fun hideEmpty() {
+        with(binding) {
+            anEmptyFragment.hide()
+            headerAnEmptyFragment.hide()
+            imageAnEmptyFragment.hide()
+        }
+    }
+
     fun showError() {
-        binding.errorTextText.show()
-        binding.errorTextHeader.show()
-        binding.errorImageView.show()
-        binding.errorToTryButton.show()
+        with(binding) {
+            errorTextText.show()
+            errorTextHeader.show()
+            errorImageView.show()
+            errorToTryButton.show()
+        }
     }
 
     fun hideError() {
-        binding.errorTextText.hide()
-        binding.errorTextHeader.hide()
-        binding.errorImageView.hide()
-        binding.errorToTryButton.hide()
+        with(binding) {
+            errorTextText.hide()
+            errorTextHeader.hide()
+            errorImageView.hide()
+            errorToTryButton.hide()
+        }
     }
 
     fun showLoading() {
-        binding.progressBar.show()
+        with(binding) {
+            progressBar.show()
+        }
     }
 
     fun hideLoading() {
-        binding.progressBar.hide()
+        with(binding) {
+            progressBar.hide()
+        }
     }
 
     fun hideSuccess() {
-        binding.rvFilmFavorite.hide()
+        with(binding) {
+            rvFilmFavorite.hide()
+        }
     }
 
     fun showSuccess() {
-        binding.rvFilmFavorite.show()
+        with(binding) {
+            rvFilmFavorite.show()
+        }
     }
 }

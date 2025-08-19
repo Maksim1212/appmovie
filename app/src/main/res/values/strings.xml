@@ -28,7 +28,11 @@
     <string name="SearchFragment">SearchFragment</string>
 
     <!--    Search fragment-->
-    <string name="header_search_fragment">we are sorry, we can not find the movie :(</string>
+    <string name="header_search_fragment">We are sorry, we can not find the movie :(</string>
     <string name="search_fragment">Find your movie by Type title, categories, years, etc</string>
+
+    <!--    Favorite fragment-->
+    <string name="header_empty_fragment">There is no movie yet!</string>
+    <string name="empty_fragment">Find your movie by Type title, categories, years, etc </string>
 
 </resources>

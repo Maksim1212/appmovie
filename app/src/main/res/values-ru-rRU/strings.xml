@@ -23,7 +23,9 @@
     <string name="time">100</string>
     <string name="minute">Минут</string>
     <string name="SearchFragment">Поиск</string>
-    <string name="header_search_fragment">к сожалению, мы не можем найти этот фильм :(</string>
+    <string name="header_search_fragment">К сожалению, мы не можем найти этот фильм :(</string>
     <string name="search_fragment">Найдите свой фильм по типу, названию, категории, годам выпуска и т.д</string>
+    <string name="header_empty_fragment">Фильма еще нет!</string>
+    <string name="empty_fragment">Найдите свой фильм по типу, названию, категории, годам выпуска и т.д</string>
 
 </resources>

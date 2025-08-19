@@ -12,4 +12,11 @@
         <item name="itemIconTint">@color/main_color_background_app</item>
         <item name="itemTextColor">@color/main_color_background_app</item>
     </style>
+
+    <style name="Theme.MyApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#242A32</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/popcorn</item>
+        <item name="postSplashScreenTheme">@style/Theme.AppMovie</item>
+    </style>
+
 </resources>
