@@ -33,5 +33,3 @@ data class Film(
     @SerialName("year")
     val year: String?
 )
-
-

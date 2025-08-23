@@ -1,10 +1,12 @@
 package com.example.appmovie.movie.presentation.search
 
 interface SearchUiState {
+
     data class Success(
         val headerText: String = "",
         val searchFilms: List<FilmSearch> = emptyList(),
         val headerSearch: String = "",
+
     ) : SearchUiState {
         data class FilmSearch(
             val id: Int,

@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchResponse(
     @SerialName("films")
-    val films: List<Film?>?,
+    val films: List<Film?>,
     @SerialName("keyword")
-    val keyword: String?,
+    val keyword: String,
     @SerialName("pagesCount")
-    val pagesCount: Int?,
+    val pagesCount: Int,
     @SerialName("searchFilmsCountResult")
-    val searchFilmsCountResult: Int?
+    val searchFilmsCountResult: Int
 )
