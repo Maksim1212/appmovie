@@ -20,7 +20,7 @@
         android:textColorHint="@color/search_color"
         android:imeOptions="actionSearch"
         android:lines="1"
-        android:maxWidth="200dp"
+        android:maxWidth="@dimen/name_film_info"
         android:paddingStart="@dimen/size_twenty"
         android:paddingTop="@dimen/size_baby"
         android:paddingEnd="@dimen/size_twenty"

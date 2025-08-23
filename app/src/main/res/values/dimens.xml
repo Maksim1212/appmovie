@@ -85,10 +85,10 @@
     <dimen name="size_margin_top_sheap">150dp</dimen>
     <dimen name="size_width_sheap_image">54dp</dimen>
     <dimen name="size_height_sheap_image">24dp</dimen>
-    <dimen name="size_start_sheap_image">194dp</dimen>
+    <dimen name="size_start_sheap_image">184dp</dimen>
     <dimen name="size_top_sheap_image">156dp</dimen>
-    <dimen name="include_layout_margin_top_info">30dp</dimen>
-    <dimen name="rating_margin_start">200dp</dimen>
+    <dimen name="include_layout_margin_top_info">50dp</dimen>
+    <dimen name="rating_margin_start">190dp</dimen>
     <dimen name="rating_margin_top">160dp</dimen>
     <dimen name="calendar_layout_margin_start">80dp</dimen>
     <dimen name="about_layout_height">200dp</dimen>
@@ -125,6 +125,9 @@
     <!--    for search fragment-->
     <dimen name="layout_margin_start">20dp</dimen>
     <dimen name="layout_margin_end">20dp</dimen>
+    <dimen name="include_layout_margin_start">40dp</dimen>
+    <dimen name="search_fragment">12sp</dimen>
+    <dimen name="header_search_fragment">16sp</dimen>
 
 
 </resources>
