@@ -1,8 +1,8 @@
 package com.example.appmovie.movie.presentation
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appmovie.R
@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment, R.id.searchFragment, R.id.favoriteFragment -> {
-                    binding.bottomNavigation.visibility = View.VISIBLE
+                    binding.bottomNavigation.isVisible = true
                 }
 
                 else -> {
-                    binding.bottomNavigation.visibility = View.GONE
+                    binding.bottomNavigation.isVisible = false
                 }
             }
         }
