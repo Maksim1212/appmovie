@@ -1,17 +1,17 @@
-package com.example.appmovie.movie.presentation.favorite
+package com.example.appmovie.movie.presentation.favorite.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.example.appmovie.databinding.ItemFilmBinding
-import com.example.appmovie.movie.data.FilmModel
+import com.example.appmovie.movie.presentation.favorite.FavoriteUiState
+import com.example.appmovie.movie.presentation.favorite.list.FilmHolder
+import javax.inject.Inject
 
-class FilmAdapter(
-    private val list: List<FilmModel>,
-    private val action: (FilmModel) -> Unit,
-    private val glide: RequestManager
-) : ListAdapter<FilmModel, FilmHolder>(MyDiffCallback()) {
+class FavoriteFilmAdapter @Inject constructor(
+    private val glide: RequestManager,
+) : ListAdapter<FavoriteUiState.Success.FilmFavorite, FilmHolder>(FavoriteDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,7 +22,6 @@ class FilmAdapter(
             parent,
             false
         ),
-        action,
         glide
 
     )
@@ -31,8 +30,6 @@ class FilmAdapter(
         holder: FilmHolder,
         position: Int
     ) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position))
     }
-
-    override fun getItemCount(): Int = list.size
 }

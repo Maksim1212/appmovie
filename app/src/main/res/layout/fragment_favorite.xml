@@ -9,10 +9,10 @@
 
     <include
         android:id="@+id/header_in_main_menu"
-        layout="@layout/header_back_fragment_home"
+        layout="@layout/header_fragment_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,11 +20,65 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_film_favorite"
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/size_eight"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/size_seventy"
+        android:layout_marginStart="@dimen/size_eight"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_in_main_menu"/>
+        app:layout_constraintTop_toBottomOf="@+id/header_in_main_menu" />
+
+    <TextView
+        android:id="@+id/error_text_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_width_cover"
+        android:text="@string/an_error_has_occurred"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/error_image_view"
+        app:layout_constraintStart_toStartOf="@+id/error_image_view"
+        app:layout_constraintTop_toTopOf="@+id/error_image_view" />
+
+    <TextView
+        android:id="@+id/error_text_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again_or_come_back_later"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/error_text_header"
+        app:layout_constraintStart_toStartOf="@id/error_text_header"
+        app:layout_constraintTop_toBottomOf="@id/error_text_header" />
+
+    <ImageView
+        android:id="@+id/error_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/eror_margin_top"
+        android:src="@drawable/box_eror"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/error_to_try_button"
+        style="@style/ColorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_offset"
+        android:text="@string/to_try"
+        app:layout_constraintEnd_toEndOf="@+id/error_text_text"
+        app:layout_constraintStart_toStartOf="@+id/error_text_text"
+        app:layout_constraintTop_toBottomOf="@+id/error_text_text" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
