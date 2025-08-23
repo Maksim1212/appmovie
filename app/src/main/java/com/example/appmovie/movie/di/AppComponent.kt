@@ -5,6 +5,7 @@ import com.example.appmovie.movie.presentation.favorite.FavoriteFragment
 import com.example.appmovie.movie.presentation.home.Factory
 import com.example.appmovie.movie.presentation.home.HomeFragment
 import com.example.appmovie.movie.presentation.infofilm.InfoFilmFragment
+import com.example.appmovie.movie.presentation.search.SearchFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -27,6 +28,8 @@ interface AppComponent {
     fun inject(fragment: InfoFilmFragment)
 
     fun inject(fragment: FavoriteFragment)
+
+    fun inject(fragment: SearchFragment)
 
     @Component.Builder
     interface Builder {

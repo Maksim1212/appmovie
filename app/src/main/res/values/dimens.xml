@@ -46,7 +46,7 @@
     <dimen name="item_top_margin">2dp</dimen>
     <dimen name="item_bottom_margin">10dp</dimen>
     <dimen name="item_right_margin">2dp</dimen>
-    <dimen name="item_bottom_margin_favorite">30dp</dimen>
+    <dimen name="item_bottom_margin_favorite">16dp</dimen>
 
     <!--    item_categories_cover-->
     <dimen name="size_width_cover">100dp</dimen>
@@ -87,6 +87,21 @@
     <dimen name="size_height_sheap_image">24dp</dimen>
     <dimen name="size_start_sheap_image">194dp</dimen>
     <dimen name="size_top_sheap_image">156dp</dimen>
+    <dimen name="include_layout_margin_top_info">30dp</dimen>
+    <dimen name="rating_margin_start">200dp</dimen>
+    <dimen name="rating_margin_top">160dp</dimen>
+    <dimen name="calendar_layout_margin_start">80dp</dimen>
+    <dimen name="about_layout_height">200dp</dimen>
+    <dimen name="about_layout_margin_start">10dp</dimen>
+    <dimen name="about_layout_margin_top">150dp</dimen>
+    <dimen name="about_layout_margin_end">10dp</dimen>
+    <dimen name="web_layout_height">200dp</dimen>
+    <dimen name="web_layout_margin_start">10dp</dimen>
+    <dimen name="web_layout_margin_top">150dp</dimen>
+    <dimen name="web_layout_margin_end">10dp</dimen>
+
+    <dimen name="button_layout_margin_start">90dp</dimen>
+    <dimen name="button_layout_margin_top">50dp</dimen>
 
     <!--    header_back-->
     <dimen name="size_margin_top_back">6dp</dimen>
@@ -102,6 +117,14 @@
     <!--    for info-->
     <dimen name="the_distance_between">10dp</dimen>
     <dimen name="the_distance_up">50dp</dimen>
+
+    <!--    for favorite fragment-->
+    <dimen name="include_layout_margin_top">40dp</dimen>
+    <dimen name="rv_layout_margin_top">100dp</dimen>
+
+    <!--    for search fragment-->
+    <dimen name="layout_margin_start">20dp</dimen>
+    <dimen name="layout_margin_end">20dp</dimen>
 
 
 </resources>

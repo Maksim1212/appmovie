@@ -22,4 +22,11 @@
 
     <!--    InfoFilm-->
     <string name="detail">Detail</string>
+    <string name="data">2020</string>
+    <string name="time">100</string>
+    <string name="minute">minute</string>
+    <string name="SearchFragment">SearchFragment</string>
+
+    <!--    Search fragment-->
+
 </resources>

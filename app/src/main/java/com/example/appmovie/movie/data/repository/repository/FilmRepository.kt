@@ -1,12 +1,11 @@
 package com.example.appmovie.movie.data.repository.repository
 
-import com.example.appmovie.movie.data.FilmModel
 import com.example.appmovie.movie.data.remote.KinopoiskApi
 import com.example.appmovie.movie.data.remote.model.CollectionGenresResponse
 import com.example.appmovie.movie.data.remote.model.CollectionsResponse
+import com.example.appmovie.movie.data.remote.model.Film
 import com.example.appmovie.movie.data.remote.model.FilmItem
 import com.example.appmovie.movie.data.remote.model.ItemActors
-import com.example.appmovie.movie.data.repository.FilmStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,9 +13,6 @@ import javax.inject.Inject
 class FilmRepository @Inject constructor(
     private val kinopoiskApi: KinopoiskApi
 ) {
-
-    fun getSelectedFilms(): List<FilmModel> = FilmStorage.selectedFilms
-
     fun getTopRankedFilms(): Flow<CollectionsResponse> = flow {
         emit(kinopoiskApi.getCollectionsRankedFilms(type = "TOP_POPULAR_ALL", page = 1))
     }
@@ -33,5 +29,10 @@ class FilmRepository @Inject constructor(
         emit(
             kinopoiskApi.getInformationOfFilm(id)
         )
+    }
+
+    fun searchFilmsByTitle(query: String): Flow<List<Film>> = flow {
+        val response = kinopoiskApi.searchByKeyword(query)
+        emit(response.films.orEmpty().filterNotNull())
     }
 }

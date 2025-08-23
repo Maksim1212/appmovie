@@ -116,7 +116,6 @@ class FavoriteFragment : Fragment() {
                             favoriteFilmAdapter?.submitList(favorite.favoriteFilms)
                         }
                     }
-
                 }
             }
         }
